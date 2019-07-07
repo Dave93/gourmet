@@ -7,3 +7,6 @@ button_stock: 🏷 Aktsiyalar
 button_review: 📝 Fikringizni qoldiring
 select_an_action: Harakatni tanlang
 back: Ortga
+choose_catalog_category: Mahsulot kategoriyasini tanlang
+catalog_category_not_found: Tanlangan ketegoriya mavjud emas
+choose_category_product: Mahsulotni tanlang
