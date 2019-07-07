@@ -25,7 +25,6 @@ const client =  new DirectusSDK({
     token: "1531321321"
 });
 
-
 async function fetchAllItems() {
     const data = await client.getItems("users");
     return data;
