@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const Telegraf = require('telegraf');
 const TelegrafI18n = require('telegraf-i18n');
+const Router = require('telegraf/router');
 const { match, reply } = require('telegraf-i18n');
 const Markup = require('telegraf/markup');
 
@@ -121,11 +122,11 @@ const create = new WizardScene(
         return ctx.wizard.next(); // Переходим к следующему обработчику.
     },
     async (ctx) => {
-        const chat = await ctx.getChat();
         let phoneNumber = ctx.message.text;
         if(ctx.message.contact) {
             phoneNumber = ctx.message.contact.phone_number;
         }
+        const chat = await ctx.getChat();
         const user = await client.getItems('users', {
             filter: {
                 chat_id: chat.id
@@ -151,15 +152,9 @@ const create = new WizardScene(
                     m.callbackButton('/start'),
                 ]
             ]).resize());
-        const contacts = await client.getItems("contacts");
-        const obcontacts = [
-            'Адрес: ' + contacts.data[0].address,
-            'Ориентир ' + contacts.data[0].reference_point,
-            'Режим работы ' + contacts.data[0].operation_mode,
-            'Связаться с нами можно по номеру : ' + contacts.data[0].phone_number
-        ];
+
         ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
-        bot.hears(ctx.i18n.t('button_contacts'), (ctx) => ctx.reply(obcontacts.join()));
+
         return ctx.scene.leave();
     }
 );
@@ -178,27 +173,64 @@ bot.help((ctx) => ctx.reply('Send me a sticker'));
 bot.on('sticker', (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.scene.enter("create"));
 
-bot.hears('button_catalog', (ctx) => {
-    const cat = client.getItems('category');
+const getCatalogInfo = async (ctx) => {
+    console.log('davr');
+    const chat = await ctx.getChat();
+    const user = await client.getItems('users', {
+        filter: {
+            chat_id: chat.id
+        },
+        single: true
+    });
+    const cat = await client.getItems('category');
+    let menuCategories = [];
+    cat.data.forEach(item => {
+        let name = 'name';
+        if(user.data.lang == 'uz') {
+            name = 'name_uz';
+        }
+        menuCategories.push({
+            name: item[name],
+            id: item.id
+        });
+    });
+
+    console.log(menuCategories);
 
     const catMenu = Telegraf.Extra
         .markdown()
-        .markup((m) => m.keyboard([
-            [
-                m.callbackButton(cat.data.name),
-                m.callbackButton(ctx.i18n.t('button_catalog')),
-            ],
-            [
-                m.callbackButton(ctx.i18n.t('button_stock')),
-                m.callbackButton(ctx.i18n.t('button_review')),
-            ]
-        ]).resize());
+        .markup((m) => {
+            let menu = [];
+            menuCategories.forEach(function (item) {
+                menu.push(m.callbackButton(item.name, 'product:' + item.id));
+            });
+            return m.keyboard([menu]).resize();
+        });
 
-    return ctx.reply(catMenu);
-});
+    ctx.reply('catalog', catMenu);
+};
+
+const getContactsInfo = async (ctx) => {
+    const contacts = await client.getItems("contacts");
+    const obcontacts = [
+        'Адрес: ' + contacts.data[0].address + '\n',
+        'Ориентир: ' + contacts.data[0].reference_point + '\n',
+        'Режим работы: ' + contacts.data[0].operation_mode + '\n',
+        'Связаться с нами можно по номеру: ' + contacts.data[0].phone_number
+    ];
+    return ctx.reply(obcontacts.join(''))
+};
 
 
 
+bot.hears('📱 Контактная информация', getContactsInfo);
+bot.hears('📱 Aloqa ma\'lumotlari', getContactsInfo);
+bot.hears('📋 Mahsulotlar katalogi', getCatalogInfo);
+bot.hears('📋 Каталог товаров', getCatalogInfo);
+bot.action(/.+/, (ctx) => {
+    console.log(ctx.match);
+    return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
+})
 bot.launch();
 
 
