@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -6,7 +7,7 @@ var logger = require('morgan');
 const Telegraf = require('telegraf');
 const TelegrafI18n = require('telegraf-i18n');
 const Router = require('telegraf/router');
-const { match, reply } = require('telegraf-i18n');
+const {match, reply} = require('telegraf-i18n');
 const Markup = require('telegraf/markup');
 
 const session = require("telegraf/session");
@@ -20,18 +21,11 @@ var app = express();
 
 const DirectusSDK = require("@directus/sdk-js");
 
-const client =  new DirectusSDK({
-    url: "http://public/public",
+const client = new DirectusSDK({
+    url: process.env.SHOP_API_URL,
     project: "_",
     token: "1531321321"
 });
-
-
-async function fetchAllItems() {
-    const data = await client.getItems("users");
-    return data;
-}
-fetchAllItems();
 
 const i18n = new TelegrafI18n({
     defaultLanguage: 'ru',
@@ -39,7 +33,7 @@ const i18n = new TelegrafI18n({
     directory: path.resolve(__dirname, 'locales')
 });
 
-const bot = new Telegraf('839817860:AAEFPJrAVJJvgRAq6c7_7GuomWlQiYIgNu8');
+const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 bot.use(i18n.middleware());
 
 const create = new WizardScene(
@@ -57,11 +51,10 @@ const create = new WizardScene(
         const user = await client.getItems('users', {
             filter: {
                 chat_id: chat.id
-            },
-            single: true
+            }
         });
 
-        if(!user.data) {
+        if (!user.data.length) {
             await client.createItem("users", {
                 first_name: chat.first_name,
                 last_name: '',
@@ -79,7 +72,7 @@ const create = new WizardScene(
             .markdown()
             .markup((m) => m.removeKeyboard());
         let lang = 'ru';
-        if(ctx.message.text === "🇺🇿 O'zbekcha") {
+        if (ctx.message.text === "🇺🇿 O'zbekcha") {
             lang = 'uz';
         }
         const chat = await ctx.getChat();
@@ -89,7 +82,7 @@ const create = new WizardScene(
             },
             single: true
         });
-        if(user) {
+        if (user) {
             await client.updateItem("users", user.data.id, {
                 lang
             });
@@ -108,7 +101,7 @@ const create = new WizardScene(
             },
             single: true
         });
-        if(user) {
+        if (user) {
             await client.updateItem("users", user.data.id, {
                 first_name: ctx.message.text
             });
@@ -117,13 +110,20 @@ const create = new WizardScene(
 
         // await client.put('/accounts/' + dbUser.userId, { first_name: ctx.message.text });
 
-        ctx.reply(ctx.i18n.t('get_phone'), { reply_markup: { keyboard: [[{text: '📲 Send phone number', request_contact: true}]]}});
+        ctx.reply(ctx.i18n.t('get_phone'), {
+            reply_markup: {
+                keyboard: [[{
+                    text: '📲 Send phone number',
+                    request_contact: true
+                }]]
+            }
+        });
         // ctx.reply(ctx.i18n.t('get_phone'));
         return ctx.wizard.next(); // Переходим к следующему обработчику.
     },
     async (ctx) => {
         let phoneNumber = ctx.message.text;
-        if(ctx.message.contact) {
+        if (ctx.message.contact) {
             phoneNumber = ctx.message.contact.phone_number;
         }
         const chat = await ctx.getChat();
@@ -133,7 +133,7 @@ const create = new WizardScene(
             },
             single: true
         });
-        if(user) {
+        if (user) {
             await client.updateItem("users", user.data.id, {
                 phone: phoneNumber
             });
@@ -154,8 +154,118 @@ const create = new WizardScene(
             ]).resize());
 
         ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
-
         return ctx.scene.leave();
+    }
+);
+
+const catalogScene = new WizardScene(
+    'catalog',
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        const cat = await client.getItems('category');
+        let menuCategories = [];
+        cat.data.forEach(item => {
+            let name = 'name';
+            if (user.data.lang == 'uz') {
+                name = 'name_uz';
+            }
+            menuCategories.push({
+                name: item[name],
+                id: item.id
+            });
+        });
+
+        const catMenu = Telegraf.Extra
+            .markdown()
+            .markup((m) => {
+                let menu = [];
+                menuCategories.forEach(function (item) {
+                    menu.push(m.callbackButton(item.name, 'product:' + item.id));
+                });
+                return m.keyboard([menu]).resize();
+            });
+
+        ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
+        return ctx.wizard.next();
+    },
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        let categoryName = ctx.message.text;
+        let category = '';
+        if(user.data.lang == 'uz') {
+            category = await client.getItems('category', {
+                filter: {
+                    name_uz: categoryName
+                }
+            });
+        } else {
+            category = await client.getItems('category', {
+                filter: {
+                    name_uz: categoryName
+                }
+            });
+        }
+
+        if(!category.data.length) {
+            ctx.reply(ctx.i18n.t('catalog_category_not_found'));
+            return ctx.wizard.back();
+        }
+
+        ctx.scene.session.categoryId = category.data[0].id;
+
+        const cat = await client.getItems('products', {
+            filter: {
+                category: category.data[0].id
+            }
+        });
+        let menuProducts = [];
+        cat.data.forEach(item => {
+            let name = 'name';
+            if (user.data.lang == 'uz') {
+                name = 'name_uz';
+            }
+            menuProducts.push({
+                name: item[name],
+                id: item.id
+            });
+        });
+
+        const catMenu = Telegraf.Extra
+            .markdown()
+            .markup((m) => {
+                let menu = [];
+                menuProducts.forEach(function (item) {
+                    menu.push(m.callbackButton(item.name, 'product:' + item.id));
+                });
+                return m.keyboard([menu]).resize();
+            });
+
+        ctx.reply(ctx.i18n.t('choose_category_product'), catMenu);
+        return ctx.wizard.next();
+    },
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        let productName = ctx.message.text;
+        let product = '';
+        console.log(ctx.scene.session.categoryId);
     }
 );
 
@@ -164,6 +274,7 @@ const stage = new Stage();
 
 // Регистрируем сцену создания матча
 stage.register(create);
+stage.register(catalogScene);
 
 bot.use(session());
 bot.use(stage.middleware());
@@ -186,7 +297,7 @@ const getCatalogInfo = async (ctx) => {
     let menuCategories = [];
     cat.data.forEach(item => {
         let name = 'name';
-        if(user.data.lang == 'uz') {
+        if (user.data.lang == 'uz') {
             name = 'name_uz';
         }
         menuCategories.push({
@@ -222,17 +333,15 @@ const getContactsInfo = async (ctx) => {
 };
 
 
-
 bot.hears('📱 Контактная информация', getContactsInfo);
 bot.hears('📱 Aloqa ma\'lumotlari', getContactsInfo);
-bot.hears('📋 Mahsulotlar katalogi', getCatalogInfo);
-bot.hears('📋 Каталог товаров', getCatalogInfo);
+bot.hears('📋 Mahsulotlar katalogi', (ctx) => ctx.scene.enter("catalog"));
+bot.hears('📋 Каталог товаров', (ctx) => ctx.scene.enter("catalog"));
 bot.action(/.+/, (ctx) => {
     console.log(ctx.match);
     return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
 })
 bot.launch();
-
 
 
 // view engine setup
@@ -241,7 +350,7 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -249,19 +358,19 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
