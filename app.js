@@ -149,7 +149,6 @@ const create = new WizardScene(
                 [
                     m.callbackButton(ctx.i18n.t('button_stock')),
                     m.callbackButton(ctx.i18n.t('button_review')),
-                    m.callbackButton('/start'),
                 ]
             ]).resize());
 
@@ -181,6 +180,16 @@ const catalogScene = new WizardScene(
             });
         });
 
+        Object.defineProperty(Array.prototype, 'chunk_inefficient', {
+            value: function(chunkSize) {
+                var array = this;
+                return [].concat.apply([],
+                    array.map(function(elem, i) {
+                        return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
+                    })
+                );
+            }
+        });
         const catMenu = Telegraf.Extra
             .markdown()
             .markup((m) => {
@@ -188,7 +197,8 @@ const catalogScene = new WizardScene(
                 menuCategories.forEach(function (item) {
                     menu.push(m.callbackButton(item.name, 'product:' + item.id));
                 });
-                return m.keyboard([menu]).resize();
+                return m.keyboard(menu.chunk_inefficient(3)).resize();
+                //chunk_inefficient(3) разделения кнопки
             });
 
         ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
@@ -245,17 +255,19 @@ const catalogScene = new WizardScene(
         const catMenu = Telegraf.Extra
             .markdown()
             .markup((m) => {
-                let menu = [];
+                let menu = [m.callbackButton(ctx.i18n.t('back'))];
                 menuProducts.forEach(function (item) {
                     menu.push(m.callbackButton(item.name, 'product:' + item.id));
                 });
-                return m.keyboard([menu]).resize();
+                return m.keyboard(menu.chunk_inefficient(3)).resize();
             });
-
         ctx.reply(ctx.i18n.t('choose_category_product'), catMenu);
         return ctx.wizard.next();
     },
     async (ctx) => {
+        if (ctx.i18n.t('back')) {
+            return ctx.wizard.selectStep(ctx.wizard.cursor - 2);
+        }
         const chat = await ctx.getChat();
         const user = await client.getItems('users', {
             filter: {
@@ -269,12 +281,63 @@ const catalogScene = new WizardScene(
     }
 );
 
+const reviewScene = new WizardScene(
+    'review',
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        const aboutMenu = Telegraf.Extra
+            .markdown()
+            .markup((m) => m.removeKeyboard());
+        ctx.reply(ctx.i18n.t('send_review'), aboutMenu);
+        return ctx.wizard.next();
+    },
+    
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        await client.createItem("reviews", {
+            user_id:  user.data.id,
+            review_text: ctx.message.text
+        });
+
+        const aboutMenu = Telegraf.Extra
+            .markdown()
+            .markup((m) => m.keyboard([
+                [
+                    m.callbackButton(ctx.i18n.t('button_contacts')),
+                    m.callbackButton(ctx.i18n.t('button_catalog')),
+                ],
+                [
+                    m.callbackButton(ctx.i18n.t('button_stock')),
+                    m.callbackButton(ctx.i18n.t('button_review')),
+                ]
+            ]).resize());
+
+        ctx.reply(ctx.i18n.t('thanks_review'), aboutMenu);
+        return ctx.scene.leave();
+    }
+);
+
 // Создаем менеджера сцен
 const stage = new Stage();
 
 // Регистрируем сцену создания матча
 stage.register(create);
 stage.register(catalogScene);
+stage.register(reviewScene);
 
 bot.use(session());
 bot.use(stage.middleware());
@@ -293,54 +356,31 @@ const getCatalogInfo = async (ctx) => {
         },
         single: true
     });
-    const cat = await client.getItems('category');
-    let menuCategories = [];
-    cat.data.forEach(item => {
-        let name = 'name';
-        if (user.data.lang == 'uz') {
-            name = 'name_uz';
-        }
-        menuCategories.push({
-            name: item[name],
-            id: item.id
-        });
-    });
-
-    console.log(menuCategories);
-
-    const catMenu = Telegraf.Extra
-        .markdown()
-        .markup((m) => {
-            let menu = [];
-            menuCategories.forEach(function (item) {
-                menu.push(m.callbackButton(item.name, 'product:' + item.id));
-            });
-            return m.keyboard([menu]).resize();
-        });
-
-    ctx.reply('catalog', catMenu);
 };
 
 const getContactsInfo = async (ctx) => {
     const contacts = await client.getItems("contacts");
-    const obcontacts = [
+    const arrcontacts = [
         'Адрес: ' + contacts.data[0].address + '\n',
         'Ориентир: ' + contacts.data[0].reference_point + '\n',
         'Режим работы: ' + contacts.data[0].operation_mode + '\n',
         'Связаться с нами можно по номеру: ' + contacts.data[0].phone_number
     ];
-    return ctx.reply(obcontacts.join(''))
+    return ctx.reply(arrcontacts.join(''))
 };
+
 
 
 bot.hears('📱 Контактная информация', getContactsInfo);
 bot.hears('📱 Aloqa ma\'lumotlari', getContactsInfo);
+bot.hears('📝 Оставить отзыв', (ctx) => ctx.scene.enter("review"));
+bot.hears('📝 Fikringizni qoldiring', (ctx) => ctx.scene.enter("review"));
 bot.hears('📋 Mahsulotlar katalogi', (ctx) => ctx.scene.enter("catalog"));
 bot.hears('📋 Каталог товаров', (ctx) => ctx.scene.enter("catalog"));
 bot.action(/.+/, (ctx) => {
     console.log(ctx.match);
     return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
-})
+});
 bot.launch();
 
 

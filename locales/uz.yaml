@@ -6,7 +6,10 @@ button_catalog: 📋 Mahsulotlar katalogi
 button_stock: 🏷 Aktsiyalar
 button_review: 📝 Fikringizni qoldiring
 select_an_action: Harakatni tanlang
-back: Ortga
+back: ↩️ Ortga
 choose_catalog_category: Mahsulot kategoriyasini tanlang
 catalog_category_not_found: Tanlangan ketegoriya mavjud emas
 choose_category_product: Mahsulotni tanlang
+choose_product_count: Miqdorni tanlang
+send_review: Fikringizni yuboring
+thanks_review: Fikringiz uchun rahmat
