@@ -115,7 +115,8 @@ const create = new WizardScene(
                 keyboard: [[{
                     text: '📲 Send phone number',
                     request_contact: true
-                }]]
+                }]],
+                resize_keyboard: true
             }
         });
         // ctx.reply(ctx.i18n.t('get_phone'));
@@ -369,7 +370,24 @@ const getContactsInfo = async (ctx) => {
     return ctx.reply(arrcontacts.join(''))
 };
 
-
+const getStock = async (ctx) => {
+    const chat = await ctx.getChat();
+    const user = await client.getItems('users', {
+        filter: {
+            chat_id: chat.id
+        },
+        single: true
+    });
+    ctx.i18n.locale(user.data.lang);
+    const stock = await client.getItems('stock', {
+        fields: 'stock'
+    });
+    if (stock.data[0]) {
+        ctx.reply(stock.data[0].stock, {parse_mode: "HTML"});
+    } else {
+        ctx.reply(ctx.i18n.t('no_stock'));
+    }
+}
 
 bot.hears('📱 Контактная информация', getContactsInfo);
 bot.hears('📱 Aloqa ma\'lumotlari', getContactsInfo);
@@ -377,6 +395,8 @@ bot.hears('📝 Оставить отзыв', (ctx) => ctx.scene.enter("review")
 bot.hears('📝 Fikringizni qoldiring', (ctx) => ctx.scene.enter("review"));
 bot.hears('📋 Mahsulotlar katalogi', (ctx) => ctx.scene.enter("catalog"));
 bot.hears('📋 Каталог товаров', (ctx) => ctx.scene.enter("catalog"));
+bot.hears('🏷 Акции', getStock);
+bot.hears('🏷 Aktsiyalar', getStock);
 bot.action(/.+/, (ctx) => {
     console.log(ctx.match);
     return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
