@@ -201,7 +201,7 @@ const catalogScene = new WizardScene(
                 menuCategories.forEach(function (item) {
                     menu.push(m.callbackButton(item.name, 'product:' + item.id));
                 });
-                return m.keyboard(menu.chunk_inefficient(3)).resize();
+                return m.keyboard(menu.length ? menu.chunk_inefficient(3) : []).resize();
                 //chunk_inefficient(3) разделения кнопки
             });
 
@@ -263,7 +263,7 @@ const catalogScene = new WizardScene(
                 menuProducts.forEach(function (item) {
                     menu.push(m.callbackButton(item.name, 'product:' + item.id));
                 });
-                return m.keyboard(menu.chunk_inefficient(3)).resize();
+                return m.keyboard(menu.length ? menu.chunk_inefficient(3) : []).resize();
             });
         ctx.reply(ctx.i18n.t('choose_category_product'), catMenu);
         return ctx.wizard.next();
