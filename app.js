@@ -9,6 +9,7 @@ const TelegrafI18n = require('telegraf-i18n');
 const Router = require('telegraf/router');
 const {match, reply} = require('telegraf-i18n');
 const Markup = require('telegraf/markup');
+const LocalSession = require('telegraf-session-local');
 
 const session = require("telegraf/session");
 const Stage = require("telegraf/stage");
@@ -198,8 +199,9 @@ const catalogScene = new WizardScene(
             .markdown()
             .markup((m) => {
                 let menu = [];
+                menu.push(m.callbackButton(ctx.i18n.t('back')));
                 menuCategories.forEach(function (item) {
-                    menu.push(m.callbackButton(item.name, 'product:' + item.id));
+                    menu.push(m.callbackButton(item.name));
                 });
                 return m.keyboard(menu.length ? menu.chunk_inefficient(3) : []).resize();
                 //chunk_inefficient(3) разделения кнопки
@@ -216,6 +218,28 @@ const catalogScene = new WizardScene(
             },
             single: true
         });
+
+        if(ctx.message.text == ctx.i18n.t('back')) {
+            ctx.scene.leave();
+            const aboutMenu = Telegraf.Extra
+                .markdown()
+                .markup((m) => m.keyboard([
+                    [
+                        m.callbackButton(ctx.i18n.t('button_contacts')),
+                        m.callbackButton(ctx.i18n.t('button_catalog')),
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('button_stock')),
+                        m.callbackButton(ctx.i18n.t('button_review')),
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('settings'))
+                    ]
+                ]).resize());
+
+            return ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
+        }
+
         let categoryName = ctx.message.text;
         let category = '';
         if(user.data.lang == 'uz') {
@@ -227,7 +251,7 @@ const catalogScene = new WizardScene(
         } else {
             category = await client.getItems('category', {
                 filter: {
-                    name_uz: categoryName
+                    name: categoryName
                 }
             });
         }
@@ -269,9 +293,6 @@ const catalogScene = new WizardScene(
         return ctx.wizard.next();
     },
     async (ctx) => {
-        if (ctx.i18n.t('back')) {
-            return ctx.wizard.selectStep(ctx.wizard.cursor - 2);
-        }
         const chat = await ctx.getChat();
         const user = await client.getItems('users', {
             filter: {
@@ -279,6 +300,22 @@ const catalogScene = new WizardScene(
             },
             single: true
         });
+
+        if(ctx.message.text == ctx.i18n.t('back')) {
+            ctx.scene.leave();
+            return ctx.scene.enter('catalog');
+        } else {
+            const countMenu = Telegraf.Extra
+                .HTML()
+                .markup((m) => m.keyboard([
+                    ['1', '2', '3'],
+                    ['4', '5', '6'],
+                    ['7', '8', '9'],
+                    [ctx.i18n.t('back')]
+                ]).resize());
+
+            return ctx.reply(ctx.i18n.t('select_an_action'), countMenu);
+        }
         let productName = ctx.message.text;
         let product = '';
         console.log(ctx.scene.session.categoryId);
@@ -298,40 +335,48 @@ const reviewScene = new WizardScene(
         ctx.i18n.locale(user.data.lang);
         const aboutMenu = Telegraf.Extra
             .markdown()
-            .markup((m) => m.removeKeyboard());
+            .markup((m) => m.keyboard([
+                [ctx.i18n.t('back')]
+            ]).resize());
         ctx.reply(ctx.i18n.t('send_review'), aboutMenu);
         return ctx.wizard.next();
     },
-    
     async (ctx) => {
-        const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
-        await client.createItem("reviews", {
-            user_id:  user.data.id,
-            review_text: ctx.message.text
-        });
+        if (ctx.message.text == ctx.i18n.t('back')){
+            return ctx.scene.enter("settings");
+        } else {
+            const chat = await ctx.getChat();
+            const user = await client.getItems('users', {
+                filter: {
+                    chat_id: chat.id
+                },
+                single: true
+            });
+            ctx.i18n.locale(user.data.lang);
+            await client.createItem("reviews", {
+                user_id: user.data.id,
+                review_text: ctx.message.text
+            });
 
-        const aboutMenu = Telegraf.Extra
-            .markdown()
-            .markup((m) => m.keyboard([
-                [
-                    m.callbackButton(ctx.i18n.t('button_contacts')),
-                    m.callbackButton(ctx.i18n.t('button_catalog')),
-                ],
-                [
-                    m.callbackButton(ctx.i18n.t('button_stock')),
-                    m.callbackButton(ctx.i18n.t('button_review')),
-                ]
-            ]).resize());
+            const aboutMenu = Telegraf.Extra
+                .markdown()
+                .markup((m) => m.keyboard([
+                    [
+                        m.callbackButton(ctx.i18n.t('button_contacts')),
+                        m.callbackButton(ctx.i18n.t('button_catalog')),
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('button_stock')),
+                        m.callbackButton(ctx.i18n.t('button_review')),
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('settings'))
+                    ]
+                ]).resize());
 
-        ctx.reply(ctx.i18n.t('thanks_review'), aboutMenu);
-        return ctx.scene.leave();
+            ctx.reply(ctx.i18n.t('thanks_review'), aboutMenu);
+            return ctx.scene.leave();
+        }
     }
 );
 
@@ -380,6 +425,9 @@ const settingsScene = new WizardScene(
             case ctx.i18n.t('edit_fio'):
                 ctx.scene.enter("editFio");
                 break;
+            case ctx.i18n.t('choose_language'):
+                ctx.scene.enter("changeLanguage");
+                break;
             default:
                 const aboutMenu = Telegraf.Extra
                     .markdown()
@@ -418,26 +466,32 @@ const editFioScene = new WizardScene(
         ctx.i18n.locale(user.data.lang);
         const settingsMenu = Telegraf.Extra
             .markdown()
-            .markup((m) => m.removeKeyboard());
+            .markup((m) => m.keyboard([
+                [ctx.i18n.t('back')]
+            ]).resize());
         ctx.reply(ctx.i18n.t('enter_your_name'), settingsMenu);
         return ctx.wizard.next();
     },
     async (ctx) => {
-        const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
-        let editedName = ctx.message.text;
-        if (user) {
-            await client.updateItem("users", user.data.id, {
-                first_name: editedName
+        if (ctx.message.text == ctx.i18n.t('back')){
+            return ctx.scene.enter("settings");
+        } else {
+            const chat = await ctx.getChat();
+            const user = await client.getItems('users', {
+                filter: {
+                    chat_id: chat.id
+                },
+                single: true
             });
+            ctx.i18n.locale(user.data.lang);
+            let editedName = ctx.message.text;
+            if (user) {
+                await client.updateItem("users", user.data.id, {
+                    first_name: editedName
+                });
+            }
+            ctx.scene.enter("settings");
         }
-        ctx.scene.enter("settings");
         return ctx.scene.leave();
     },
 );
@@ -456,11 +510,62 @@ const editNumberScene = new WizardScene(
         ctx.i18n.locale(user.data.lang);
         const settingsMenu = Telegraf.Extra
             .HTML()
-            .markup((m) => m.removeKeyboard());
+            .markup((m) => m.keyboard([
+                [
+                    m.contactRequestButton(ctx.i18n.t('send_phone'))
+                ],
+                [
+                    m.callbackButton(ctx.i18n.t('back'))
+                ]
+            ]).resize());
         ctx.reply(ctx.i18n.t('enter_your_phone'), settingsMenu);
         return ctx.wizard.next();
     },
     async (ctx) => {
+
+        if (ctx.message.text == ctx.i18n.t('back')){
+            return ctx.scene.enter("settings");
+        } else {
+            let editedPhone = ctx.message.text;
+            if (ctx.message.contact) {
+                editedPhone = ctx.message.contact.phone_number;
+            }
+            const chat = await ctx.getChat();
+            const user = await client.getItems('users', {
+                filter: {
+                    chat_id: chat.id
+                },
+                single: true
+            });
+            ctx.i18n.locale(user.data.lang);
+            if (user) {
+                await client.updateItem("users", user.data.id, {
+                    phone: editedPhone
+                });
+            }
+            ctx.scene.enter("settings");
+            return ctx.scene.leave();
+        }
+    }
+);
+
+const changeLanguageScene = new WizardScene(
+    'changeLanguage',
+    async (ctx) => {
+        const aboutMenu = await Telegraf.Extra
+            .markdown()
+            .markup((m) => m.keyboard([
+                m.callbackButton("🇺🇿 O'zbekcha"),
+                m.callbackButton("🇷🇺 Русский")
+            ]).resize());
+        ctx.reply(ctx.i18n.t('choose_language'), aboutMenu);
+        return ctx.wizard.next();
+    },
+    async (ctx) => {
+        let lang = 'ru';
+        if (ctx.message.text === "🇺🇿 O'zbekcha") {
+            lang = 'uz';
+        }
         const chat = await ctx.getChat();
         const user = await client.getItems('users', {
             filter: {
@@ -468,16 +573,14 @@ const editNumberScene = new WizardScene(
             },
             single: true
         });
-        ctx.i18n.locale(user.data.lang);
-        let editedPhone = ctx.message.text;
         if (user) {
             await client.updateItem("users", user.data.id, {
-                phone: editedPhone
+                lang
             });
         }
-        ctx.scene.enter("settings");
-        return ctx.scene.leave();
-    }
+        ctx.i18n.locale(lang);
+        return ctx.scene.enter("settings");
+    },
 );
 
 // Создаем менеджера сцен
@@ -490,11 +593,13 @@ stage.register(reviewScene);
 stage.register(settingsScene);
 stage.register(editFioScene);
 stage.register(editNumberScene);
+stage.register(changeLanguageScene);
 
 bot.catch((err) => {
     console.log('Ooops', err)
-})
-bot.use(session());
+});
+// bot.use(session());
+bot.use((new LocalSession({ database: 'example_db.json' })).middleware());
 bot.use(stage.middleware());
 bot.action("create", (ctx) => ctx.scene.enter("create"));
 bot.start((ctx) => ctx.scene.enter("create"));
@@ -556,6 +661,8 @@ bot.hears('📋 Mahsulotlar katalogi', (ctx) => ctx.scene.enter("catalog"));
 bot.hears('📋 Каталог товаров', (ctx) => ctx.scene.enter("catalog"));
 bot.hears('⚙️ Настройки', (ctx) => ctx.scene.enter("settings"));
 bot.hears('⚙️ Sozlamalar', (ctx) => ctx.scene.enter("settings"));
+bot.hears('🇷🇺 Выберите язык', (ctx) => ctx.scene.enter("changeLanguage"));
+bot.hears('🇺🇿 Tilni tanlang', (ctx) => ctx.scene.enter("changeLanguage"));
 bot.hears('🏷 Акции', getStock);
 bot.hears('🏷 Aktsiyalar', getStock);
 bot.action(/.+/, (ctx) => {
@@ -563,7 +670,6 @@ bot.action(/.+/, (ctx) => {
     return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
 });
 bot.launch();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -6,7 +6,7 @@ button_catalog: 📋 Mahsulotlar katalogi
 button_stock: 🏷 Aktsiyalar
 button_review: 📝 Fikringizni qoldiring
 select_an_action: Harakatni tanlang
-back: ↩️ Ortga
+back: ◀️ Ortga
 choose_catalog_category: Mahsulot kategoriyasini tanlang
 catalog_category_not_found: Tanlangan ketegoriya mavjud emas
 choose_category_product: Mahsulotni tanlang
@@ -18,5 +18,5 @@ settings: ⚙️ Sozlamalar
 edit_fio: FIO ni o'zgartirish
 edit_phone: Raqamni o'zgartirish
 enter_your_name: Ismingizni yuboring
-enter_your_phone: 'Raqamni +998 ***-**-** shaklida yuboring'
+enter_your_phone: 'Raqamni +998 ** *** **** shaklida yuboring'
 send_phone: 📲 Raqamni yuborish

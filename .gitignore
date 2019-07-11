@@ -2,3 +2,5 @@ node_modules
 .idea
 .env
 scenes/create\.js
+
+example_db\.json
