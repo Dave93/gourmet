@@ -518,11 +518,11 @@ const getContactsInfo = async (ctx) => {
         'Режим работы: ' + contacts.data[0].operation_mode + '\n',
         'Связаться с нами можно по номеру: ' + contacts.data[0].phone_number
     ];
-    try {
-        return ctx.reply(arrcontacts.join(''));
-    } catch(e) {
-        
-    }
+    // try {
+    //     return ctx.reply(arrcontacts.join(''));
+    // } catch(e) {
+    //
+    // }
 
 };
 
