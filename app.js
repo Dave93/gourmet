@@ -32,7 +32,16 @@ const i18n = new TelegrafI18n({
     allowMissing: false, // Default true
     directory: path.resolve(__dirname, 'locales')
 });
-
+Object.defineProperty(Array.prototype, 'chunk_inefficient', {
+    value: function(chunkSize) {
+        var array = this;
+        return [].concat.apply([],
+            array.map(function(elem, i) {
+                return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
+            })
+        );
+    }
+});
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 bot.use(i18n.middleware());
 
@@ -184,16 +193,7 @@ const catalogScene = new WizardScene(
             });
         });
 
-        Object.defineProperty(Array.prototype, 'chunk_inefficient', {
-            value: function(chunkSize) {
-                var array = this;
-                return [].concat.apply([],
-                    array.map(function(elem, i) {
-                        return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
-                    })
-                );
-            }
-        });
+
         const catMenu = Telegraf.Extra
             .markdown()
             .markup((m) => {
