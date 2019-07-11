@@ -150,6 +150,9 @@ const create = new WizardScene(
                 [
                     m.callbackButton(ctx.i18n.t('button_stock')),
                     m.callbackButton(ctx.i18n.t('button_review')),
+                ],
+                [
+                    m.callbackButton(ctx.i18n.t('settings'))
                 ]
             ]).resize());
 
@@ -332,6 +335,151 @@ const reviewScene = new WizardScene(
     }
 );
 
+const settingsScene = new WizardScene(
+    'settings',
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        const settingsMenu = Telegraf.Extra
+            .markdown()
+            .markup((m) => m.keyboard([
+                [
+                    m.callbackButton(ctx.i18n.t('edit_fio')),
+                    m.callbackButton(ctx.i18n.t('edit_phone')),
+                ],
+                [
+                    m.callbackButton(ctx.i18n.t('choose_language')),
+                ],
+                [
+                    m.callbackButton(ctx.i18n.t('back'))
+                ]
+            ]).resize());
+
+        ctx.reply(ctx.i18n.t('select_an_action'), settingsMenu);
+        return ctx.scene.leave();
+    },
+);
+
+const editFioScene = new WizardScene(
+    'editFio',
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        const settingsMenu = Telegraf.Extra
+            .markdown()
+            .markup((m) => m.removeKeyboard());
+        ctx.reply(ctx.i18n.t('enter_your_name'), settingsMenu);
+        return ctx.wizard.next();
+    },
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        let editedName = ctx.message.text;
+        if (ctx.i18n.t('edit_fio')) {
+            const chat = await ctx.getChat();
+            const user = await client.getItems('users', {
+                filter: {
+                    chat_id: chat.id
+                },
+                single: true
+            });
+            if (user) {
+                await client.updateItem("users", user.data.id, {
+                    first_name: editedName
+                });
+            }
+        }
+        const settingsMenu = Telegraf.Extra
+            .markdown()
+            .markup((m) => m.keyboard([
+                [
+                    m.callbackButton(ctx.i18n.t('edit_fio')),
+                    m.callbackButton(ctx.i18n.t('edit_phone')),
+                ],
+                [
+                    m.callbackButton(ctx.i18n.t('choose_language')),
+                ],
+                [
+                    m.callbackButton(ctx.i18n.t('back'))
+                ]
+            ]).resize());
+
+        ctx.reply(ctx.i18n.t('select_an_action'), settingsMenu);
+        return ctx.scene.leave();
+    },
+);
+
+
+const editNumberScene = new WizardScene(
+    'editNumber',
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        const settingsMenu = Telegraf.Extra
+            .HTML()
+            .markup((m) => m.removeKeyboard());
+        ctx.reply(ctx.i18n.t('enter_your_phone'), settingsMenu);
+        return ctx.wizard.next();
+    },
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        let editedPhone = ctx.message.text;
+        if (user) {
+            await client.updateItem("users", user.data.id, {
+                phone: editedPhone
+            });
+        }
+        const settingsMenu = Telegraf.Extra
+            .markdown()
+            .markup((m) => m.keyboard([
+                [
+                    m.callbackButton(ctx.i18n.t('edit_fio')),
+                    m.callbackButton(ctx.i18n.t('edit_phone')),
+                ],
+                [
+                    m.callbackButton(ctx.i18n.t('choose_language')),
+                ],
+                [
+                    m.callbackButton(ctx.i18n.t('back'))
+                ]
+            ]).resize());
+
+        ctx.reply(ctx.i18n.t('select_an_action'), settingsMenu);
+        return ctx.scene.leave();
+    },
+);
+
 // Создаем менеджера сцен
 const stage = new Stage();
 
@@ -339,6 +487,9 @@ const stage = new Stage();
 stage.register(create);
 stage.register(catalogScene);
 stage.register(reviewScene);
+stage.register(settingsScene);
+stage.register(editFioScene);
+stage.register(editNumberScene);
 
 bot.use(session());
 bot.use(stage.middleware());
@@ -392,9 +543,15 @@ const getStock = async (ctx) => {
 bot.hears('📱 Контактная информация', getContactsInfo);
 bot.hears('📱 Aloqa ma\'lumotlari', getContactsInfo);
 bot.hears('📝 Оставить отзыв', (ctx) => ctx.scene.enter("review"));
-bot.hears('📝 Fikringizni qoldiring', (ctx) => ctx.scene.enter("review"));
+bot.hears('📝 Fikr qoldirish', (ctx) => ctx.scene.enter("review"));
 bot.hears('📋 Mahsulotlar katalogi', (ctx) => ctx.scene.enter("catalog"));
 bot.hears('📋 Каталог товаров', (ctx) => ctx.scene.enter("catalog"));
+bot.hears('⚙️ Настройки', (ctx) => ctx.scene.enter("settings"));
+bot.hears('⚙️ Sozlamalar', (ctx) => ctx.scene.enter("settings"));
+bot.hears('Изменить ФИО', (ctx) => ctx.scene.enter("editFio"));
+bot.hears('FIO ni o\'zgartirish', (ctx) => ctx.scene.enter("editFio"));
+bot.hears('Изменить номер', (ctx) => ctx.scene.enter("editNumber"));
+bot.hears('Raqamni o\'zgartirish', (ctx) => ctx.scene.enter("editNumber"));
 bot.hears('🏷 Акции', getStock);
 bot.hears('🏷 Aktsiyalar', getStock);
 bot.action(/.+/, (ctx) => {

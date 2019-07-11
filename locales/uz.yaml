@@ -1,4 +1,4 @@
-choose_language: Tilni tanlang
+choose_language: 🇺🇿 Tilni tanlang
 get_name: Ismingizni kiriting
 get_phone: Telefon raqamingizni kiriting
 button_contacts: 📱 Aloqa ma'lumotlari
@@ -11,6 +11,11 @@ choose_catalog_category: Mahsulot kategoriyasini tanlang
 catalog_category_not_found: Tanlangan ketegoriya mavjud emas
 choose_category_product: Mahsulotni tanlang
 choose_product_count: Miqdorni tanlang
-send_review: Fikringizni yuboring
+send_review: Fikr qoldirish
 thanks_review: Fikringiz uchun rahmat
 no_stock: Aktsiyalar yo'q xozircha
+settings: ⚙️ Sozlamalar
+edit_fio: FIO ni o'zgartirish
+edit_phone: Raqamni o'zgartirish
+enter_your_name: Ismingizni yuboring
+enter_your_phone: 'Raqamni +998 ***-**-** shaklida yuboring'
