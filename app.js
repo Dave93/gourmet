@@ -122,7 +122,7 @@ const create = new WizardScene(
         ctx.reply(ctx.i18n.t('get_phone'), {
             reply_markup: {
                 keyboard: [[{
-                    text: '📲 Send phone number',
+                    text: ctx.i18n.t('send_phone'),
                     request_contact: true
                 }]],
                 resize_keyboard: true
@@ -362,8 +362,47 @@ const settingsScene = new WizardScene(
             ]).resize());
 
         ctx.reply(ctx.i18n.t('select_an_action'), settingsMenu);
-        return ctx.scene.leave();
+        return ctx.wizard.next();
     },
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        switch (ctx.message.text) {
+            case ctx.i18n.t('edit_phone'):
+                ctx.scene.enter("editNumber");
+                break;
+            case ctx.i18n.t('edit_fio'):
+                ctx.scene.enter("editFio");
+                break;
+            default:
+                const aboutMenu = Telegraf.Extra
+                    .markdown()
+                    .markup((m) => m.keyboard([
+                        [
+                            m.callbackButton(ctx.i18n.t('button_contacts')),
+                            m.callbackButton(ctx.i18n.t('button_catalog')),
+                        ],
+                        [
+                            m.callbackButton(ctx.i18n.t('button_stock')),
+                            m.callbackButton(ctx.i18n.t('button_review')),
+                        ],
+                        [
+                            m.callbackButton(ctx.i18n.t('settings'))
+                        ]
+                    ]).resize());
+
+                ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
+                break;
+        }
+        return ctx.scene.leave();
+    }
+
 );
 
 const editFioScene = new WizardScene(
@@ -393,36 +432,12 @@ const editFioScene = new WizardScene(
         });
         ctx.i18n.locale(user.data.lang);
         let editedName = ctx.message.text;
-        if (ctx.i18n.t('edit_fio')) {
-            const chat = await ctx.getChat();
-            const user = await client.getItems('users', {
-                filter: {
-                    chat_id: chat.id
-                },
-                single: true
+        if (user) {
+            await client.updateItem("users", user.data.id, {
+                first_name: editedName
             });
-            if (user) {
-                await client.updateItem("users", user.data.id, {
-                    first_name: editedName
-                });
-            }
         }
-        const settingsMenu = Telegraf.Extra
-            .markdown()
-            .markup((m) => m.keyboard([
-                [
-                    m.callbackButton(ctx.i18n.t('edit_fio')),
-                    m.callbackButton(ctx.i18n.t('edit_phone')),
-                ],
-                [
-                    m.callbackButton(ctx.i18n.t('choose_language')),
-                ],
-                [
-                    m.callbackButton(ctx.i18n.t('back'))
-                ]
-            ]).resize());
-
-        ctx.reply(ctx.i18n.t('select_an_action'), settingsMenu);
+        ctx.scene.enter("settings");
         return ctx.scene.leave();
     },
 );
@@ -460,24 +475,9 @@ const editNumberScene = new WizardScene(
                 phone: editedPhone
             });
         }
-        const settingsMenu = Telegraf.Extra
-            .markdown()
-            .markup((m) => m.keyboard([
-                [
-                    m.callbackButton(ctx.i18n.t('edit_fio')),
-                    m.callbackButton(ctx.i18n.t('edit_phone')),
-                ],
-                [
-                    m.callbackButton(ctx.i18n.t('choose_language')),
-                ],
-                [
-                    m.callbackButton(ctx.i18n.t('back'))
-                ]
-            ]).resize());
-
-        ctx.reply(ctx.i18n.t('select_an_action'), settingsMenu);
+        ctx.scene.enter("settings");
         return ctx.scene.leave();
-    },
+    }
 );
 
 // Создаем менеджера сцен
@@ -556,10 +556,6 @@ bot.hears('📋 Mahsulotlar katalogi', (ctx) => ctx.scene.enter("catalog"));
 bot.hears('📋 Каталог товаров', (ctx) => ctx.scene.enter("catalog"));
 bot.hears('⚙️ Настройки', (ctx) => ctx.scene.enter("settings"));
 bot.hears('⚙️ Sozlamalar', (ctx) => ctx.scene.enter("settings"));
-bot.hears('Изменить ФИО', (ctx) => ctx.scene.enter("editFio"));
-bot.hears('FIO ni o\'zgartirish', (ctx) => ctx.scene.enter("editFio"));
-bot.hears('Изменить номер', (ctx) => ctx.scene.enter("editNumber"));
-bot.hears('Raqamni o\'zgartirish', (ctx) => ctx.scene.enter("editNumber"));
 bot.hears('🏷 Акции', getStock);
 bot.hears('🏷 Aktsiyalar', getStock);
 bot.action(/.+/, (ctx) => {
