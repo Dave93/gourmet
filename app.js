@@ -181,6 +181,7 @@ const catalogScene = new WizardScene(
             },
             single: true
         });
+        ctx.i18n.locale(user.data.lang);
         const cat = await client.getItems('category');
         let menuCategories = [];
         cat.data.forEach(item => {
@@ -193,7 +194,6 @@ const catalogScene = new WizardScene(
                 id: item.id
             });
         });
-
 
         const catMenu = Telegraf.Extra
             .markdown()
@@ -218,7 +218,7 @@ const catalogScene = new WizardScene(
             },
             single: true
         });
-
+        ctx.i18n.locale(user.data.lang);
         if(ctx.message.text == ctx.i18n.t('back')) {
             ctx.scene.leave();
             const aboutMenu = Telegraf.Extra
@@ -300,7 +300,7 @@ const catalogScene = new WizardScene(
             },
             single: true
         });
-
+        ctx.i18n.locale(user.data.lang);
         if(ctx.message.text == ctx.i18n.t('back')) {
             ctx.scene.leave();
             return ctx.scene.enter('catalog');
