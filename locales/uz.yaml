@@ -2,7 +2,7 @@ choose_language: 🇺🇿 Tilni tanlang
 get_name: Ismingizni kiriting
 get_phone: Telefon raqamingizni kiriting
 button_contacts: 📱 Aloqa ma'lumotlari
-button_catalog: 📋 Mahsulotlar katalogi
+button_catalog: 🛒 Buyurtma qilish
 button_stock: 🏷 Aktsiyalar
 button_review: 📝 Fikringizni qoldiring
 select_an_action: Harakatni tanlang
@@ -20,3 +20,5 @@ edit_phone: Raqamni o'zgartirish
 enter_your_name: Ismingizni yuboring
 enter_your_phone: 'Raqamni +998 ** *** **** shaklida yuboring'
 send_phone: 📲 Raqamni yuborish
+product_count_text: 'Miqdorini tanlang yoki kiriting:'
+all_categories: ⬆️ Umumiy kategoriyalar

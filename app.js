@@ -4,46 +4,43 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var app = express();
+
 const Telegraf = require('telegraf');
 const TelegrafI18n = require('telegraf-i18n');
+const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 const Router = require('telegraf/router');
 const {match, reply} = require('telegraf-i18n');
 const Markup = require('telegraf/markup');
 const LocalSession = require('telegraf-session-local');
-
+const TelegrafInlineMenu = require('telegraf-inline-menu');
 const session = require("telegraf/session");
 const Stage = require("telegraf/stage");
 const WizardScene = require("telegraf/scenes/wizard");
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
-
 const DirectusSDK = require("@directus/sdk-js");
-
 const client = new DirectusSDK({
     url: process.env.SHOP_API_URL,
     project: "_",
     token: "1531321321"
 });
-
 const i18n = new TelegrafI18n({
     defaultLanguage: 'ru',
     allowMissing: false, // Default true
     directory: path.resolve(__dirname, 'locales')
 });
+
 Object.defineProperty(Array.prototype, 'chunk_inefficient', {
-    value: function(chunkSize) {
+    value: function (chunkSize) {
         var array = this;
         return [].concat.apply([],
-            array.map(function(elem, i) {
+            array.map(function (elem, i) {
                 return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
             })
         );
     }
 });
-const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 bot.use(i18n.middleware());
 
 const create = new WizardScene(
@@ -154,16 +151,16 @@ const create = new WizardScene(
             .markdown()
             .markup((m) => m.keyboard([
                 [
+                    m.callbackButton(ctx.i18n.t('button_catalog'))
+                ],
+                [
                     m.callbackButton(ctx.i18n.t('button_contacts')),
-                    m.callbackButton(ctx.i18n.t('button_catalog')),
+                    m.callbackButton(ctx.i18n.t('settings')),
                 ],
                 [
                     m.callbackButton(ctx.i18n.t('button_stock')),
                     m.callbackButton(ctx.i18n.t('button_review')),
                 ],
-                [
-                    m.callbackButton(ctx.i18n.t('settings'))
-                ]
             ]).resize());
 
         ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
@@ -219,30 +216,30 @@ const catalogScene = new WizardScene(
             single: true
         });
         ctx.i18n.locale(user.data.lang);
-        if(ctx.message.text == ctx.i18n.t('back')) {
-            ctx.scene.leave();
-            const aboutMenu = Telegraf.Extra
-                .markdown()
-                .markup((m) => m.keyboard([
-                    [
-                        m.callbackButton(ctx.i18n.t('button_contacts')),
-                        m.callbackButton(ctx.i18n.t('button_catalog')),
-                    ],
-                    [
-                        m.callbackButton(ctx.i18n.t('button_stock')),
-                        m.callbackButton(ctx.i18n.t('button_review')),
-                    ],
-                    [
-                        m.callbackButton(ctx.i18n.t('settings'))
-                    ]
-                ]).resize());
-
-            return ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
-        }
+        // if (ctx.message.text == ctx.i18n.t('back')) {
+        //     ctx.scene.leave();
+        //     const aboutMenu = Telegraf.Extra
+        //         .markdown()
+        //         .markup((m) => m.keyboard([
+        //             [
+        //                 m.callbackButton(ctx.i18n.t('button_catalog'))
+        //             ],
+        //             [
+        //                 m.callbackButton(ctx.i18n.t('button_contacts')),
+        //                 m.callbackButton(ctx.i18n.t('settings')),
+        //             ],
+        //             [
+        //                 m.callbackButton(ctx.i18n.t('button_stock')),
+        //                 m.callbackButton(ctx.i18n.t('button_review')),
+        //             ],
+        //         ]).resize());
+        //
+        //     return ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
+        // }
 
         let categoryName = ctx.message.text;
         let category = '';
-        if(user.data.lang == 'uz') {
+        if (user.data.lang == 'uz') {
             category = await client.getItems('category', {
                 filter: {
                     name_uz: categoryName
@@ -256,7 +253,7 @@ const catalogScene = new WizardScene(
             });
         }
 
-        if(!category.data.length) {
+        if (!category.data.length) {
             ctx.reply(ctx.i18n.t('catalog_category_not_found'));
             return ctx.wizard.back();
         }
@@ -301,7 +298,7 @@ const catalogScene = new WizardScene(
             single: true
         });
         ctx.i18n.locale(user.data.lang);
-        if(ctx.message.text == ctx.i18n.t('back')) {
+        if (ctx.message.text == ctx.i18n.t('back')) {
             ctx.scene.leave();
             return ctx.scene.enter('catalog');
         } else {
@@ -342,7 +339,7 @@ const reviewScene = new WizardScene(
         return ctx.wizard.next();
     },
     async (ctx) => {
-        if (ctx.message.text == ctx.i18n.t('back')){
+        if (ctx.message.text == ctx.i18n.t('back')) {
             return ctx.scene.enter("settings");
         } else {
             const chat = await ctx.getChat();
@@ -433,16 +430,16 @@ const settingsScene = new WizardScene(
                     .markdown()
                     .markup((m) => m.keyboard([
                         [
+                            m.callbackButton(ctx.i18n.t('button_catalog'))
+                        ],
+                        [
                             m.callbackButton(ctx.i18n.t('button_contacts')),
-                            m.callbackButton(ctx.i18n.t('button_catalog')),
+                            m.callbackButton(ctx.i18n.t('settings')),
                         ],
                         [
                             m.callbackButton(ctx.i18n.t('button_stock')),
                             m.callbackButton(ctx.i18n.t('button_review')),
                         ],
-                        [
-                            m.callbackButton(ctx.i18n.t('settings'))
-                        ]
                     ]).resize());
 
                 ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
@@ -450,7 +447,6 @@ const settingsScene = new WizardScene(
         }
         return ctx.scene.leave();
     }
-
 );
 
 const editFioScene = new WizardScene(
@@ -473,7 +469,7 @@ const editFioScene = new WizardScene(
         return ctx.wizard.next();
     },
     async (ctx) => {
-        if (ctx.message.text == ctx.i18n.t('back')){
+        if (ctx.message.text == ctx.i18n.t('back')) {
             return ctx.scene.enter("settings");
         } else {
             const chat = await ctx.getChat();
@@ -523,7 +519,7 @@ const editNumberScene = new WizardScene(
     },
     async (ctx) => {
 
-        if (ctx.message.text == ctx.i18n.t('back')){
+        if (ctx.message.text == ctx.i18n.t('back')) {
             return ctx.scene.enter("settings");
         } else {
             let editedPhone = ctx.message.text;
@@ -598,8 +594,7 @@ stage.register(changeLanguageScene);
 bot.catch((err) => {
     console.log('Ooops', err)
 });
-// bot.use(session());
-bot.use((new LocalSession({ database: 'example_db.json' })).middleware());
+bot.use((new LocalSession({database: 'example_db.json'})).middleware());
 bot.use(stage.middleware());
 bot.action("create", (ctx) => ctx.scene.enter("create"));
 bot.start((ctx) => ctx.scene.enter("create"));
@@ -628,7 +623,7 @@ const getContactsInfo = async (ctx) => {
     ];
     try {
         return ctx.reply(arrcontacts.join(''));
-    } catch(e) {
+    } catch (e) {
 
     }
 
@@ -651,23 +646,143 @@ const getStock = async (ctx) => {
     } else {
         ctx.reply(ctx.i18n.t('no_stock'));
     }
+};
+
+const getCatalog = async ctx => {
+    const chat = await ctx.getChat();
+    const user = await client.getItems('users', {
+        filter: {
+            chat_id: chat.id
+        },
+        single: true
+    });
+    ctx.i18n.locale(user.data.lang);
+    const cat = await client.getItems('category');
+    let menuCategories = [];
+    cat.data.forEach(item => {
+        let name = 'name';
+        if (user.data.lang == 'uz') {
+            name = 'name_uz';
+        }
+        menuCategories.push({
+            name: item[name],
+            id: item.id
+        });
+    });
+    let menu = [];
+    menuCategories.forEach(function (item) {
+        menu.push(Markup.callbackButton(item.name, 'category:' + item.id));
+    });
+    const catMenu = Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(3) : []).extra();
+    return ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
 }
 
 bot.hears('📱 Контактная информация', getContactsInfo);
 bot.hears('📱 Aloqa ma\'lumotlari', getContactsInfo);
 bot.hears('📝 Оставить отзыв', (ctx) => ctx.scene.enter("review"));
 bot.hears('📝 Fikr qoldirish', (ctx) => ctx.scene.enter("review"));
-bot.hears('📋 Mahsulotlar katalogi', (ctx) => ctx.scene.enter("catalog"));
-bot.hears('📋 Каталог товаров', (ctx) => ctx.scene.enter("catalog"));
+bot.hears('🛒 Buyurtma qilish', getCatalog);
+bot.hears('🛒 Начать заказ', getCatalog);
 bot.hears('⚙️ Настройки', (ctx) => ctx.scene.enter("settings"));
 bot.hears('⚙️ Sozlamalar', (ctx) => ctx.scene.enter("settings"));
 bot.hears('🇷🇺 Выберите язык', (ctx) => ctx.scene.enter("changeLanguage"));
 bot.hears('🇺🇿 Tilni tanlang', (ctx) => ctx.scene.enter("changeLanguage"));
 bot.hears('🏷 Акции', getStock);
 bot.hears('🏷 Aktsiyalar', getStock);
-bot.action(/.+/, (ctx) => {
+bot.action(/.+/, async (ctx) => {
     console.log(ctx.match);
-    return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
+    let input = ctx.match.input.split(':');
+    const chat = await ctx.getChat();
+    const user = await client.getItems('users', {
+        filter: {
+            chat_id: chat.id
+        },
+        single: true
+    });
+    ctx.i18n.locale(user.data.lang);
+    switch (input[0]) {
+        case 'category':
+            if(parseInt(input[1], 0) > 0) {
+                const categoryId = input[1];
+                // const category = await client.getItems('category', {
+                //     filter: {
+                //         id: categoryId
+                //     }
+                // });
+
+                // if (!category.data.length) {
+                //     ctx.reply(ctx.i18n.t('catalog_category_not_found'));
+                //     return ctx.wizard.back();
+                // }
+
+                ctx.scene.session.categoryId = categoryId;
+
+                const cat = await client.getItems('products', {
+                    filter: {
+                        category: categoryId
+                    }
+                });
+                let menuProducts = [];
+                cat.data.forEach(item => {
+                    let name = 'name';
+                    if (user.data.lang == 'uz') {
+                        name = 'name_uz';
+                    }
+                    menuProducts.push({
+                        name: item[name],
+                        id: item.id
+                    });
+                });
+
+                let menu = [];
+                menuProducts.forEach(function (item) {
+                    menu.push(Markup.callbackButton(item.name, 'product:' + item.id))
+                });
+                return ctx.editMessageText(ctx.i18n.t('choose_category_product'), Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(3) : []).extra());
+            }
+        break;
+        case 'product':
+            if(input[1] == 'count') {
+                const productId = input[2];
+                const count = input[3];
+                const userId = user.data.id;
+                console.log(ctx);
+
+
+            } else if(parseInt(input[1], 0) > 0) {
+                const productId = input[1];
+                ctx.scene.session.productyId = productId;
+                return ctx.editMessageText(
+                    ctx.i18n.t('product_count_text'),
+                    Markup.inlineKeyboard(
+                        [
+                            [
+                                Markup.callbackButton('1', 'product:count:' + productId + ':1'),
+                                Markup.callbackButton('2', 'product:count:' + productId + ':2'),
+                                Markup.callbackButton('3', 'product:count:' + productId + ':3')
+                            ],
+                            [
+                                Markup.callbackButton('4', 'product:count:' + productId + ':4'),
+                                Markup.callbackButton('5', 'product:count:' + productId + ':5'),
+                                Markup.callbackButton('6', 'product:count:' + productId + ':6')
+                            ],
+                            [
+                                Markup.callbackButton('7', 'product:count:' + productId + ':7'),
+                                Markup.callbackButton('8', 'product:count:' + productId + ':8'),
+                                Markup.callbackButton('9', 'product:count:' + productId + ':9')
+                            ],
+                            [
+                                Markup.callbackButton(ctx.i18n.t('back'), ctx.i18n.t('back')),
+                                Markup.callbackButton(ctx.i18n.t('all_categories'), ctx.i18n.t('back'))
+                            ],
+                        ]
+                    ).extra()
+                );
+            }
+        break;
+    }
+
+    // return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
 });
 bot.launch();
 
