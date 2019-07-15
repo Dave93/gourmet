@@ -31,6 +31,10 @@ const i18n = new TelegrafI18n({
     directory: path.resolve(__dirname, 'locales')
 });
 
+function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
 Object.defineProperty(Array.prototype, 'chunk_inefficient', {
     value: function (chunkSize) {
         var array = this;
@@ -204,10 +208,12 @@ const catalogScene = new WizardScene(
                 //chunk_inefficient(3) разделения кнопки
             });
 
-        ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
+        const message = await ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
+
         return ctx.wizard.next();
     },
     async (ctx) => {
+        console.log(ctx);
         const chat = await ctx.getChat();
         const user = await client.getItems('users', {
             filter: {
@@ -602,16 +608,7 @@ bot.help((ctx) => ctx.reply('Send me a sticker'));
 bot.on('sticker', (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.scene.enter("create"));
 
-const getCatalogInfo = async (ctx) => {
-    console.log('davr');
-    const chat = await ctx.getChat();
-    const user = await client.getItems('users', {
-        filter: {
-            chat_id: chat.id
-        },
-        single: true
-    });
-};
+
 
 const getContactsInfo = async (ctx) => {
     const contacts = await client.getItems("contacts");
@@ -673,8 +670,72 @@ const getCatalog = async ctx => {
     menuCategories.forEach(function (item) {
         menu.push(Markup.callbackButton(item.name, 'category:' + item.id));
     });
-    const catMenu = Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(3) : []).extra();
-    return ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
+
+    const cart = await client.getItems('cart', {
+        filter: {
+            user_id: user.data.id
+        }
+    });
+
+    const cartMenu = [];
+
+    if(cart.data.length) {
+        cartMenu.push(Markup.callbackButton(ctx.i18n.t('cart'), 'cart:'));
+        cartMenu.push(Markup.callbackButton(ctx.i18n.t('order'), 'order:'));
+    }
+
+    let readyMenu = [];
+
+    if(menu.length) {
+        readyMenu = menu.chunk_inefficient(3);
+        readyMenu.push(cartMenu);
+    }
+
+    const catMenu = Markup.inlineKeyboard(readyMenu).extra();
+    if(ctx.session.orderMenuMessageId) {
+        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+    }
+    const message = await ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
+    ctx.session.orderMenuMessageId = message.message_id;
+    return;
+}
+
+const addProductToCart = async (ctx, count) => {
+    if(ctx.scene.session.productyId > 0 && count > 0) {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        const cart = await client.getItems('cart', {
+            filter: {
+                user_id: user.data.id
+            }
+        });
+
+        if(cart.data.length) {
+            await client.createItem("cart_products", {
+                cart_id: cart.data[0].id,
+                products_id: ctx.scene.session.productyId,
+                count: count
+            });
+        } else {
+            const cart = await client.createItem("cart", {
+                user_id: user.data.id
+            });
+
+            await client.createItem("cart_products", {
+                cart_id: cart.data.id,
+                products_id: ctx.scene.session.productyId,
+                count: count
+            });
+        }
+
+        await getCatalog(ctx);
+    }
 }
 
 bot.hears('📱 Контактная информация', getContactsInfo);
@@ -689,6 +750,15 @@ bot.hears('🇷🇺 Выберите язык', (ctx) => ctx.scene.enter("change
 bot.hears('🇺🇿 Tilni tanlang', (ctx) => ctx.scene.enter("changeLanguage"));
 bot.hears('🏷 Акции', getStock);
 bot.hears('🏷 Aktsiyalar', getStock);
+
+const regex = new RegExp(/test ([0-9]+)/gm)
+bot.hears(/[0-9]+/, async (ctx) => {
+    if(ctx.scene.session.productyId > 0) {
+        await addProductToCart(ctx, parseInt(ctx.message.text, 0));
+    }
+});
+
+
 bot.action(/.+/, async (ctx) => {
     console.log(ctx.match);
     let input = ctx.match.input.split(':');
@@ -738,17 +808,15 @@ bot.action(/.+/, async (ctx) => {
                 menuProducts.forEach(function (item) {
                     menu.push(Markup.callbackButton(item.name, 'product:' + item.id))
                 });
+                menu.push(Markup.callbackButton(ctx.i18n.t('back'), 'back'));
                 return ctx.editMessageText(ctx.i18n.t('choose_category_product'), Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(3) : []).extra());
             }
         break;
         case 'product':
             if(input[1] == 'count') {
-                const productId = input[2];
                 const count = input[3];
-                const userId = user.data.id;
-                console.log(ctx);
-
-
+                await addProductToCart(ctx, parseInt(count, 0));
+                return;
             } else if(parseInt(input[1], 0) > 0) {
                 const productId = input[1];
                 ctx.scene.session.productyId = productId;
@@ -772,13 +840,93 @@ bot.action(/.+/, async (ctx) => {
                                 Markup.callbackButton('9', 'product:count:' + productId + ':9')
                             ],
                             [
-                                Markup.callbackButton(ctx.i18n.t('back'), ctx.i18n.t('back')),
-                                Markup.callbackButton(ctx.i18n.t('all_categories'), ctx.i18n.t('back'))
+                                Markup.callbackButton(ctx.i18n.t('back'), 'category:' + ctx.scene.session.categoryId),
+                                Markup.callbackButton(ctx.i18n.t('all_categories'), 'back')
                             ],
                         ]
                     ).extra()
                 );
             }
+        break;
+
+        case 'cart':
+
+            const cart = await client.getItems('cart', {
+                filter: {
+                    user_id: user.data.id
+                }
+            });
+
+            if(cart.data.length) {
+                const cartItems = await client.getItems('cart_products', {
+                    filter: {
+                        cart_id: cart.data[0].id
+                    }
+                });
+                if(cartItems.data.length) {
+                    let cartText = '<b>' + ctx.i18n.t('cart_items_title') + ':' + '</b> \n';
+
+                    let productIds = [];
+                    cartItems.data.forEach(item => {
+                       productIds.push(item.products_id);
+                    });
+                    let productNames = {};
+                    let productPrices = {};
+                    let productNameVar = 'name';
+
+                    if(user.data.lang == 'uz') {
+                        productNameVar = 'name_uz';
+                    }
+
+                    const products = await client.getItems('products', {
+                        filter: {
+                            id: {
+                                in: productIds
+                            }
+                        }
+                    });
+
+                    products.data.forEach(product => {
+                        productNames[product.id] = product[productNameVar];
+                        productPrices[product.id] = product['price'];
+                    });
+
+                    let totalPrice = 0;
+                    cartItems.data.forEach(item => {
+                        let price = parseInt(productPrices[item.products_id], 0) * parseInt(item.count, 0);
+                        totalPrice += price;
+                        cartText += productNames[item.products_id] + ' x ' + item.count + ' = ' + numberWithSpaces(price) + ' ' + ctx.i18n.t('currency') + ' \n';
+                    });
+
+                    cartText += '\n';
+
+                    cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice) + ' ' + ctx.i18n.t('currency') + '</b>';
+                    return ctx.editMessageText(
+                        cartText,
+                        Markup.inlineKeyboard(
+                            [
+                                [
+                                    Markup.callbackButton(ctx.i18n.t('back'), 'back'),
+                                    Markup.callbackButton(ctx.i18n.t('order'), 'order:')
+                                ],
+                            ]
+                        ).extra({parse_mode: 'HTML'})
+                    );
+                } else {
+                    return ctx.answerCbQuery(ctx.i18n.t('cart_empty'));
+                }
+                // await client.createItem("cart_products", {
+                //     cart_id: cart.data[0].id,
+                //     products_id: ctx.scene.session.productyId,
+                //     count: count
+                // });
+            } else {
+                return ctx.answerCbQuery(ctx.i18n.t('cart_empty'));
+            }
+
+        break;
+        default:
+            await getCatalog(ctx);
         break;
     }
 
