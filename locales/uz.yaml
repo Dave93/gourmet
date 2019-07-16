@@ -28,5 +28,8 @@ cart_empty: Savatchangiz bo'sh
 cart_items_title: Savatchangizda
 cart_total_price: Umumiy narx
 currency: so'm
-clear_cart: 🗑️ Savatni bo'shatish
+clear_cart: 🗑️ Savatchani bo'shatish
 send_location: 📍Manzilni yuborish
+product_deleted: Mahsulot savatchadan olib tashlandi
+product_added: Mahsulot savatchaga qo'shildi
+order_success: Buyurtmangiz qabul qilindi

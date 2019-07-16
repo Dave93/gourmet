@@ -318,8 +318,6 @@ const catalogScene = new WizardScene(
 
             return ctx.reply(ctx.i18n.t('select_an_action'), countMenu);
         }
-        let productName = ctx.message.text;
-        let product = '';
     }
 );
 
@@ -602,9 +600,180 @@ const changeLanguageScene = new WizardScene(
 const makeOrder = new WizardScene(
     'make_order',
     async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        const aboutMenu = Telegraf.Extra
+            .markdown()
+            .markup((m) => m.keyboard([
+                [
+                    m.locationRequestButton(ctx.i18n.t('send_location')),
+                    m.callbackButton(ctx.i18n.t('back'))
+                ],
+            ]).resize())
+        ctx.session.orderMenuMessageId = '';
+        ctx.reply(ctx.i18n.t('send_location'), aboutMenu);
+        return ctx.wizard.next();
         // console.log('dddddd')
-        await getCatalog(ctx);
+
         // return ctx.scene.leave()
+    },
+    async (ctx) => {
+        const chat = await ctx.getChat();
+        const user = await client.getItems('users', {
+            filter: {
+                chat_id: chat.id
+            },
+            single: true
+        });
+        ctx.i18n.locale(user.data.lang);
+        if(ctx.message.text == ctx.i18n.t('back')) {
+            const aboutMenu = Telegraf.Extra
+                .markdown()
+                .markup((m) => m.keyboard([
+                    [
+                        m.callbackButton(ctx.i18n.t('button_catalog'))
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('button_contacts')),
+                        m.callbackButton(ctx.i18n.t('settings')),
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('button_stock')),
+                        m.callbackButton(ctx.i18n.t('button_review')),
+                    ],
+                ]).resize());
+            await ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
+
+            await getCatalog(ctx);
+            return ctx.scene.leave();
+        } else {
+            let orderData = {
+                user_id: user.data.id
+            };
+            if(ctx.message.location) {
+                orderData.geolocation = {
+                    lat: ctx.message.location.latitude,
+                    lng: ctx.message.location.longitude
+                }
+            } else {
+                orderData.address = ctx.message.text;
+            }
+
+            const orderRecord = await client.createItem('order', orderData);
+
+            const cart = await client.getItems('shopping_cart', {
+                filter: {
+                    user_id: user.data.id
+                }
+            });
+
+            if(cart.data.length) {
+                const cartItems = await client.getItems('shopping_cart_products', {
+                    filter: {
+                        shopping_cart_id: cart.data[0].id
+                    }
+                });
+                if(cartItems.data.length) {
+
+                    let orderText = `<b>Добавлен новый заказ № ${orderRecord.data.id}</b>\n\n`;
+                    orderText += `<b>Клиент:  ${user.data.first_name}</b>\n`;
+                    orderText += `<b>Номер телефона клиента:  ${user.data.phone}</b>\n\n`;
+                    orderText += '<b>Состав заказа</b>\n';
+                    let productIds = [];
+                    cartItems.data.forEach(item => {
+                        productIds.push(item.products_id);
+                    });
+                    let productNames = {};
+                    let productPrices = {};
+                    let productNameVar = 'name';
+
+                    if(user.data.lang == 'uz') {
+                        productNameVar = 'name_uz';
+                    }
+
+                    const products = await client.getItems('products', {
+                        filter: {
+                            id: {
+                                in: productIds
+                            }
+                        }
+                    });
+
+                    products.data.forEach(product => {
+                        productNames[product.id] = product[productNameVar];
+                        productPrices[product.id] = product['price'];
+                    });
+
+                    let totalPrice = 0;
+                    cartItems.data.forEach(async item => {
+                        let price = parseInt(productPrices[item.products_id], 0) * parseInt(item.count, 0);
+                        orderText += `${productNames[item.products_id]} x ${item.count} = ${numberWithSpaces(price)} ${ctx.i18n.t('currency')}\n`;
+                        totalPrice += price;
+                        await client.createItem('order_products', {
+                            order_id: orderRecord.data.id,
+                            products_id: item.products_id,
+                            price: productPrices[item.products_id],
+                            count: item.count
+                        });
+                        await client.deleteItem('shopping_cart_products', item.id);
+                    });
+
+                    orderText += `\n\n<b>${ctx.i18n.t('cart_total_price')}: ${numberWithSpaces(totalPrice)} ${ctx.i18n.t('currency')}</b>`;
+
+                    await client.updateItem("order", orderRecord.data.id, {
+                        total_price: totalPrice
+                    });
+
+                    await client.deleteItem('shopping_cart', cart.data[0].id);
+                    const users = await client.getUsers();
+                    let userIds = [];
+                    if(users.data.length) {
+                        users.data.forEach(user => {
+                           userIds.push(user.id);
+                        });
+
+                        const clients = await client.getItems('users', {
+                            filter: {
+                                user_id: {
+                                    in: userIds
+                                }
+                            }
+                        });
+
+                        if(clients.data.length) {
+                            clients.data.forEach(async client => {
+                                await bot.telegram.sendMessage(client.chat_id, orderText, {parse_mode:'HTML'});
+                            });
+                        }
+                    }
+                }
+            }
+
+            await ctx.reply(ctx.i18n.t('order_success'));
+            const aboutMenu = Telegraf.Extra
+                .markdown()
+                .markup((m) => m.keyboard([
+                    [
+                        m.callbackButton(ctx.i18n.t('button_catalog'))
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('button_contacts')),
+                        m.callbackButton(ctx.i18n.t('settings')),
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('button_stock')),
+                        m.callbackButton(ctx.i18n.t('button_review')),
+                    ],
+                ]).resize());
+            await ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
+            return ctx.scene.leave();
+        }
     }
 );
 
@@ -757,7 +926,7 @@ const addProductToCart = async (ctx, count) => {
                 count: count
             });
         }
-
+        ctx.answerCbQuery(ctx.i18n.t('product_added'));
         await getCatalog(ctx);
     }
 }
@@ -806,7 +975,6 @@ const getCart = async (user, ctx) => {
             let totalPrice = 0;
             let deleteButtons = [];
             cartItems.data.forEach(item => {
-                console.log(item);
                 deleteButtons.push(Markup.callbackButton('❌ ' + productNames[item.products_id] + ' x ' + item.count, 'deleteProduct:' + item.id));
                 let price = parseInt(productPrices[item.products_id], 0) * parseInt(item.count, 0);
                 totalPrice += price;
@@ -816,19 +984,31 @@ const getCart = async (user, ctx) => {
             cartText += '\n';
 
             cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice) + ' ' + ctx.i18n.t('currency') + '</b>';
+
+            let deleteProducts = [];
+
+            if(deleteButtons.length) {
+                deleteProducts = deleteButtons.chunk_inefficient(2);
+            }
+
+            let cartMenu = [
+                [
+                    Markup.callbackButton(ctx.i18n.t('back'), 'back'),
+                    Markup.callbackButton(ctx.i18n.t('order'), 'order:'),
+                ],
+                [
+                    Markup.callbackButton(ctx.i18n.t('clear_cart'), 'clear_cart')
+                ]
+            ];
+
+            deleteProducts.forEach(deleteMenu => {
+                cartMenu.push(deleteMenu);
+            });
+
             return ctx.editMessageText(
                 cartText,
                 Markup.inlineKeyboard(
-                    [
-                        [
-                            Markup.callbackButton(ctx.i18n.t('back'), 'back'),
-                            Markup.callbackButton(ctx.i18n.t('order'), 'order:'),
-                        ],
-                        [
-                            Markup.callbackButton(ctx.i18n.t('clear_cart'), 'clear_cart')
-                        ],
-                        deleteButtons
-                    ]
+                    cartMenu
                 ).extra({parse_mode: 'HTML'})
             );
         } else {
@@ -971,6 +1151,9 @@ bot.action(/.+/, async (ctx) => {
             cartItems.data.forEach(async (item) => {
                 await client.deleteItems('shopping_cart_products', [item.id]);
             });
+
+            await client.deleteItems('shopping_cart', [carts.data[0].id]);
+
             await getCatalog(ctx);
         break;
         case 'deleteProduct':
@@ -980,21 +1163,22 @@ bot.action(/.+/, async (ctx) => {
                 }
             });
             await client.deleteItems('shopping_cart_products', [parseInt(input[1], 0)]);
-            await getCart(user,ctx);
+            const cartItem = await client.getItems('shopping_cart_products', {
+                filter: {
+                    shopping_cart_id: cartss.data[0].id
+                }
+            });
+            ctx.answerCbQuery(ctx.i18n.t('product_deleted'));
+            if(cartItem.data.length) {
+                await getCart(user,ctx);
+            } else {
+                await client.deleteItems('shopping_cart', [cartss.data[0].id]);
+                await getCatalog(ctx);
+            }
             break;
         case 'order':
             ctx.deleteMessage();
-            const aboutMenu = Telegraf.Extra
-                .markdown()
-                .markup((m) => m.keyboard([
-                    [
-                        m.locationRequestButton(ctx.i18n.t('send_location')),
-                        m.callbackButton(ctx.i18n.t('back'))
-                    ],
-                ]).resize())
-            ctx.session.orderMenuMessageId = {};
-            ctx.reply(ctx.i18n.t('send_location'), aboutMenu);
-            ctx.scene.enter('make_order');
+            return ctx.scene.enter('make_order');
             break;
         default:
             await getCatalog(ctx);
