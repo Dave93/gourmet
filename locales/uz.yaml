@@ -22,3 +22,9 @@ enter_your_phone: 'Raqamni +998 ** *** **** shaklida yuboring'
 send_phone: 📲 Raqamni yuborish
 product_count_text: 'Miqdorini tanlang yoki kiriting:'
 all_categories: ⬆️ Umumiy kategoriyalar
+cart: 🛒 Savatcha
+order: 🚚 Buyurtma berish
+cart_empty: Savatchangiz bo'sh
+cart_items_title: Savatchangizda
+cart_total_price: Umumiy narx
+currency: so'm
