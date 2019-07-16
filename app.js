@@ -739,7 +739,7 @@ const addProductToCart = async (ctx, count) => {
                 count: count
             });
         } else {
-            const cart = await client.createItem("cart", {
+            const cart = await client.createItem("cart_products", {
                 user_id: user.data.id
             });
 
