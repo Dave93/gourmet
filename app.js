@@ -213,7 +213,6 @@ const catalogScene = new WizardScene(
         return ctx.wizard.next();
     },
     async (ctx) => {
-        console.log(ctx);
         const chat = await ctx.getChat();
         const user = await client.getItems('users', {
             filter: {
@@ -321,7 +320,6 @@ const catalogScene = new WizardScene(
         }
         let productName = ctx.message.text;
         let product = '';
-        console.log(ctx.scene.session.categoryId);
     }
 );
 
@@ -601,6 +599,15 @@ const changeLanguageScene = new WizardScene(
     },
 );
 
+const makeOrder = new WizardScene(
+    'make_order',
+    async (ctx) => {
+        // console.log('dddddd')
+        await getCatalog(ctx);
+        // return ctx.scene.leave()
+    }
+);
+
 // Создаем менеджера сцен
 const stage = new Stage();
 
@@ -612,6 +619,7 @@ stage.register(settingsScene);
 stage.register(editFioScene);
 stage.register(editNumberScene);
 stage.register(changeLanguageScene);
+stage.register(makeOrder);
 
 bot.catch((err) => {
     console.log('Ooops', err)
@@ -754,6 +762,88 @@ const addProductToCart = async (ctx, count) => {
     }
 }
 
+const getCart = async (user, ctx) => {
+    const cart = await client.getItems('shopping_cart', {
+        filter: {
+            user_id: user.data.id
+        }
+    });
+
+    if(cart.data.length) {
+        const cartItems = await client.getItems('shopping_cart_products', {
+            filter: {
+                shopping_cart_id: cart.data[0].id
+            }
+        });
+        if(cartItems.data.length) {
+            let cartText = '<b>' + ctx.i18n.t('cart_items_title') + ':' + '</b> \n';
+
+            let productIds = [];
+            cartItems.data.forEach(item => {
+                productIds.push(item.products_id);
+            });
+            let productNames = {};
+            let productPrices = {};
+            let productNameVar = 'name';
+
+            if(user.data.lang == 'uz') {
+                productNameVar = 'name_uz';
+            }
+
+            const products = await client.getItems('products', {
+                filter: {
+                    id: {
+                        in: productIds
+                    }
+                }
+            });
+
+            products.data.forEach(product => {
+                productNames[product.id] = product[productNameVar];
+                productPrices[product.id] = product['price'];
+            });
+
+            let totalPrice = 0;
+            let deleteButtons = [];
+            cartItems.data.forEach(item => {
+                console.log(item);
+                deleteButtons.push(Markup.callbackButton('❌ ' + productNames[item.products_id] + ' x ' + item.count, 'deleteProduct:' + item.id));
+                let price = parseInt(productPrices[item.products_id], 0) * parseInt(item.count, 0);
+                totalPrice += price;
+                cartText += productNames[item.products_id] + ' x ' + item.count + ' = ' + numberWithSpaces(price) + ' ' + ctx.i18n.t('currency') + ' \n';
+            });
+
+            cartText += '\n';
+
+            cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice) + ' ' + ctx.i18n.t('currency') + '</b>';
+            return ctx.editMessageText(
+                cartText,
+                Markup.inlineKeyboard(
+                    [
+                        [
+                            Markup.callbackButton(ctx.i18n.t('back'), 'back'),
+                            Markup.callbackButton(ctx.i18n.t('order'), 'order:'),
+                        ],
+                        [
+                            Markup.callbackButton(ctx.i18n.t('clear_cart'), 'clear_cart')
+                        ],
+                        deleteButtons
+                    ]
+                ).extra({parse_mode: 'HTML'})
+            );
+        } else {
+            return ctx.answerCbQuery(ctx.i18n.t('cart_empty'));
+        }
+        // await client.createItem("cart_products", {
+        //     shopping_cart_id: cart.data[0].id,
+        //     products_id: ctx.scene.session.productyId,
+        //     count: count
+        // });
+    } else {
+        return ctx.answerCbQuery(ctx.i18n.t('cart_empty'));
+    }
+}
+
 bot.hears('📱 Контактная информация', getContactsInfo);
 bot.hears('📱 Aloqa ma\'lumotlari', getContactsInfo);
 bot.hears('📝 Оставить отзыв', (ctx) => ctx.scene.enter("review"));
@@ -864,86 +954,48 @@ bot.action(/.+/, async (ctx) => {
                 );
             }
         break;
-
         case 'cart':
-
-            const cart = await client.getItems('shopping_cart', {
+            await getCart(user,ctx);
+        break;
+        case 'clear_cart':
+            const carts = await client.getItems('shopping_cart', {
                 filter: {
                     user_id: user.data.id
                 }
             });
-
-            if(cart.data.length) {
-                const cartItems = await client.getItems('shopping_cart_products', {
-                    filter: {
-                        shopping_cart_id: cart.data[0].id
-                    }
-                });
-                if(cartItems.data.length) {
-                    let cartText = '<b>' + ctx.i18n.t('cart_items_title') + ':' + '</b> \n';
-
-                    let productIds = [];
-                    cartItems.data.forEach(item => {
-                       productIds.push(item.products_id);
-                    });
-                    let productNames = {};
-                    let productPrices = {};
-                    let productNameVar = 'name';
-    
-                    if(user.data.lang == 'uz') {
-                        productNameVar = 'name_uz';
-                    }
-
-                    const products = await client.getItems('products', {
-                        filter: {
-                            id: {
-                                in: productIds
-                            }
-                        }
-                    });
-
-                    products.data.forEach(product => {
-                        productNames[product.id] = product[productNameVar];
-                        productPrices[product.id] = product['price'];
-                    });
-
-                    let totalPrice = 0;
-                    let productName;
-                    cartItems.data.forEach(item => {
-                        productName = productNames[item.products_id];
-                        let price = parseInt(productPrices[item.products_id], 0) * parseInt(item.count, 0);
-                        totalPrice += price;
-                        cartText += productNames[item.products_id] + ' x ' + item.count + ' = ' + numberWithSpaces(price) + ' ' + ctx.i18n.t('currency') + ' \n';
-                    });
-
-                    cartText += '\n';
-
-                    cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice) + ' ' + ctx.i18n.t('currency') + '</b>';
-                    console.log(productName);
-                    return ctx.editMessageText(
-                        cartText,
-                        Markup.inlineKeyboard(
-                            [
-                                [
-                                    Markup.callbackButton(ctx.i18n.t('back'), 'back'),
-                                    Markup.callbackButton(ctx.i18n.t('order'), 'order:')
-                                ],
-                            ]
-                        ).extra({parse_mode: 'HTML'})
-                    );
-                } else {
-                    return ctx.answerCbQuery(ctx.i18n.t('cart_empty'));
+            const cartItems = await client.getItems('shopping_cart_products', {
+                filter: {
+                    shopping_cart_id: carts.data[0].id
                 }
-                // await client.createItem("cart_products", {
-                //     shopping_cart_id: cart.data[0].id,
-                //     products_id: ctx.scene.session.productyId,
-                //     count: count
-                // });
-            } else {
-                return ctx.answerCbQuery(ctx.i18n.t('cart_empty'));
-            }
-
+            });
+            cartItems.data.forEach(async (item) => {
+                await client.deleteItems('shopping_cart_products', [item.id]);
+            });
+            await getCatalog(ctx);
         break;
+        case 'deleteProduct':
+            const cartss = await client.getItems('shopping_cart', {
+                filter: {
+                    user_id: user.data.id
+                }
+            });
+            await client.deleteItems('shopping_cart_products', [parseInt(input[1], 0)]);
+            await getCart(user,ctx);
+            break;
+        case 'order':
+            ctx.deleteMessage();
+            const aboutMenu = Telegraf.Extra
+                .markdown()
+                .markup((m) => m.keyboard([
+                    [
+                        m.locationRequestButton(ctx.i18n.t('send_location')),
+                        m.callbackButton(ctx.i18n.t('back'))
+                    ],
+                ]).resize())
+            ctx.session.orderMenuMessageId = {};
+            ctx.reply(ctx.i18n.t('send_location'), aboutMenu);
+            ctx.scene.enter('make_order');
+            break;
         default:
             await getCatalog(ctx);
         break;
