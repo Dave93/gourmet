@@ -346,7 +346,23 @@ const reviewScene = new WizardScene(
     },
     async (ctx) => {
         if (ctx.message.text == ctx.i18n.t('back')) {
-            return ctx.scene.enter("settings");
+            const aboutMenu = Telegraf.Extra
+                .markdown()
+                .markup((m) => m.keyboard([
+                    [
+                        m.callbackButton(ctx.i18n.t('button_contacts')),
+                        m.callbackButton(ctx.i18n.t('button_catalog')),
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('button_stock')),
+                        m.callbackButton(ctx.i18n.t('button_review')),
+                    ],
+                    [
+                        m.callbackButton(ctx.i18n.t('settings'))
+                    ]
+                ]).resize());
+            ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
+            return ctx.scene.leave();
         } else {
             const chat = await ctx.getChat();
             const user = await client.getItems('users', {
@@ -671,7 +687,7 @@ const getCatalog = async ctx => {
         menu.push(Markup.callbackButton(item.name, 'category:' + item.id));
     });
 
-    const cart = await client.getItems('cart', {
+    const cart = await client.getItems('shopping_cart', {
         filter: {
             user_id: user.data.id
         }
@@ -710,7 +726,7 @@ const addProductToCart = async (ctx, count) => {
             single: true
         });
         ctx.i18n.locale(user.data.lang);
-        const cart = await client.getItems('cart', {
+        const cart = await client.getItems('shopping_cart', {
             filter: {
                 user_id: user.data.id
             }
@@ -851,14 +867,14 @@ bot.action(/.+/, async (ctx) => {
 
         case 'cart':
 
-            const cart = await client.getItems('cart', {
+            const cart = await client.getItems('shopping_cart', {
                 filter: {
                     user_id: user.data.id
                 }
             });
 
             if(cart.data.length) {
-                const cartItems = await client.getItems('cart_products', {
+                const cartItems = await client.getItems('shopping_cart_products', {
                     filter: {
                         cart_id: cart.data[0].id
                     }
@@ -873,7 +889,7 @@ bot.action(/.+/, async (ctx) => {
                     let productNames = {};
                     let productPrices = {};
                     let productNameVar = 'name';
-
+    
                     if(user.data.lang == 'uz') {
                         productNameVar = 'name_uz';
                     }
@@ -892,7 +908,9 @@ bot.action(/.+/, async (ctx) => {
                     });
 
                     let totalPrice = 0;
+                    let productName;
                     cartItems.data.forEach(item => {
+                        productName = productNames[item.products_id];
                         let price = parseInt(productPrices[item.products_id], 0) * parseInt(item.count, 0);
                         totalPrice += price;
                         cartText += productNames[item.products_id] + ' x ' + item.count + ' = ' + numberWithSpaces(price) + ' ' + ctx.i18n.t('currency') + ' \n';
@@ -901,6 +919,7 @@ bot.action(/.+/, async (ctx) => {
                     cartText += '\n';
 
                     cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice) + ' ' + ctx.i18n.t('currency') + '</b>';
+                    console.log(productName);
                     return ctx.editMessageText(
                         cartText,
                         Markup.inlineKeyboard(
