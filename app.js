@@ -828,11 +828,13 @@ const getStock = async (ctx) => {
         single: true
     });
     ctx.i18n.locale(user.data.lang);
-    const stock = await client.getItems('stock', {
-        fields: 'stock'
-    });
+    const stock = await client.getItems('stock', {});
     if (stock.data[0]) {
-        ctx.reply(stock.data[0].stock, {parse_mode: "HTML"});
+
+        let text = stock.data[0].stock;
+        text = text.replace('<p>', '');
+        text = text.replace( '</p>','');
+        ctx.reply(text, {parse_mode: "HTML"});
     } else {
         ctx.reply(ctx.i18n.t('no_stock'));
     }
