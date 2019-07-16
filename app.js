@@ -733,18 +733,18 @@ const addProductToCart = async (ctx, count) => {
         });
 
         if(cart.data.length) {
-            await client.createItem("cart_products", {
-                cart_id: cart.data[0].id,
+            await client.createItem("shopping_cart_products", {
+                shopping_cart_id: cart.data[0].id,
                 products_id: ctx.scene.session.productyId,
                 count: count
             });
         } else {
-            const cart = await client.createItem("cart_products", {
+            const cart = await client.createItem("shopping_cart", {
                 user_id: user.data.id
             });
 
-            await client.createItem("cart_products", {
-                cart_id: cart.data.id,
+            await client.createItem("shopping_cart_products", {
+                shopping_cart_id: cart.data.id,
                 products_id: ctx.scene.session.productyId,
                 count: count
             });
@@ -876,7 +876,7 @@ bot.action(/.+/, async (ctx) => {
             if(cart.data.length) {
                 const cartItems = await client.getItems('shopping_cart_products', {
                     filter: {
-                        cart_id: cart.data[0].id
+                        shopping_cart_id: cart.data[0].id
                     }
                 });
                 if(cartItems.data.length) {
@@ -935,7 +935,7 @@ bot.action(/.+/, async (ctx) => {
                     return ctx.answerCbQuery(ctx.i18n.t('cart_empty'));
                 }
                 // await client.createItem("cart_products", {
-                //     cart_id: cart.data[0].id,
+                //     shopping_cart_id: cart.data[0].id,
                 //     products_id: ctx.scene.session.productyId,
                 //     count: count
                 // });
