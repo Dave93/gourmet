@@ -204,8 +204,8 @@ const catalogScene = new WizardScene(
                 menuCategories.forEach(function (item) {
                     menu.push(m.callbackButton(item.name));
                 });
-                return m.keyboard(menu.length ? menu.chunk_inefficient(3) : []).resize();
-                //chunk_inefficient(3) разделения кнопки
+                return m.keyboard(menu.length ? menu.chunk_inefficient(2) : []).resize();
+                //chunk_inefficient(2) разделения кнопки
             });
 
         const message = await ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
@@ -289,7 +289,7 @@ const catalogScene = new WizardScene(
                 menuProducts.forEach(function (item) {
                     menu.push(m.callbackButton(item.name, 'product:' + item.id));
                 });
-                return m.keyboard(menu.length ? menu.chunk_inefficient(3) : []).resize();
+                return m.keyboard(menu.length ? menu.chunk_inefficient(2) : []).resize();
             });
         ctx.reply(ctx.i18n.t('choose_category_product'), catMenu);
         return ctx.wizard.next();
@@ -882,7 +882,7 @@ const getCatalog = async ctx => {
     let readyMenu = [];
 
     if(menu.length) {
-        readyMenu = menu.chunk_inefficient(3);
+        readyMenu = menu.chunk_inefficient(2);
         readyMenu.push(cartMenu);
     }
 
@@ -1097,7 +1097,7 @@ bot.action(/.+/, async (ctx) => {
                     menu.push(Markup.callbackButton(item.name, 'product:' + item.id))
                 });
                 menu.push(Markup.callbackButton(ctx.i18n.t('back'), 'back'));
-                return ctx.editMessageText(ctx.i18n.t('choose_category_product'), Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(3) : []).extra());
+                return ctx.editMessageText(ctx.i18n.t('choose_category_product'), Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(2) : []).extra());
             }
         break;
         case 'product':
