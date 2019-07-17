@@ -4,5 +4,4 @@ node_modules
 \.env
 /.env
 scenes/create\.js
-
 example_db\.json
