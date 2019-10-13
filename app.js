@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var app = express();
 
+const frameguard = require('frameguard')
 const Telegraf = require('telegraf');
 const TelegrafI18n = require('telegraf-i18n');
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
@@ -20,19 +21,111 @@ const session = require("telegraf/session");
 const Stage = require("telegraf/stage");
 const WizardScene = require("telegraf/scenes/wizard");
 const DirectusSDK = require("@directus/sdk-js");
+const axios = require('axios');
+const uuidv1 = require('uuid/v1');
 const client = new DirectusSDK({
     url: process.env.SHOP_API_URL,
     project: "_",
     token: "1531321321"
 });
+const querystring = require('querystring');
 const i18n = new TelegrafI18n({
     defaultLanguage: 'ru',
     allowMissing: false, // Default true
     directory: path.resolve(__dirname, 'locales')
 });
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+var queryParser = require('express-query-int');
+
+const adapter = new FileSync(__dirname + '/users.db');
+const db = low(adapter);
+const FileDownload = require('js-file-download');
+const fs = require('fs');
+const YAML = require('yaml');
+const sanitizeHtml = require('sanitize-html');
+const multer  = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
+    }
+})
+
+const upload = multer({ storage: storage });
+
+
+const sanitizeOptions = {
+    allowedTags: [ 'b', 'i', 'em', 'strong', 'a', 'br' ],
+    allowedAttributes: {
+        'a': [ 'href' ]
+    },
+    transformTags: {
+        'strong': 'b',
+    },
+    allowedIframeHostnames: ['www.youtube.com']
+};
+
+db.defaults({ cart: [], reviews: [], catalog_section: [], products: [], posts: [], settings: {} })
+    .write()
+// const BX24 = require('bitrix24-promise');
+//
+// const initBX24 = async () => {
+//     await BX24.initialize({
+//         url: process.env.BX_DOMAIN,
+//         credentials:{
+//             client: {
+//                 id: process.env.BX_APP_ID,
+//                 secret: process.env.BX_APP_SECRET
+//             },
+//             auth: {
+//                 tokenHost: 'https://oauth.bitrix.info',
+//                 tokenPath: '/oauth/token/',
+//                 authorizePath: '/oauth/authorize'
+//             },
+//             user: {
+//                 login: 'yul.davron.93@gmail.com',
+//                 password: 'CA2688255'
+//             }
+//         },
+//         scope: ['crm', 'lists']
+//     });
+//
+//     await BX24.authenticate();
+//
+//     console.log('ddd');
+// }
+
+
 
 function numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+        await callback(array[index], index, array);
+    }
+}
+
+const serializeQuery = function(params, prefix) {
+    const query = Object.keys(params).map((key) => {
+        const value  = params[key];
+
+        if (params.constructor === Array)
+            key = `${prefix}[]`;
+        else if (params.constructor === Object)
+            key = (prefix ? `${prefix}[${key}]` : key);
+
+        if (typeof value === 'object')
+            return serializeQuery(value, key);
+        else
+            return `${key}=${encodeURIComponent(value)}`;
+    });
+
+    return [].concat.apply([], query).join('&');
 }
 
 Object.defineProperty(Array.prototype, 'chunk_inefficient', {
@@ -59,20 +152,28 @@ const create = new WizardScene(
                 m.callbackButton("🇷🇺 Русский")
             ]).resize());
 
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            }
-        });
+        let bxContactFilter = {
 
-        if (!user.data.length) {
-            await client.createItem("users", {
-                first_name: chat.first_name,
-                last_name: '',
-                phone: '',
-                chat_id: chat.id,
-                lang: ''
-            });
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD]
+        }));
+
+        if(!bxContact.data.result.length) {
+            let contactData = {
+                'fields': {
+                    'NAME': chat.first_name,
+                    'LAST_NAME': chat.last_name
+                },
+                params: { "REGISTER_SONET_EVENT": "Y" }
+            };
+            contactData.fields[process.env.BX_CHAT_ID_FIELD] = chat.id;
+            contactData.fields[process.env.BX_LANG_FIELD] = '';
+            const res = await axios.post(process.env.BX_WEBHOOK_URL + 'crm.contact.add', contactData);
         }
 
         ctx.reply(ctx.i18n.t('choose_language'), aboutMenu);
@@ -87,17 +188,29 @@ const create = new WizardScene(
             lang = 'uz';
         }
         const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        if (user) {
-            await client.updateItem("users", user.data.id, {
-                lang
-            });
+
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD]
+        }));
+
+        if(bxContact.data.result.length) {
+            let contactData = {
+                'id': bxContact.data.result[0].ID,
+                'fields': {
+
+                }
+            };
+            contactData.fields[process.env.BX_LANG_FIELD] = lang;
+            const res = await axios.post(process.env.BX_WEBHOOK_URL + 'crm.contact.update', contactData);
         }
+
         ctx.i18n.locale(lang);
         ctx.reply(ctx.i18n.t('get_name'), aboutMenu);
         return ctx.wizard.next(); // Переходим к следующему обработчику.
@@ -105,19 +218,29 @@ const create = new WizardScene(
     async (ctx) => {
 
         const chat = await ctx.getChat();
-        // const dbUser = await db.findOne({ chat_id: chat.id });
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        if (user) {
-            await client.updateItem("users", user.data.id, {
-                first_name: ctx.message.text
-            });
+
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD,process.env.BX_LANG_FIELD]
+        }));
+
+        if(bxContact.data.result.length) {
+
+            let contactData = {
+                id: bxContact.data.result[0].ID,
+                fields: {
+                    NAME: ctx.message.text
+                }
+            };
+            const res = await axios.post(process.env.BX_WEBHOOK_URL + 'crm.contact.update', contactData);
         }
-        ctx.i18n.locale(user.data.lang);
+        ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
 
         // await client.put('/accounts/' + dbUser.userId, { first_name: ctx.message.text });
 
@@ -139,18 +262,28 @@ const create = new WizardScene(
             phoneNumber = ctx.message.contact.phone_number;
         }
         const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        if (user) {
-            await client.updateItem("users", user.data.id, {
-                phone: phoneNumber
-            });
+
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+        }));
+
+        if(bxContact.data.result.length) {
+            let contactData = {
+                id: bxContact.data.result[0].ID,
+                fields: {
+                    PHONE: [ { "VALUE": phoneNumber, "VALUE_TYPE": "MOBILE" } ]
+                }
+            };
+            const res = await axios.post(process.env.BX_WEBHOOK_URL + 'crm.contact.update', contactData);
         }
-        ctx.i18n.locale(user.data.lang);
+        ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
         const aboutMenu = Telegraf.Extra
             .markdown()
             .markup((m) => m.keyboard([
@@ -159,11 +292,10 @@ const create = new WizardScene(
                 ],
                 [
                     m.callbackButton(ctx.i18n.t('button_contacts')),
-                    m.callbackButton(ctx.i18n.t('settings')),
+                    m.callbackButton(ctx.i18n.t('button_review')),
                 ],
                 [
-                    m.callbackButton(ctx.i18n.t('button_stock')),
-                    m.callbackButton(ctx.i18n.t('button_review')),
+                    m.callbackButton(ctx.i18n.t('settings')),
                 ],
             ]).resize());
 
@@ -172,166 +304,21 @@ const create = new WizardScene(
     }
 );
 
-const catalogScene = new WizardScene(
-    'catalog',
-    async (ctx) => {
-        const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
-        const cat = await client.getItems('category');
-        let menuCategories = [];
-        cat.data.forEach(item => {
-            let name = 'name';
-            if (user.data.lang == 'uz') {
-                name = 'name_uz';
-            }
-            menuCategories.push({
-                name: item[name],
-                id: item.id
-            });
-        });
-
-        const catMenu = Telegraf.Extra
-            .markdown()
-            .markup((m) => {
-                let menu = [];
-                menu.push(m.callbackButton(ctx.i18n.t('back')));
-                menuCategories.forEach(function (item) {
-                    menu.push(m.callbackButton(item.name));
-                });
-                return m.keyboard(menu.length ? menu.chunk_inefficient(2) : []).resize();
-                //chunk_inefficient(2) разделения кнопки
-            });
-
-        const message = await ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
-
-        return ctx.wizard.next();
-    },
-    async (ctx) => {
-        const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
-        // if (ctx.message.text == ctx.i18n.t('back')) {
-        //     ctx.scene.leave();
-        //     const aboutMenu = Telegraf.Extra
-        //         .markdown()
-        //         .markup((m) => m.keyboard([
-        //             [
-        //                 m.callbackButton(ctx.i18n.t('button_catalog'))
-        //             ],
-        //             [
-        //                 m.callbackButton(ctx.i18n.t('button_contacts')),
-        //                 m.callbackButton(ctx.i18n.t('settings')),
-        //             ],
-        //             [
-        //                 m.callbackButton(ctx.i18n.t('button_stock')),
-        //                 m.callbackButton(ctx.i18n.t('button_review')),
-        //             ],
-        //         ]).resize());
-        //
-        //     return ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
-        // }
-
-        let categoryName = ctx.message.text;
-        let category = '';
-        if (user.data.lang == 'uz') {
-            category = await client.getItems('category', {
-                filter: {
-                    name_uz: categoryName
-                }
-            });
-        } else {
-            category = await client.getItems('category', {
-                filter: {
-                    name: categoryName
-                }
-            });
-        }
-
-        if (!category.data.length) {
-            ctx.reply(ctx.i18n.t('catalog_category_not_found'));
-            return ctx.wizard.back();
-        }
-
-        ctx.scene.session.categoryId = category.data[0].id;
-
-        const cat = await client.getItems('products', {
-            filter: {
-                category: category.data[0].id
-            }
-        });
-        let menuProducts = [];
-        cat.data.forEach(item => {
-            let name = 'name';
-            if (user.data.lang == 'uz') {
-                name = 'name_uz';
-            }
-            menuProducts.push({
-                name: item[name],
-                id: item.id
-            });
-        });
-
-        const catMenu = Telegraf.Extra
-            .markdown()
-            .markup((m) => {
-                let menu = [m.callbackButton(ctx.i18n.t('back'))];
-                menuProducts.forEach(function (item) {
-                    menu.push(m.callbackButton(item.name, 'product:' + item.id));
-                });
-                return m.keyboard(menu.length ? menu.chunk_inefficient(2) : []).resize();
-            });
-        ctx.reply(ctx.i18n.t('choose_category_product'), catMenu);
-        return ctx.wizard.next();
-    },
-    async (ctx) => {
-        const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
-        if (ctx.message.text == ctx.i18n.t('back')) {
-            ctx.scene.leave();
-            return ctx.scene.enter('catalog');
-        } else {
-            const countMenu = Telegraf.Extra
-                .HTML()
-                .markup((m) => m.keyboard([
-                    ['1', '2', '3'],
-                    ['4', '5', '6'],
-                    ['7', '8', '9'],
-                    [ctx.i18n.t('back')]
-                ]).resize());
-
-            return ctx.reply(ctx.i18n.t('select_an_action'), countMenu);
-        }
-    }
-);
-
 const reviewScene = new WizardScene(
     'review',
     async (ctx) => {
         const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD,process.env.BX_LANG_FIELD]
+        }));
+        ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
         const aboutMenu = Telegraf.Extra
             .markdown()
             .markup((m) => m.keyboard([
@@ -341,16 +328,27 @@ const reviewScene = new WizardScene(
         return ctx.wizard.next();
     },
     async (ctx) => {
+        const chat = await ctx.getChat();
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD,process.env.BX_LANG_FIELD]
+        }));
+        ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
         if (ctx.message.text == ctx.i18n.t('back')) {
             const aboutMenu = Telegraf.Extra
                 .markdown()
                 .markup((m) => m.keyboard([
                     [
-                        m.callbackButton(ctx.i18n.t('button_contacts')),
                         m.callbackButton(ctx.i18n.t('button_catalog')),
                     ],
                     [
-                        m.callbackButton(ctx.i18n.t('button_stock')),
+                        m.callbackButton(ctx.i18n.t('button_contacts')),
                         m.callbackButton(ctx.i18n.t('button_review')),
                     ],
                     [
@@ -361,27 +359,35 @@ const reviewScene = new WizardScene(
             return ctx.scene.leave();
         } else {
             const chat = await ctx.getChat();
-            const user = await client.getItems('users', {
-                filter: {
-                    chat_id: chat.id
+            const rootSection = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.productsection.list?' + serializeQuery({
+                'filter': {
+                    'NAME': 'Отзывы'
                 },
-                single: true
-            });
-            ctx.i18n.locale(user.data.lang);
-            await client.createItem("reviews", {
-                user_id: user.data.id,
-                review_text: ctx.message.text
-            });
+                'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+            }));
+
+            if(rootSection.data.result.length) {
+                let date = new Date();
+                let fields = {
+                    'NAME': 'Новый отзыв ' + date.toLocaleString('ru'),
+                    'DESCRIPTION': ctx.message.text,
+                    'IBLOCK_SECTION_ID': rootSection.data.result[0].ID,
+                    'SECTION_ID': rootSection.data.result[0].ID
+                };
+                fields[process.env.BX_PRODUCT_CRM_FIELD] = bxContact.data.result[0].ID;
+                const review = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.product.add?'+ serializeQuery({
+                    'fields': fields
+                }));
+            }
 
             const aboutMenu = Telegraf.Extra
                 .markdown()
                 .markup((m) => m.keyboard([
                     [
-                        m.callbackButton(ctx.i18n.t('button_contacts')),
                         m.callbackButton(ctx.i18n.t('button_catalog')),
                     ],
                     [
-                        m.callbackButton(ctx.i18n.t('button_stock')),
+                        m.callbackButton(ctx.i18n.t('button_contacts')),
                         m.callbackButton(ctx.i18n.t('button_review')),
                     ],
                     [
@@ -399,13 +405,19 @@ const settingsScene = new WizardScene(
     'settings',
     async (ctx) => {
         const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
+
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+        }));
+
+        ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
         const settingsMenu = Telegraf.Extra
             .markdown()
             .markup((m) => m.keyboard([
@@ -426,13 +438,19 @@ const settingsScene = new WizardScene(
     },
     async (ctx) => {
         const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
+
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+        }));
+
+        ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
         switch (ctx.message.text) {
             case ctx.i18n.t('edit_phone'):
                 ctx.scene.enter("editNumber");
@@ -452,11 +470,10 @@ const settingsScene = new WizardScene(
                         ],
                         [
                             m.callbackButton(ctx.i18n.t('button_contacts')),
-                            m.callbackButton(ctx.i18n.t('settings')),
+                            m.callbackButton(ctx.i18n.t('button_review')),
                         ],
                         [
-                            m.callbackButton(ctx.i18n.t('button_stock')),
-                            m.callbackButton(ctx.i18n.t('button_review')),
+                            m.callbackButton(ctx.i18n.t('settings')),
                         ],
                     ]).resize());
 
@@ -470,14 +487,6 @@ const settingsScene = new WizardScene(
 const editFioScene = new WizardScene(
     'editFio',
     async (ctx) => {
-        const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
         const settingsMenu = Telegraf.Extra
             .markdown()
             .markup((m) => m.keyboard([
@@ -491,18 +500,27 @@ const editFioScene = new WizardScene(
             return ctx.scene.enter("settings");
         } else {
             const chat = await ctx.getChat();
-            const user = await client.getItems('users', {
-                filter: {
-                    chat_id: chat.id
-                },
-                single: true
-            });
-            ctx.i18n.locale(user.data.lang);
             let editedName = ctx.message.text;
-            if (user) {
-                await client.updateItem("users", user.data.id, {
-                    first_name: editedName
-                });
+            let bxContactFilter = {
+
+            };
+
+            bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+            const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+                'filter': bxContactFilter,
+                'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+            }));
+
+            if(bxContact.data.result.length) {
+
+                let contactData = {
+                    id: bxContact.data.result[0].ID,
+                    fields: {
+                        NAME: editedName
+                    }
+                };
+                const res = await axios.post(process.env.BX_WEBHOOK_URL + 'crm.contact.update', contactData);
             }
             ctx.scene.enter("settings");
         }
@@ -514,14 +532,6 @@ const editFioScene = new WizardScene(
 const editNumberScene = new WizardScene(
     'editNumber',
     async (ctx) => {
-        const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
         const settingsMenu = Telegraf.Extra
             .HTML()
             .markup((m) => m.keyboard([
@@ -545,17 +555,26 @@ const editNumberScene = new WizardScene(
                 editedPhone = ctx.message.contact.phone_number;
             }
             const chat = await ctx.getChat();
-            const user = await client.getItems('users', {
-                filter: {
-                    chat_id: chat.id
-                },
-                single: true
-            });
-            ctx.i18n.locale(user.data.lang);
-            if (user) {
-                await client.updateItem("users", user.data.id, {
-                    phone: editedPhone
-                });
+            let bxContactFilter = {
+
+            };
+
+            bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+            const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+                'filter': bxContactFilter,
+                'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+            }));
+
+            ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
+            if (bxContact.data.result.length) {
+                let contactData = {
+                    id: bxContact.data.result[0].ID,
+                    fields: {
+                        PHONE: [ { "VALUE": editedPhone, "VALUE_TYPE": "MOBILE" } ]
+                    }
+                };
+                const res = await axios.post(process.env.BX_WEBHOOK_URL + 'crm.contact.update', contactData);
             }
             ctx.scene.enter("settings");
             return ctx.scene.leave();
@@ -566,6 +585,7 @@ const editNumberScene = new WizardScene(
 const changeLanguageScene = new WizardScene(
     'changeLanguage',
     async (ctx) => {
+
         const aboutMenu = await Telegraf.Extra
             .markdown()
             .markup((m) => m.keyboard([
@@ -581,18 +601,30 @@ const changeLanguageScene = new WizardScene(
             lang = 'uz';
         }
         const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        if (user) {
-            await client.updateItem("users", user.data.id, {
-                lang
-            });
-        }
+
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+        }));
+
         ctx.i18n.locale(lang);
+        if(bxContact.data.result.length) {
+
+            let contactData = {
+                id: bxContact.data.result[0].ID,
+                fields: {
+
+                }
+            };
+            contactData.fields[process.env.BX_LANG_FIELD] = lang;
+            const res = await axios.post(process.env.BX_WEBHOOK_URL + 'crm.contact.update', contactData);
+        }
         return ctx.scene.enter("settings");
     },
 );
@@ -601,13 +633,18 @@ const makeOrder = new WizardScene(
     'make_order',
     async (ctx) => {
         const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+        }));
+
+        ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
         const aboutMenu = Telegraf.Extra
             .markdown()
             .markup((m) => m.keyboard([
@@ -619,19 +656,21 @@ const makeOrder = new WizardScene(
         ctx.session.orderMenuMessageId = '';
         ctx.reply(ctx.i18n.t('send_location'), aboutMenu);
         return ctx.wizard.next();
-        // console.log('dddddd')
-
-        // return ctx.scene.leave()
     },
     async (ctx) => {
         const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+        }));
+
+        ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
         if(ctx.message.text == ctx.i18n.t('back')) {
             const aboutMenu = Telegraf.Extra
                 .markdown()
@@ -641,11 +680,10 @@ const makeOrder = new WizardScene(
                     ],
                     [
                         m.callbackButton(ctx.i18n.t('button_contacts')),
-                        m.callbackButton(ctx.i18n.t('settings')),
+                        m.callbackButton(ctx.i18n.t('button_review')),
                     ],
                     [
-                        m.callbackButton(ctx.i18n.t('button_stock')),
-                        m.callbackButton(ctx.i18n.t('button_review')),
+                        m.callbackButton(ctx.i18n.t('settings')),
                     ],
                 ]).resize());
             await ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
@@ -653,107 +691,106 @@ const makeOrder = new WizardScene(
             await getCatalog(ctx);
             return ctx.scene.leave();
         } else {
-            let orderData = {
-                user_id: user.data.id
+
+            let bxContactFilter = {
+
             };
-            if(ctx.message.location) {
-                orderData.geolocation = {
-                    lat: ctx.message.location.latitude,
-                    lng: ctx.message.location.longitude
+            let bxDeal = '';
+
+            bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+            const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+                'filter': bxContactFilter,
+                'select': ['*', process.env.BX_CHAT_ID_FIELD]
+            }));
+
+            if(bxContact.data.result.length) {
+                let dealFields = {
+                    "TITLE": "Новый заказ ",
+                    "STAGE_ID": 'NEW',
+                    "CONTACT_ID": bxContact.data.result[0].ID,
+                    "OPENED": "Y",
+                    "ASSIGNED_BY_ID": process.env.BX_DEAL_DEFAULT_ASSIGNED
+                };
+                if(ctx.message.location) {
+                    dealFields[process.env.BX_DEAL_LOCATION_FIELD] = 'Адрес|' + ctx.message.location.latitude + ';' + ctx.message.location.longitude;
+                } else {
+                    dealFields[process.env.BX_DEAL_ADDRESS_FIELD] = ctx.message.text;
                 }
-            } else {
-                orderData.address = ctx.message.text;
+                bxDeal = await axios.post(process.env.BX_WEBHOOK_URL + 'crm.deal.add', {
+                    'fields': dealFields,
+                    params: { "REGISTER_SONET_EVENT": "Y" }
+                });
+
+                // console.log(bxDeal);
             }
 
-            const orderRecord = await client.createItem('order', orderData);
+            const cart = await db.get('cart')
+                .find({ chat_id: chat.id })
+                .value();
 
-            const cart = await client.getItems('shopping_cart', {
-                filter: {
-                    user_id: user.data.id
-                }
-            });
-
-            if(cart.data.length) {
-                const cartItems = await client.getItems('shopping_cart_products', {
-                    filter: {
-                        shopping_cart_id: cart.data[0].id
-                    }
-                });
-                if(cartItems.data.length) {
-
-                    let orderText = `<b>Добавлен новый заказ № ${orderRecord.data.id}</b>\n\n`;
-                    orderText += `<b>Клиент:  ${user.data.first_name}</b>\n`;
-                    orderText += `<b>Номер телефона клиента:  ${user.data.phone}</b>\n\n`;
-                    orderText += '<b>Состав заказа</b>\n';
-                    let productIds = [];
-                    cartItems.data.forEach(item => {
-                        productIds.push(item.products_id);
-                    });
-                    let productNames = {};
+            if(cart) {
+                if(cart.products.length) {
+                    let productIds = {};
                     let productPrices = {};
-                    let productNameVar = 'name';
+                    let nameField = 'name';
 
-                    if(user.data.lang == 'uz') {
-                        productNameVar = 'name_uz';
+                    if(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz') {
+                        nameField = 'name_uz';
                     }
 
-                    const products = await client.getItems('products', {
-                        filter: {
-                            id: {
-                                in: productIds
-                            }
-                        }
-                    });
-
-                    products.data.forEach(product => {
-                        productNames[product.id] = product[productNameVar];
+                    await asyncForEach(cart.products, async item => {
+                        let product =  await db.get('products')
+                            .find({ id: item.product_id })
+                            .value();
+                        productIds[product.id] = product.product_id;
                         productPrices[product.id] = product['price'];
                     });
 
                     let totalPrice = 0;
-                    cartItems.data.forEach(async item => {
-                        let price = parseInt(productPrices[item.products_id], 0) * parseInt(item.count, 0);
-                        orderText += `${productNames[item.products_id]} x ${item.count} = ${numberWithSpaces(price)} ${ctx.i18n.t('currency')}\n`;
+                    let productRows = [];
+                    await asyncForEach(cart.products, async item => {
+                        let price = parseInt(productPrices[item.product_id], 0) * parseInt(item.count, 0);
                         totalPrice += price;
-                        await client.createItem('order_products', {
-                            order_id: orderRecord.data.id,
-                            products_id: item.products_id,
-                            price: productPrices[item.products_id],
-                            count: item.count
+                        console.log(item);
+                        productRows.push({
+                            PRODUCT_ID: productIds[item.product_id],
+                            PRICE: parseInt(productPrices[item.product_id], 0),
+                            CURRENCY_ID: 'UZS',
+                            QUANTITY: item.count
                         });
-                        await client.deleteItem('shopping_cart_products', item.id);
+                    });
+                    db.get('cart')
+                        .remove({ chat_id: chat.id })
+                        .write();
+
+                    await axios.post(process.env.BX_WEBHOOK_URL + 'crm.deal.productrows.set', {
+                        'id': bxDeal.data.result,
+                        'rows': productRows
                     });
 
-                    orderText += `\n\n<b>${ctx.i18n.t('cart_total_price')}: ${numberWithSpaces(totalPrice)} ${ctx.i18n.t('currency')}</b>`;
-
-                    await client.updateItem("order", orderRecord.data.id, {
-                        total_price: totalPrice
-                    });
-
-                    await client.deleteItem('shopping_cart', cart.data[0].id);
-                    const users = await client.getUsers();
-                    let userIds = [];
-                    if(users.data.length) {
-                        users.data.forEach(user => {
-                           userIds.push(user.id);
-                        });
-
-                        const clients = await client.getItems('users', {
-                            filter: {
-                                user_id: {
-                                    in: userIds
-                                }
-                            }
-                        });
-
-                        if(clients.data.length) {
-                            clients.data.forEach(async client => {
-                                await bot.telegram.sendMessage(client.chat_id, orderText, {parse_mode:'HTML'});
-                            });
+                    await axios.post(process.env.BX_WEBHOOK_URL + 'crm.deal.update', {
+                        id: bxDeal.data.result,
+                        fields: {
+                            'TITLE': 'Новый заказ #' + bxDeal.data.result
                         }
-                    }
+                    });
                 }
             }
+
+            // await axios.post(process.env.BX_WEBHOOK_URL + 'tasks.task.add?' + serializeQuery({
+            //     'fields': {
+            //         'TITLE': `Необходимо обработать заказ №${bxDeal.data.result}`,
+            //         'RESPONSIBLE_ID': process.env.BX_DEAL_DEFAULT_ASSIGNED,
+            //         'UF_CRM_TASK': [`D_${bxDeal.data.result}`]
+            //     }
+            // }));
+
+            axios.post(process.env.BX_WEBHOOK_URL + 'im.message.add?' + serializeQuery({
+                'MESSAGE': `Необходимо обработать [URL=/crm/deal/details/${bxDeal.data.result}/]заказ №${bxDeal.data.result}[/URL]`,
+                'DIALOG_ID': process.env.BX_DEAL_DEFAULT_ASSIGNED,
+                'URL_PREVIEW': 'Y'
+            }));
 
             await ctx.reply(ctx.i18n.t('order_success'));
             const aboutMenu = Telegraf.Extra
@@ -764,11 +801,10 @@ const makeOrder = new WizardScene(
                     ],
                     [
                         m.callbackButton(ctx.i18n.t('button_contacts')),
-                        m.callbackButton(ctx.i18n.t('settings')),
+                        m.callbackButton(ctx.i18n.t('button_review')),
                     ],
                     [
-                        m.callbackButton(ctx.i18n.t('button_stock')),
-                        m.callbackButton(ctx.i18n.t('button_review')),
+                        m.callbackButton(ctx.i18n.t('settings')),
                     ],
                 ]).resize());
             await ctx.reply(ctx.i18n.t('select_an_action'), aboutMenu);
@@ -782,7 +818,6 @@ const stage = new Stage();
 
 // Регистрируем сцену создания матча
 stage.register(create);
-stage.register(catalogScene);
 stage.register(reviewScene);
 stage.register(settingsScene);
 stage.register(editFioScene);
@@ -793,8 +828,13 @@ stage.register(makeOrder);
 bot.catch((err) => {
     console.log('Ooops', err)
 });
+bot.use(async (ctx, next) => {
+    await i18n.loadLocales(path.resolve(__dirname, 'locales'));
+    return next(ctx);
+});
 bot.use((new LocalSession({database: 'example_db.json'})).middleware());
 bot.use(stage.middleware());
+
 bot.action("create", (ctx) => ctx.scene.enter("create"));
 bot.start((ctx) => ctx.scene.enter("create"));
 bot.help((ctx) => ctx.reply('Send me a sticker'));
@@ -804,15 +844,26 @@ bot.hears('hi', (ctx) => ctx.scene.enter("create"));
 
 
 const getContactsInfo = async (ctx) => {
-    const contacts = await client.getItems("contacts");
-    const arrcontacts = [
-        'Адрес: ' + contacts.data[0].address + '\n',
-        'Ориентир: ' + contacts.data[0].reference_point + '\n',
-        'Режим работы: ' + contacts.data[0].operation_mode + '\n',
-        'Связаться с нами можно по номеру: ' + contacts.data[0].phone_number
-    ];
+    const chat = await ctx.getChat();
+    let bxContactFilter = {
+
+    };
+
+    bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+    const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+        'filter': bxContactFilter,
+        'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+    }));
+
+    ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
+    const settings = await db.get('settings')
+        .value();
+    let address = (bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz' ? settings.address_uz : settings.address);
+    address = sanitizeHtml(address, sanitizeOptions);
+    address = address.replace(/\<br \/\>/g, "\n");
     try {
-        return ctx.reply(arrcontacts.join(''));
+        return ctx.reply(address);
     } catch (e) {
 
     }
@@ -821,20 +872,54 @@ const getContactsInfo = async (ctx) => {
 
 const getStock = async (ctx) => {
     const chat = await ctx.getChat();
-    const user = await client.getItems('users', {
-        filter: {
-            chat_id: chat.id
-        },
-        single: true
-    });
-    ctx.i18n.locale(user.data.lang);
-    const stock = await client.getItems('stock', {});
-    if (stock.data[0]) {
+    let bxContactFilter = {
 
-        let text = stock.data[0].stock;
-        text = text.replace('<p>', '');
-        text = text.replace( '</p>','');
-        ctx.reply(text, {parse_mode: "HTML"});
+    };
+
+    bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+    const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+        'filter': bxContactFilter,
+        'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+    }));
+
+    ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
+
+    const rootSection = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.productsection.list?' + serializeQuery({
+        'filter': {
+            'NAME': 'Акции'
+        },
+        'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+    }));
+
+    const langSection = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.productsection.list?' + serializeQuery({
+        'filter': {
+            'NAME': bxContact.data.result[0][process.env.BX_LANG_FIELD].toUpperCase(),
+            'SECTION_ID': rootSection.data.result[0].ID
+        },
+        'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+    }));
+
+    if(langSection.data.result.length) {
+        const stock = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.product.list?' + serializeQuery({
+            'filter': {
+                'SECTION_ID': langSection.data.result[0].ID
+            },
+            'select': ['*'],
+            'order': {
+                'ID': 'DESC'
+            },
+            'limit': 1
+        }));
+
+        if(stock.data.result.length) {
+            let text = stock.data.result[0].DESCRIPTION;
+            text = text.replace('<p>', '');
+            text = text.replace( '</p>','');
+            ctx.reply(text, {parse_mode: "HTML"});
+        } else {
+            ctx.reply(ctx.i18n.t('no_stock'));
+        }
     } else {
         ctx.reply(ctx.i18n.t('no_stock'));
     }
@@ -842,39 +927,56 @@ const getStock = async (ctx) => {
 
 const getCatalog = async ctx => {
     const chat = await ctx.getChat();
-    const user = await client.getItems('users', {
-        filter: {
-            chat_id: chat.id
-        },
-        single: true
-    });
-    ctx.i18n.locale(user.data.lang);
-    const cat = await client.getItems('category');
+
+    let bxContactFilter = {
+
+    };
+
+    bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+    const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+        'filter': bxContactFilter,
+        'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+    }));
+
+    ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
+
+    const sections = await db.get('catalog_section')
+        .filter()
+        .value();
+    let nameField = 'name';
+    if(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz') {
+        nameField = 'name_uz';
+    }
+
+    let menu = [];
+
+
     let menuCategories = [];
-    cat.data.forEach(item => {
-        let name = 'name';
-        if (user.data.lang == 'uz') {
-            name = 'name_uz';
-        }
+    sections.forEach(item => {
         menuCategories.push({
-            name: item[name],
+            name: item[nameField],
             id: item.id
         });
     });
-    let menu = [];
+
     menuCategories.forEach(function (item) {
         menu.push(Markup.callbackButton(item.name, 'category:' + item.id));
     });
 
-    const cart = await client.getItems('shopping_cart', {
-        filter: {
-            user_id: user.data.id
-        }
-    });
+    const cart = await db.get('cart')
+        .find({ chat_id: chat.id })
+        .value();
+
+    // const cart = await client.getItems('shopping_cart', {
+    //     filter: {
+    //         user_id: user.data.id
+    //     }
+    // });
 
     const cartMenu = [];
 
-    if(cart.data.length) {
+    if(cart) {
         cartMenu.push(Markup.callbackButton(ctx.i18n.t('cart'), 'cart:'));
         cartMenu.push(Markup.callbackButton(ctx.i18n.t('order'), 'order:'));
     }
@@ -896,91 +998,88 @@ const getCatalog = async ctx => {
 }
 
 const addProductToCart = async (ctx, count) => {
-    if(ctx.scene.session.productyId > 0 && count > 0) {
+    if(ctx.scene.session.productyId && count > 0) {
         const chat = await ctx.getChat();
-        const user = await client.getItems('users', {
-            filter: {
-                chat_id: chat.id
-            },
-            single: true
-        });
-        ctx.i18n.locale(user.data.lang);
-        const cart = await client.getItems('shopping_cart', {
-            filter: {
-                user_id: user.data.id
-            }
-        });
 
-        if(cart.data.length) {
-            await client.createItem("shopping_cart_products", {
-                shopping_cart_id: cart.data[0].id,
-                products_id: ctx.scene.session.productyId,
+        let bxContactFilter = {
+
+        };
+
+        bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+        const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+            'filter': bxContactFilter,
+            'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+        }));
+
+        ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
+        const cart = await db.get('cart')
+            .find({ chat_id: chat.id })
+            .value();
+
+        if(cart) {
+            let products = cart.products;
+            products.push({
+                product_id: ctx.scene.session.productyId,
                 count: count
             });
+            await db.get('cart')
+                .find({ chat_id: chat.id })
+                .assign({products: products})
+                .write();
         } else {
-            const cart = await client.createItem("shopping_cart", {
-                user_id: user.data.id
-            });
-
-            await client.createItem("shopping_cart_products", {
-                shopping_cart_id: cart.data.id,
-                products_id: ctx.scene.session.productyId,
-                count: count
-            });
+            const cart = await db.get('cart')
+                .push({ chat_id: chat.id, products: [
+                        {
+                            product_id: ctx.scene.session.productyId,
+                            count: count
+                        }
+                    ] })
+                .write();
         }
-        ctx.answerCbQuery(ctx.i18n.t('product_added'));
+        try {
+            ctx.answerCbQuery(ctx.i18n.t('product_added'));
+        } catch(e) {
+
+        }
+
         await getCatalog(ctx);
     }
 }
 
 const getCart = async (user, ctx) => {
-    const cart = await client.getItems('shopping_cart', {
-        filter: {
-            user_id: user.data.id
-        }
-    });
-
-    if(cart.data.length) {
-        const cartItems = await client.getItems('shopping_cart_products', {
-            filter: {
-                shopping_cart_id: cart.data[0].id
-            }
-        });
-        if(cartItems.data.length) {
+    const chat = await ctx.getChat();
+    const cart = await db.get('cart')
+        .find({ chat_id: chat.id })
+        .value();
+    if(cart) {
+        const cartItems = cart.products;
+        if(cartItems.length) {
             let cartText = '<b>' + ctx.i18n.t('cart_items_title') + ':' + '</b> \n';
 
-            let productIds = [];
-            cartItems.data.forEach(item => {
-                productIds.push(item.products_id);
-            });
             let productNames = {};
             let productPrices = {};
-            let productNameVar = 'name';
+            let nameField = 'name';
 
-            if(user.data.lang == 'uz') {
-                productNameVar = 'name_uz';
+            if(user.data.result[0][process.env.BX_LANG_FIELD] == 'uz') {
+                nameField = 'name_uz';
             }
 
-            const products = await client.getItems('products', {
-                filter: {
-                    id: {
-                        in: productIds
-                    }
-                }
-            });
-
-            products.data.forEach(product => {
-                productNames[product.id] = product[productNameVar];
+            await asyncForEach(cartItems, async item => {
+                let product =  await db.get('products')
+                    .find({ id: item.product_id })
+                    .value();
+                productNames[product.id] = product[nameField];
                 productPrices[product.id] = product['price'];
             });
 
             let totalPrice = 0;
             let deleteButtons = [];
-            cartItems.data.forEach(item => {
-                deleteButtons.push(Markup.callbackButton('❌ ' + productNames[item.products_id] + ' x ' + item.count, 'deleteProduct:' + item.id));
-                let price = parseInt(productPrices[item.products_id], 0) * parseInt(item.count, 0);
+            cartItems.forEach((item, index) => {
+                deleteButtons.push(Markup.callbackButton('❌ ' + productNames[item.product_id] + ' x ' + item.count, 'deleteProduct:' + index));
+                let price = parseInt(productPrices[item.product_id], 0) * parseInt(item.count, 0);
                 totalPrice += price;
-                cartText += productNames[item.products_id] + ' x ' + item.count + ' = ' + numberWithSpaces(price) + ' ' + ctx.i18n.t('currency') + ' \n';
+                cartText += productNames[item.product_id] + ' x ' + item.count + ' = ' + numberWithSpaces(price) + ' ' + ctx.i18n.t('currency') + ' \n';
             });
 
             cartText += '\n';
@@ -1016,11 +1115,6 @@ const getCart = async (user, ctx) => {
         } else {
             return ctx.answerCbQuery(ctx.i18n.t('cart_empty'));
         }
-        // await client.createItem("cart_products", {
-        //     shopping_cart_id: cart.data[0].id,
-        //     products_id: ctx.scene.session.productyId,
-        //     count: count
-        // });
     } else {
         return ctx.answerCbQuery(ctx.i18n.t('cart_empty'));
     }
@@ -1039,7 +1133,6 @@ bot.hears('🇺🇿 Tilni tanlang', (ctx) => ctx.scene.enter("changeLanguage"));
 bot.hears('🏷 Акции', getStock);
 bot.hears('🏷 Aktsiyalar', getStock);
 
-const regex = new RegExp(/test ([0-9]+)/gm)
 bot.hears(/[0-9]+/, async (ctx) => {
     if(ctx.scene.session.productyId > 0) {
         await addProductToCart(ctx, parseInt(ctx.message.text, 0));
@@ -1048,46 +1141,73 @@ bot.hears(/[0-9]+/, async (ctx) => {
 
 
 bot.action(/.+/, async (ctx) => {
-    console.log(ctx.match);
     let input = ctx.match.input.split(':');
     const chat = await ctx.getChat();
-    const user = await client.getItems('users', {
-        filter: {
-            chat_id: chat.id
-        },
-        single: true
-    });
-    ctx.i18n.locale(user.data.lang);
+
+    let bxContactFilter = {
+
+    };
+
+    bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+    const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+        'filter': bxContactFilter,
+        'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+    }));
+
+    ctx.i18n.locale(bxContact.data.result[0][process.env.BX_LANG_FIELD]);
     switch (input[0]) {
         case 'category':
-            if(parseInt(input[1], 0) > 0) {
+            if(input[1]) {
                 const categoryId = input[1];
-                // const category = await client.getItems('category', {
-                //     filter: {
-                //         id: categoryId
-                //     }
-                // });
 
-                // if (!category.data.length) {
-                //     ctx.reply(ctx.i18n.t('catalog_category_not_found'));
-                //     return ctx.wizard.back();
+                // const sections = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.productsection.list?' + serializeQuery({
+                //     'filter': {
+                //         'ID': categoryId
+                //     },
+                //     'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+                // }));
+
+                // const photoProdFilter = {
+                //
+                // };
+
+                // photoProdFilter[process.env.BX_PRODUCT_SECTION_CODE_FIELD] = 'PHOTO';
+                // const photoProd = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.product.list?' + serializeQuery({
+                //     'filter': photoProdFilter
+                // }));
+
+                // if(photoProd.data.result[0] && photoProd.data.result[0].PREVIEW_PICTURE) {
+                //     await initBX24();
+                //     const BXToken = BX24.getToken();
+                //     let fileContent = await axios.get(process.env.BX_DOMAIN + photoProd.data.result[0].PREVIEW_PICTURE.showUrl);
+                //     console.log(__dirname + '/' + photoProd.data.result[0].PREVIEW_PICTURE.id + '.png');
+                //     await fs.writeFileSync(__dirname + '/' + photoProd.data.result[0].PREVIEW_PICTURE.id + '.png', fileContent.data);
+                //     // FileDownload(fileContent.data, photoProd.data.result[0].PREVIEW_PICTURE.id + '.png');
+                //    await ctx.replyWithPhoto(process.env.BX_DOMAIN + photoProd.data.result[0].PREVIEW_PICTURE.showUrl);
                 // }
 
                 ctx.scene.session.categoryId = categoryId;
 
-                const cat = await client.getItems('products', {
-                    filter: {
-                        category: categoryId
-                    }
-                });
+                const category = await db.get('catalog_section')
+                    .find({ id: categoryId })
+                    .value();
+
+                const cat = await db.get('products')
+                    .filter({ section_id: categoryId })
+                    .value();
+
+
+                let nameField = 'name';
+
+                if(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz') {
+                    nameField = 'name_uz';
+                }
+
                 let menuProducts = [];
-                cat.data.forEach(item => {
-                    let name = 'name';
-                    if (user.data.lang == 'uz') {
-                        name = 'name_uz';
-                    }
+                cat.forEach(item => {
                     menuProducts.push({
-                        name: item[name],
+                        name: item[nameField],
                         id: item.id
                     });
                 });
@@ -1097,84 +1217,137 @@ bot.action(/.+/, async (ctx) => {
                     menu.push(Markup.callbackButton(item.name, 'product:' + item.id))
                 });
                 menu.push(Markup.callbackButton(ctx.i18n.t('back'), 'back'));
-                return ctx.editMessageText(ctx.i18n.t('choose_category_product'), Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(2) : []).extra());
+                if(typeof category.file == 'string') {
+                    if (ctx.session.orderMenuMessageId) {
+                        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                    }
+                    let text = '<b>' + category[nameField] + "</b>\n";
+                    text += sanitizeHtml(category[(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz' ? 'description_uz' : 'description')] + "\n\n", sanitizeOptions).replace(/\<br \/\>/g, "\n");
+                    text += ctx.i18n.t('choose_category_product');
+                    let message = await bot.telegram.sendPhoto(bxContact.data.result[0][process.env.BX_CHAT_ID_FIELD], `${process.env.DOMAIN}${category.file}`, {
+                        caption: text,
+                        reply_markup: Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(2) : []),
+                        parse_mode: 'HTML'
+                    })
+                    // const message = await ctx.reply(text, Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(2) : []).extra());
+                    return ctx.session.orderMenuMessageId = message.message_id;
+                } else {
+                    let text = category[nameField] + "\n";
+                    text += category[(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz' ? 'description_uz' : 'description')] + "\n\n";
+                    text += ctx.i18n.t('choose_category_product');
+                    if (ctx.session.orderMenuMessageId) {
+                        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                    }
+                    let message = await ctx.reply(text, Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(2) : []).extra());
+                    return ctx.session.orderMenuMessageId = message.message_id;
+                }
             }
-        break;
+            break;
         case 'product':
             if(input[1] == 'count') {
                 const count = input[3];
                 await addProductToCart(ctx, parseInt(count, 0));
                 return;
-            } else if(parseInt(input[1], 0) > 0) {
+            } else if(input[1] != 'count') {
                 const productId = input[1];
                 ctx.scene.session.productyId = productId;
+
+                const product = await db.get('products')
+                    .find({ id: productId })
+                    .value();
+
+
+                let nameField = 'name';
+
+                if(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz') {
+                    nameField = 'name_uz';
+                }
+
+                const markup = Markup.inlineKeyboard(
+                    [
+                        [
+                            Markup.callbackButton('1', 'product:count:' + productId + ':1'),
+                            Markup.callbackButton('2', 'product:count:' + productId + ':2'),
+                            Markup.callbackButton('3', 'product:count:' + productId + ':3')
+                        ],
+                        [
+                            Markup.callbackButton('4', 'product:count:' + productId + ':4'),
+                            Markup.callbackButton('5', 'product:count:' + productId + ':5'),
+                            Markup.callbackButton('6', 'product:count:' + productId + ':6')
+                        ],
+                        [
+                            Markup.callbackButton('7', 'product:count:' + productId + ':7'),
+                            Markup.callbackButton('8', 'product:count:' + productId + ':8'),
+                            Markup.callbackButton('9', 'product:count:' + productId + ':9')
+                        ],
+                        [
+                            Markup.callbackButton(ctx.i18n.t('back'), 'category:' + ctx.scene.session.categoryId),
+                            Markup.callbackButton(ctx.i18n.t('all_categories'), 'back')
+                        ],
+                    ]
+                );
+
+                if(typeof product.file == 'string') {
+                    if (ctx.session.orderMenuMessageId) {
+                        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                    }
+                    let text = product[nameField] + "\n";
+                    let desc = product[(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz' ? 'description_uz' : 'description')];
+                    text += sanitizeHtml(desc, sanitizeOptions).replace(/\<br \/\>/g, "\n") + "\n\n";
+                    text += ctx.i18n.t('product_count_text') + "\n\n";
+                    text += `<b>Цена:</b> ${numberWithSpaces(product.price)} ${ctx.i18n.t('currency')}`;
+                    const message = await bot.telegram.sendPhoto(bxContact.data.result[0][process.env.BX_CHAT_ID_FIELD], `${process.env.DOMAIN}${product.file}`, {
+                        caption: text,
+                        reply_markup: markup,
+                        parse_mode: 'HTML'
+                    });
+                    // const message = await ctx.reply(text, Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(2) : []).extra());
+                    return ctx.session.orderMenuMessageId = message.message_id;
+                } else {
+                    let text = product[nameField] + "\n";
+                    text += sanitizeHtml(product[(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz' ? 'description_uz' : 'description')], sanitizeOptions).replace(/\<br \/\>/g, "\n") + "\n\n";
+                    text += ctx.i18n.t('product_count_text') + "\n\n";
+                    text += `<b>Цена:</b> ${numberWithSpaces(product.price)} ${ctx.i18n.t('currency')}`;
+                    if (ctx.session.orderMenuMessageId) {
+                        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                    }
+
+                    let message = await ctx.reply(text, {
+                        reply_markup: markup,
+                        parse_mode: 'HTML'
+                    });
+                    return ctx.session.orderMenuMessageId = message.message_id;
+                }
+
                 return ctx.editMessageText(
                     ctx.i18n.t('product_count_text'),
-                    Markup.inlineKeyboard(
-                        [
-                            [
-                                Markup.callbackButton('1', 'product:count:' + productId + ':1'),
-                                Markup.callbackButton('2', 'product:count:' + productId + ':2'),
-                                Markup.callbackButton('3', 'product:count:' + productId + ':3')
-                            ],
-                            [
-                                Markup.callbackButton('4', 'product:count:' + productId + ':4'),
-                                Markup.callbackButton('5', 'product:count:' + productId + ':5'),
-                                Markup.callbackButton('6', 'product:count:' + productId + ':6')
-                            ],
-                            [
-                                Markup.callbackButton('7', 'product:count:' + productId + ':7'),
-                                Markup.callbackButton('8', 'product:count:' + productId + ':8'),
-                                Markup.callbackButton('9', 'product:count:' + productId + ':9')
-                            ],
-                            [
-                                Markup.callbackButton(ctx.i18n.t('back'), 'category:' + ctx.scene.session.categoryId),
-                                Markup.callbackButton(ctx.i18n.t('all_categories'), 'back')
-                            ],
-                        ]
-                    ).extra()
+
                 );
             }
-        break;
+            break;
         case 'cart':
-            await getCart(user,ctx);
-        break;
+            await getCart(bxContact,ctx);
+            break;
         case 'clear_cart':
-            const carts = await client.getItems('shopping_cart', {
-                filter: {
-                    user_id: user.data.id
-                }
-            });
-            const cartItems = await client.getItems('shopping_cart_products', {
-                filter: {
-                    shopping_cart_id: carts.data[0].id
-                }
-            });
-            cartItems.data.forEach(async (item) => {
-                await client.deleteItems('shopping_cart_products', [item.id]);
-            });
-
-            await client.deleteItems('shopping_cart', [carts.data[0].id]);
+            db.get('cart')
+                .remove({ chat_id: chat.id })
+                .write();
 
             await getCatalog(ctx);
-        break;
+            break;
         case 'deleteProduct':
-            const cartss = await client.getItems('shopping_cart', {
-                filter: {
-                    user_id: user.data.id
-                }
-            });
-            await client.deleteItems('shopping_cart_products', [parseInt(input[1], 0)]);
-            const cartItem = await client.getItems('shopping_cart_products', {
-                filter: {
-                    shopping_cart_id: cartss.data[0].id
-                }
-            });
+
+            const cart = await db.get('cart')
+                .find({ chat_id: chat.id })
+                .value();
+            cart.products.splice(input[1], 1);
             ctx.answerCbQuery(ctx.i18n.t('product_deleted'));
-            if(cartItem.data.length) {
-                await getCart(user,ctx);
+            if(cart.products.length) {
+                await getCart(bxContact,ctx);
             } else {
-                await client.deleteItems('shopping_cart', [cartss.data[0].id]);
+                db.get('cart')
+                    .remove({ chat_id: chat.id })
+                    .write();
                 await getCatalog(ctx);
             }
             break;
@@ -1184,12 +1357,22 @@ bot.action(/.+/, async (ctx) => {
             break;
         default:
             await getCatalog(ctx);
-        break;
+            break;
     }
 
     // return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
 });
-bot.launch();
+
+
+
+app.use(bot.webhookCallback('/tg_shop'));
+
+if(process.env.BOT_ENV == 'DEV') {
+    bot.launch();
+} else {
+    bot.telegram.setWebhook(process.env.DOMAIN + '/tg_shop');
+}
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -1199,13 +1382,197 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(queryParser());
+app.use(express.static(path.join(__dirname, 'client/dist/')));
+app.use('/uploads/', express.static(path.join(__dirname, 'public/uploads/')));
+// app.use(frameguard({
+//     action: 'allow-from',
+//     domain: 'https://bitrix24.ru'
+//   }));
+// console.log(path.join(__dirname, 'client/dist'));
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+    next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.get('/api/:collection/', async (req, res) => {
+    let data = '';
+    if(req.params.collection.indexOf('.yaml') != -1) {
+        const file = fs.readFileSync(__dirname + '/locales/' + req.params.collection, 'utf8');
+        data = YAML.parse(file);
+    } else {
+        if(Object.keys(req.query).length) {
+            data = await db.get(req.params.collection)
+                .filter(req.query)
+                .value();
+        } else {
+            data = await db.get(req.params.collection)
+                .value();
+        }
+    }
+
+    return res.send(data);
+});
+
+app.options('/api/:collection/', async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+    return res.send({
+        success: true
+    });
+});
+
+app.options('/api/:collection/:section_id/', async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+    return res.send({
+        success: true
+    });
+});
+
+app.post('/api/:collection/', upload.single('file'), async (req, res) => {
+    if(req.params.collection.indexOf('.yaml') != -1) {
+        let data = YAML.stringify(req.body);
+        fs.writeFileSync(__dirname + '/locales/' + req.params.collection, data);
+    } else if (req.params.collection == 'sendPost') {
+        let item = req.body;
+        if(item.name && item.text) {
+            let bxContactFilter = {
+
+            };
+
+            bxContactFilter[process.env.BX_LANG_FIELD] = 'ru';
+
+            const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+                'filter': bxContactFilter,
+                'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+            }));
+            asyncForEach(bxContact.data.result, async user => {
+                let text = `<b>${item.name}</b>\n\n${item.text}`;
+                try {
+                    if(item.file) {
+                        await bot.telegram.sendPhoto(user[process.env.BX_CHAT_ID_FIELD], `${process.env.DOMAIN}${item.file}`, {
+                            caption: sanitizeHtml(text, sanitizeOptions).replace(/\<br \/\>/g, "\n"),
+                            parse_mode: 'HTML'
+                        })
+                    } else {
+                        await bot.telegram.sendMessage(user[process.env.BX_CHAT_ID_FIELD], sanitizeHtml(text, sanitizeOptions).replace(/\<br \/\>/g, "\n"), { parse_mode: 'HTML' });
+                    }
+
+                } catch(e) {
+                    console.log(e);
+                }
+
+            });
+        }
+        if(item.name_uz && item.text_uz) {
+            let bxContactFilter = {
+
+            };
+
+            bxContactFilter[process.env.BX_CHAT_ID_FIELD] = 'uz';
+
+            const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+                'filter': bxContactFilter,
+                'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD]
+            }));
+            asyncForEach(bxContact.data.result, async user => {
+                let text = `<b>${item.name_uz}</b>\n\n${item.text_uz}`;
+                try {
+                    await bot.telegram.sendMessage(user[process.env.BX_CHAT_ID_FIELD], sanitizeHtml(text, sanitizeOptions).replace(/\<br \/\>/g, "\n"), { parse_mode: 'HTML' });
+                } catch(e) {
+
+                }
+            });
+        }
+        await db.get('posts')
+            .find({ id: item.id })
+            .assign({ sent_date: new Date() })
+            .write();
+    } else if(req.params.collection == 'settings') {
+        await db.get(req.params.collection)
+            .assign(req.body)
+            .write();
+    } else {
+
+        if(req.params.collection == 'products') {
+            let fields = {
+                NAME: req.body.name,
+                PRICE: req.body.price
+            };
+            const bxProduct = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.product.add?' + serializeQuery({
+                fields
+            }));
+            req.body.product_id = bxProduct.data.result;
+        }
+
+        req.body.id = uuidv1();
+        if(req.file) {
+            req.body.file = `/uploads/${req.file.filename}`;
+        }
+
+        await db.get(req.params.collection)
+            .push(req.body)
+            .write();
+    }
+
+    return res.send({
+        success: true
+    });
+});
+
+app.delete('/api/:collection/:section_id/', async (req, res) => {
+    if(req.params.section_id) {
+        await db.get(req.params.collection)
+            .remove({ id: req.params.section_id })
+            .write();
+    }
+    return res.send({
+        success: true
+    });
+});
+
+app.put('/api/:collection/:section_id/', upload.single('file'), async (req, res) => {
+    if(req.file) {
+        req.body.file = `/uploads/${req.file.filename}`;
+    }
+    if(req.params.section_id) {
+        await db.get(req.params.collection)
+            .find({ id: req.params.section_id })
+            .assign(req.body)
+            .write();
+    }
+    return res.send({
+        success: true
+    });
+});
+
+app.use('/vue/', function(req, res, next){
+    if ('POST' != req.method){
+        next()
+    }else{
+        req.method = 'GET'
+        next()
+    }
+})
+
+app.use('/vue/', express.static('client/dist'));
+// app.post('/vue/', express.static('client/dist'));
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
+    // console.log(req.get('host'));
+    // console.log(req.get('origin'));
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    console.log(fullUrl);
     next(createError(404));
 });
 
@@ -1218,6 +1585,12 @@ app.use(function (err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
+});
+
+
+
+app.listen(process.env.APP_PORT, function(){
+    console.log('App is started on port: ' + process.env.APP_PORT);
 });
 
 module.exports = app;
