@@ -28,6 +28,12 @@ export default new Router({
         import(/* webpackChunkName: "about" */ "./views/Reviews.vue")
     },
     {
+      path: "/sale",
+      name: "sale",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Sale.vue")
+    },
+    {
       path: "/catalog/:lang/",
       name: "catalog",
       component: () =>

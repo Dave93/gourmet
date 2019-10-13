@@ -41,7 +41,8 @@ export default {
     drawer: true,
     items: [
       { title: "Отзывы", icon: "mdi-comment-outline", route: "/reviews" },
-      { title: "Настройки", icon: "mdi-settings-outline", route: "/settings" }
+      { title: "Настройки", icon: "mdi-settings-outline", route: "/settings" },
+      { title: "Скидки", icon: "mdi-sale", route: "/sale" }
     ],
     groupedItems: [
       {

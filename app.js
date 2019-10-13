@@ -68,7 +68,7 @@ const sanitizeOptions = {
     allowedIframeHostnames: ['www.youtube.com']
 };
 
-db.defaults({ cart: [], reviews: [], catalog_section: [], products: [], posts: [], settings: {} })
+db.defaults({ cart: [], reviews: [], catalog_section: [], products: [], posts: [], discounts:[], settings: {} })
     .write()
 // const BX24 = require('bitrix24-promise');
 //
@@ -98,7 +98,30 @@ db.defaults({ cart: [], reviews: [], catalog_section: [], products: [], posts: [
 //     console.log('ddd');
 // }
 
-
+function compareValues(key, order='asc') {
+    return function(a, b) {
+      if(!a.hasOwnProperty(key) || 
+         !b.hasOwnProperty(key)) {
+          return 0; 
+      }
+      
+      const varA = (typeof a[key] === 'string') ? 
+        a[key].toUpperCase() : a[key];
+      const varB = (typeof b[key] === 'string') ? 
+        b[key].toUpperCase() : b[key];
+        
+      let comparison = 0;
+      if (varA > varB) {
+        comparison = 1;
+      } else if (varA < varB) {
+        comparison = -1;
+      }
+      return (
+        (order == 'desc') ? 
+        (comparison * -1) : comparison
+      );
+    };
+  }
 
 function numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -752,7 +775,6 @@ const makeOrder = new WizardScene(
                     await asyncForEach(cart.products, async item => {
                         let price = parseInt(productPrices[item.product_id], 0) * parseInt(item.count, 0);
                         totalPrice += price;
-                        console.log(item);
                         productRows.push({
                             PRODUCT_ID: productIds[item.product_id],
                             PRICE: parseInt(productPrices[item.product_id], 0),
@@ -764,6 +786,30 @@ const makeOrder = new WizardScene(
                         .remove({ chat_id: chat.id })
                         .write();
 
+                    const discount = await db.get('discounts')
+                        .filter(discount => discount.order_price <= totalPrice)
+                        .value();
+        
+                    
+        
+                    let newDiscount = [];
+                    for(var i = 0; i<discount.length; i++) {
+                        newDiscount.push({
+                            order_price: parseInt(discount[i].order_price, 0),
+                            discount: parseInt(discount[i].discount, 0)
+                        });
+                    }
+        
+                    let resultDiscounts = newDiscount.sort(compareValues('order_price', 'desc'));
+                    if(resultDiscounts[0]) {
+                        let discountVal = resultDiscounts[0].discount;
+                        let discountPerProduct = discountVal/productRows.length;
+                        for(var i = 0; i<productRows.length; i++) {
+                            productRows[i].DISCOUNT_SUM = discountPerProduct / productRows[i].QUANTITY;
+                            productRows[i].DISCOUNT_TYPE_ID = 1;
+                        }
+                    }
+
                     await axios.post(process.env.BX_WEBHOOK_URL + 'crm.deal.productrows.set', {
                         'id': bxDeal.data.result,
                         'rows': productRows
@@ -772,7 +818,8 @@ const makeOrder = new WizardScene(
                     await axios.post(process.env.BX_WEBHOOK_URL + 'crm.deal.update', {
                         id: bxDeal.data.result,
                         fields: {
-                            'TITLE': 'Новый заказ #' + bxDeal.data.result
+                            'TITLE': 'Новый заказ #' + bxDeal.data.result,
+                            'OPPORTUNITY': (resultDiscounts[0] ? totalPrice - resultDiscounts[0].discount : totalPrice)
                         }
                     });
                 }
@@ -1039,6 +1086,51 @@ const addProductToCart = async (ctx, count) => {
         }
         try {
             ctx.answerCbQuery(ctx.i18n.t('product_added'));
+
+            const cart = await db.get('cart')
+                .find({ chat_id: chat.id })
+                .value();
+            if(cart) {
+                const cartItems = cart.products;
+                if(cartItems.length) {
+
+                    let productNames = {};
+                    let productPrices = {};
+
+                    await asyncForEach(cartItems, async item => {
+                        let product =  await db.get('products')
+                            .find({ id: item.product_id })
+                            .value();
+                        productPrices[product.id] = product['price'];
+                    });
+
+                    let totalPrice = 0;
+                    cartItems.forEach((item, index) => {
+                        let price = parseInt(productPrices[item.product_id], 0) * parseInt(item.count, 0);
+                        totalPrice += price;
+                    });
+
+                    const discount = await db.get('discounts')
+                        .filter(discount => discount.order_price <= totalPrice)
+                        .value();
+
+                   
+
+                   let newDiscount = [];
+                   for(var i = 0; i<discount.length; i++) {
+                        newDiscount.push({
+                            order_price: parseInt(discount[i].order_price, 0),
+                            discount: parseInt(discount[i].discount, 0)
+                        });
+                   }
+
+                   let resultDiscounts = newDiscount.sort(compareValues('order_price', 'desc'));
+                   if(resultDiscounts[0]) {
+                        ctx.answerCbQuery(ctx.i18n.t('discount_applied'));
+                   }
+                }
+            }
+
         } catch(e) {
 
         }
@@ -1084,7 +1176,28 @@ const getCart = async (user, ctx) => {
 
             cartText += '\n';
 
-            cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice) + ' ' + ctx.i18n.t('currency') + '</b>';
+            const discount = await db.get('discounts')
+                .filter(discount => discount.order_price <= totalPrice)
+                .value();
+
+            
+
+            let newDiscount = [];
+            for(var i = 0; i<discount.length; i++) {
+                newDiscount.push({
+                    order_price: parseInt(discount[i].order_price, 0),
+                    discount: parseInt(discount[i].discount, 0)
+                });
+            }
+
+            let resultDiscounts = newDiscount.sort(compareValues('order_price', 'desc'));
+            if(resultDiscounts[0]) {
+                cartText += '<b>' + ctx.i18n.t('cart_discount') + ': ' + numberWithSpaces(resultDiscounts[0].discount) + ' ' + ctx.i18n.t('currency') + '</b>';
+                cartText += '\n';
+                cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice - resultDiscounts[0].discount) + ' ' + ctx.i18n.t('currency') + '</b>';
+            } else {
+                cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice) + ' ' + ctx.i18n.t('currency') + '</b>';
+            }
 
             let deleteProducts = [];
 

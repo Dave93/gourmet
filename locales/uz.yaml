@@ -33,3 +33,5 @@ send_location: 📍Manzilni yuborish
 product_deleted: Mahsulot savatchadan olib tashlandi
 product_added: Mahsulot savatchaga qo'shildi
 order_success: Buyurtmangiz qabul qilindi
+discount_applied: Buyurtmaning umumiy miqdoriga nisbatan chegirma
+cart_discount: Chegirma miqdori
