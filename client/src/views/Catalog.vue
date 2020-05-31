@@ -59,13 +59,13 @@
                 <v-file-input ref="sectionPhoto" @change="addSectionPhoto" label="Изображение" filled prepend-icon="mdi-camera"></v-file-input>
               </v-flex>
               <v-flex xs12>
-                <v-text-field label="Название на русском*" :rules="[() => $v.section.name.required || 'Поле обязательно для заполнения']" v-model.trim="$v.section.name.$model" required></v-text-field>
+                <v-text-field ref="sec_desc" label="Название на русском*" :rules="[() => $v.section.name.required || 'Поле обязательно для заполнения']" v-model.trim="$v.section.name.$model" required></v-text-field>
               </v-flex>
               <v-flex xs12>
                 <trix-vue v-model.trim="$v.section.description.$model" placeholder="Описание на русском"></trix-vue>
               </v-flex>
               <v-flex xs12>
-                <v-text-field label="Название на узбекском*" :rules="[() => $v.section.name_uz.required || 'Поле обязательно для заполнения']" v-model.trim="$v.section.name_uz.$model" required></v-text-field>
+                <v-text-field ref="sec_desc_uz" label="Название на узбекском*" :rules="[() => $v.section.name_uz.required || 'Поле обязательно для заполнения']" v-model.trim="$v.section.name_uz.$model" required></v-text-field>
               </v-flex>
               <v-flex xs12>
                 <trix-vue v-model.trim="$v.section.description_uz.$model" placeholder="Описание на узбекском"></trix-vue>
@@ -128,13 +128,13 @@
                 <v-text-field outlined label="Название на русском*" :rules="[() => $v.product.name.required || 'Поле обязательно для заполнения']" v-model.trim="$v.product.name.$model" required></v-text-field>
               </v-flex>
               <v-flex xs12>
-                <trix-vue v-model.trim="$v.product.description.$model" placeholder="Описание на русском"></trix-vue>
+                <trix-vue ref="produc_desc" v-model.trim="$v.product.description.$model" placeholder="Описание на русском"></trix-vue>
               </v-flex>
               <v-flex xs12>
                 <v-text-field outlined label="Название на узбекском*" :rules="[() => $v.product.name_uz.required || 'Поле обязательно для заполнения']" v-model.trim="$v.product.name_uz.$model" required></v-text-field>
               </v-flex>
               <v-flex xs12>
-                <trix-vue v-model.trim="$v.product.description_uz.$model" placeholder="Описание на узбекском"></trix-vue>
+                <trix-vue ref="produc_desc_uz" v-model.trim="$v.product.description_uz.$model" placeholder="Описание на узбекском"></trix-vue>
               </v-flex>
               <v-flex xs12>
                 <v-text-field outlined type="number" label="Цена*" :rules="[() => $v.product.price.required || 'Поле обязательно для заполнения']" v-model.trim="$v.product.price.$model" required></v-text-field>
@@ -241,7 +241,9 @@ export default {
       this.$v.$touch();
       if (!this.$v.section.$invalid) {
         let formData = new FormData();
-        formData.append('file', this.sectionPhoto);
+        if(this.sectionPhoto) {
+            formData.append('photo', this.sectionPhoto);
+        }
         Object.keys(this.section).forEach((key) => {
           formData.append(key, this.section[key]);
         });
@@ -291,7 +293,10 @@ export default {
       this.$v.$touch();
       if (!this.$v.product.$invalid) {
         let formData = new FormData();
-        formData.append('file', this.productPhoto);
+        console.log(this.productPhoto);
+        if(this.productPhoto) {
+            formData.append('photo', this.productPhoto);
+        }
         Object.keys(this.product).forEach((key) => {
           formData.append(key, this.product[key]);
         });
@@ -377,6 +382,21 @@ export default {
     },
     showAddSection() {
       this.sectionGridApi.deselectAll();
+      this.section = {
+          file: "",
+          name: "",
+          name_uz: "",
+          description: "",
+          description_uz: ""
+      };
+      if(this.$refs.sec_desc) {
+          this.$refs.sec_desc.editor.loadHTML(' ');
+          this.$refs.sec_desc_uz.editor.loadHTML(' ');
+      }
+      if(this.$refs.sectionPhoto)
+      {
+          this.$refs.sectionPhoto.file.value = null;
+      }
       this.sectionEdit = true;
     },
     showDeleteSection() {
@@ -404,26 +424,46 @@ export default {
       if (selectedRows.length) {
         this.section.id = selectedRows[0].id;
         this.section.name = selectedRows[0].name;
+        this.section.file = selectedRows[0].file;
         this.section.name_uz = selectedRows[0].name_uz;
         this.section.description_uz = selectedRows[0].description_uz;
         this.section.description = selectedRows[0].description;
+        if(this.$refs.sec_desc) {
+          this.$refs.sec_desc.editor.loadHTML(selectedRows[0].description);
+          this.$refs.sec_desc_uz.editor.loadHTML(selectedRows[0].description_uz);
+        }
         this.sectionEdit = true;
       } else {
+        if(this.$refs.sec_desc) {
+          this.$refs.sec_desc.editor.loadHTML(' ');
+          this.$refs.sec_desc_uz.editor.loadHTML(' ');
+        }
         this.errorText = "Необходимо выбрать категорию";
         this.snackbar = true;
       }
     },
     showEditProduct() {
+      if(this.$refs.productPhoto)
+      {
+          this.productPhoto = null;
+          this.$refs.productPhoto.value = null;
+          this.$refs.productPhoto = {};
+      }
       const selectedRows = this.productGridApi.getSelectedRows();
       if (selectedRows.length) {
         this.product.id = selectedRows[0].id;
         this.product.name = selectedRows[0].name;
         this.product.name_uz = selectedRows[0].name_uz;
+        this.product.file = selectedRows[0].file;
         this.product.price = selectedRows[0].price;
         this.product.description_uz = selectedRows[0].description_uz;
         this.product.description = selectedRows[0].description;
         this.productEdit = true;
+          this.$refs.produc_desc.editor.loadHTML(selectedRows[0].description);
+          this.$refs.produc_desc_uz.editor.loadHTML(selectedRows[0].description_uz);
       } else {
+        this.$refs.produc_desc.editor.loadHTML(' ');
+        this.$refs.produc_desc_uz.editor.loadHTML(' ');
         this.errorText = "Необходимо выбрать товар";
         this.snackbar = true;
       }
@@ -462,6 +502,26 @@ export default {
     showProductAdd() {
       this.productGridApi.deselectAll();
       const selectedRows = this.sectionGridApi.getSelectedRows();
+      this.product = {
+          name: "",
+          name_uz: "",
+          price: 0,
+          id: "",
+          description: "",
+          description_uz: "",
+          file: ""
+      };
+      if(this.$refs.produc_desc) {
+          this.$refs.produc_desc.editor.loadHTML(' ');
+          this.$refs.produc_desc_uz.editor.loadHTML(' ');
+      }
+
+      if(this.$refs.productPhoto)
+      {
+          this.productPhoto = null;
+          this.$refs.productPhoto.value = null;
+          this.$refs.productPhoto = {};
+      }
       if (selectedRows.length) {
         this.productEdit = true;
       } else {

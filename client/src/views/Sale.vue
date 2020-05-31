@@ -111,8 +111,7 @@ export default {
         minLength: minLength(2)
       },
       discount: {
-        required,
-        minLength: minLength(2)
+        required
       }
     }
   },
@@ -131,7 +130,7 @@ export default {
         });
         if (this.post.id) {
           const postAddResponse = await axios.put(
-            "http://localhost:5457/api/discounts/" +
+            "/api/discounts/" +
               this.post.id +
               "/",
             formData,
@@ -143,7 +142,7 @@ export default {
           );
         } else {
           const postAddResponse = await axios.post(
-            "http://localhost:5457/api/discounts/",
+            "/api/discounts/",
             formData,
             {
                 headers: {
@@ -153,7 +152,7 @@ export default {
           );
         }
         const postResponse = await axios.get(
-          "http://localhost:5457/api/discounts/"
+          "/api/discounts/"
         );
         this.rowData = postResponse.data;
         this.isPostSaving = false;
@@ -176,10 +175,10 @@ export default {
     deletePost: async function () {
       if (this.post.id) {
         const postAddResponse = await axios.delete(
-          "http://localhost:5457/api/discounts/" + this.post.id + "/"
+          "/api/discounts/" + this.post.id + "/"
         );
         const postResponse = await axios.get(
-          "http://localhost:5457/api/discounts/"
+          "/api/discounts/"
         );
         this.rowData = postResponse.data;
         this.post.id = "";
@@ -228,7 +227,7 @@ export default {
       const selectedRows = this.postGridApi.getSelectedRows();
       if (selectedRows.length) {
         this.isPostSending = true;
-        const response = await axios.get("http://localhost:5457/api/discounts/");
+        const response = await axios.get("/api/discounts/");
         this.rowData = response.data;
         this.isPostSending = false;
 
@@ -267,7 +266,7 @@ export default {
       { headerName: "Скидка", field: "discount", sortable: true, filter: true }
     ];
 
-    const response = await axios.get("http://localhost:5457/api/discounts/");
+    const response = await axios.get("/api/discounts/");
     this.rowData = response.data;
   }
 };

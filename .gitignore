@@ -5,3 +5,4 @@ node_modules
 /.env
 scenes/create\.js
 example_db\.json
+public/uploads

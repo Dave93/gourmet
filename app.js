@@ -8,6 +8,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var app = express();
 
+// var bodyParser = require('body-parser');
+// app.use(bodyParser.json()); // support json encoded bodies
+// app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 const frameguard = require('frameguard')
 const Telegraf = require('telegraf');
 const TelegrafI18n = require('telegraf-i18n');
@@ -724,8 +728,10 @@ const makeOrder = new WizardScene(
 
             const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
                 'filter': bxContactFilter,
-                'select': ['*', process.env.BX_CHAT_ID_FIELD]
+                'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_CONTACT_DEAL_SUM_FIELD]
             }));
+
+            const personCash = bxContact.data.result[0][process.env.BX_CONTACT_DEAL_SUM_FIELD];
 
             if(bxContact.data.result.length) {
                 let dealFields = {
@@ -779,7 +785,10 @@ const makeOrder = new WizardScene(
                             PRODUCT_ID: productIds[item.product_id],
                             PRICE: parseInt(productPrices[item.product_id], 0),
                             CURRENCY_ID: 'UZS',
-                            QUANTITY: item.count
+                            QUANTITY: item.count,
+                            TAX_INCLUDED: "N",
+                            PRICE_BRUTTO: parseInt(productPrices[item.product_id], 0),
+                            PRICE_NETTO: parseInt(productPrices[item.product_id], 0)
                         });
                     });
                     db.get('cart')
@@ -787,7 +796,7 @@ const makeOrder = new WizardScene(
                         .write();
 
                     const discount = await db.get('discounts')
-                        .filter(discount => discount.order_price <= totalPrice)
+                        .filter(discount => discount.order_price <= personCash)
                         .value();
         
                     
@@ -802,10 +811,14 @@ const makeOrder = new WizardScene(
         
                     let resultDiscounts = newDiscount.sort(compareValues('order_price', 'desc'));
                     if(resultDiscounts[0]) {
-                        let discountVal = resultDiscounts[0].discount;
+                        let discountVal = totalPrice * (resultDiscounts[0].discount/100);
                         let discountPerProduct = discountVal/productRows.length;
                         for(var i = 0; i<productRows.length; i++) {
                             productRows[i].DISCOUNT_SUM = discountPerProduct / productRows[i].QUANTITY;
+                            productRows[i].PRICE = productRows[i].PRICE - productRows[i].DISCOUNT_SUM;
+                            productRows[i].PRICE_ACCOUNT = productRows[i].PRICE - productRows[i].DISCOUNT_SUM;
+                            productRows[i].PRICE_EXCLUSIVE = productRows[i].PRICE - productRows[i].DISCOUNT_SUM;
+                            productRows[i].PRICE = productRows[i].PRICE - productRows[i].DISCOUNT_SUM;
                             productRows[i].DISCOUNT_TYPE_ID = 1;
                         }
                     }
@@ -819,7 +832,7 @@ const makeOrder = new WizardScene(
                         id: bxDeal.data.result,
                         fields: {
                             'TITLE': 'Новый заказ #' + bxDeal.data.result,
-                            'OPPORTUNITY': (resultDiscounts[0] ? totalPrice - resultDiscounts[0].discount : totalPrice)
+                            'OPPORTUNITY': (resultDiscounts[0] ? totalPrice - (totalPrice * (resultDiscounts[0].discount/100)) : totalPrice)
                         }
                     });
                 }
@@ -1037,7 +1050,12 @@ const getCatalog = async ctx => {
 
     const catMenu = Markup.inlineKeyboard(readyMenu).extra();
     if(ctx.session.orderMenuMessageId) {
-        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+
+        try {
+            await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+        } catch (e) {
+
+        }
     }
     const message = await ctx.reply(ctx.i18n.t('choose_catalog_category'), catMenu);
     ctx.session.orderMenuMessageId = message.message_id;
@@ -1157,6 +1175,19 @@ const getCart = async (user, ctx) => {
                 nameField = 'name_uz';
             }
 
+            let bxContactFilter = {
+
+            };
+
+            bxContactFilter[process.env.BX_CHAT_ID_FIELD] = chat.id;
+
+            const bxContact = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.contact.list?' + serializeQuery({
+                'filter': bxContactFilter,
+                'select': ['*', process.env.BX_CHAT_ID_FIELD, process.env.BX_LANG_FIELD, process.env.BX_CONTACT_DEAL_SUM_FIELD]
+            }));
+
+            const personCash = bxContact.data.result[0][process.env.BX_CONTACT_DEAL_SUM_FIELD];
+
             await asyncForEach(cartItems, async item => {
                 let product =  await db.get('products')
                     .find({ id: item.product_id })
@@ -1177,10 +1208,8 @@ const getCart = async (user, ctx) => {
             cartText += '\n';
 
             const discount = await db.get('discounts')
-                .filter(discount => discount.order_price <= totalPrice)
+                .filter(discount => discount.order_price <= personCash)
                 .value();
-
-            
 
             let newDiscount = [];
             for(var i = 0; i<discount.length; i++) {
@@ -1192,9 +1221,9 @@ const getCart = async (user, ctx) => {
 
             let resultDiscounts = newDiscount.sort(compareValues('order_price', 'desc'));
             if(resultDiscounts[0]) {
-                cartText += '<b>' + ctx.i18n.t('cart_discount') + ': ' + numberWithSpaces(resultDiscounts[0].discount) + ' ' + ctx.i18n.t('currency') + '</b>';
+                cartText += '<b>' + ctx.i18n.t('cart_discount') + ': ' + numberWithSpaces(resultDiscounts[0].discount) + '%' + '</b>';
                 cartText += '\n';
-                cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice - resultDiscounts[0].discount) + ' ' + ctx.i18n.t('currency') + '</b>';
+                cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice - (totalPrice * (resultDiscounts[0].discount/100))) + ' ' + ctx.i18n.t('currency') + '</b>';
             } else {
                 cartText += '<b>' + ctx.i18n.t('cart_total_price') + ': ' + numberWithSpaces(totalPrice) + ' ' + ctx.i18n.t('currency') + '</b>';
             }
@@ -1330,9 +1359,13 @@ bot.action(/.+/, async (ctx) => {
                     menu.push(Markup.callbackButton(item.name, 'product:' + item.id))
                 });
                 menu.push(Markup.callbackButton(ctx.i18n.t('back'), 'back'));
-                if(typeof category.file == 'string') {
+                if(typeof category.file == 'string' && category.file.length > 0) {
                     if (ctx.session.orderMenuMessageId) {
-                        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                        try {
+                            await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                        } catch (e) {
+
+                        }
                     }
                     let text = '<b>' + category[nameField] + "</b>\n";
                     text += sanitizeHtml(category[(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz' ? 'description_uz' : 'description')] + "\n\n", sanitizeOptions).replace(/\<br \/\>/g, "\n");
@@ -1349,7 +1382,11 @@ bot.action(/.+/, async (ctx) => {
                     text += category[(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz' ? 'description_uz' : 'description')] + "\n\n";
                     text += ctx.i18n.t('choose_category_product');
                     if (ctx.session.orderMenuMessageId) {
-                        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                        try {
+                            await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                        } catch (e) {
+
+                        }
                     }
                     let message = await ctx.reply(text, Markup.inlineKeyboard(menu.length ? menu.chunk_inefficient(2) : []).extra());
                     return ctx.session.orderMenuMessageId = message.message_id;
@@ -1402,7 +1439,11 @@ bot.action(/.+/, async (ctx) => {
 
                 if(typeof product.file == 'string') {
                     if (ctx.session.orderMenuMessageId) {
-                        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                        try {
+                            await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                        } catch (e) {
+
+                        }
                     }
                     let text = product[nameField] + "\n";
                     let desc = product[(bxContact.data.result[0][process.env.BX_LANG_FIELD] == 'uz' ? 'description_uz' : 'description')];
@@ -1422,7 +1463,11 @@ bot.action(/.+/, async (ctx) => {
                     text += ctx.i18n.t('product_count_text') + "\n\n";
                     text += `<b>Цена:</b> ${numberWithSpaces(product.price)} ${ctx.i18n.t('currency')}`;
                     if (ctx.session.orderMenuMessageId) {
-                        await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                        try {
+                            await ctx.deleteMessage(ctx.session.orderMenuMessageId);
+                        } catch (e) {
+
+                        }
                     }
 
                     let message = await ctx.reply(text, {
@@ -1551,7 +1596,7 @@ app.options('/api/:collection/:section_id/', async (req, res) => {
     });
 });
 
-app.post('/api/:collection/', upload.single('file'), async (req, res) => {
+app.post('/api/:collection/', upload.single('photo'), async (req, res) => {
     if(req.params.collection.indexOf('.yaml') != -1) {
         let data = YAML.stringify(req.body);
         fs.writeFileSync(__dirname + '/locales/' + req.params.collection, data);
@@ -1628,8 +1673,8 @@ app.post('/api/:collection/', upload.single('file'), async (req, res) => {
         }
 
         req.body.id = uuidv1();
-        if(req.file) {
-            req.body.file = `/uploads/${req.file.filename}`;
+        if(req.photo) {
+            req.body.file = `/uploads/${req.photo.filename}`;
         }
 
         await db.get(req.params.collection)
@@ -1653,7 +1698,7 @@ app.delete('/api/:collection/:section_id/', async (req, res) => {
     });
 });
 
-app.put('/api/:collection/:section_id/', upload.single('file'), async (req, res) => {
+app.put('/api/:collection/:section_id/', upload.single('photo'), async (req, res) => {
     if(req.file) {
         req.body.file = `/uploads/${req.file.filename}`;
     }
@@ -1679,6 +1724,41 @@ app.use('/vue/', function(req, res, next){
 
 app.use('/vue/', express.static('client/dist'));
 // app.post('/vue/', express.static('client/dist'));
+
+app.use('/bx24/', async (req, res, next) => {
+    const event = req.body.event;
+    const id = req.body["data[FIELDS][ID]"];
+    const auth = req.body["auth[application_token]"];
+    if(event == 'ONCRMDEALUPDATE' && process.env.BX_DEAL_HOOK == auth) {
+        const deal = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.deal.get?' + serializeQuery({
+            'id': id
+        }));
+
+        const { STAGE_ID: stageId, CONTACT_ID: contactId } = deal.data.result;
+        const allFinalDeals = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.deal.list?' + serializeQuery({
+            'filter': {
+                CONTACT_ID: contactId,
+                STAGE_ID: 'FINAL_INVOICE'
+            },
+            'select': ['*']
+        }));
+        const allDeals = allFinalDeals.data.result;
+        let totalSumm = 0;
+
+        allDeals.forEach((item, index) => {
+            totalSumm += parseInt(item.OPPORTUNITY, 0);
+        });
+
+        let contactData = {
+            id: contactId,
+            fields: {
+
+            }
+        };
+        contactData.fields[process.env.BX_CONTACT_DEAL_SUM_FIELD] = totalSumm;
+        const res = await axios.post(process.env.BX_WEBHOOK_URL + 'crm.contact.update', contactData);
+    }
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
