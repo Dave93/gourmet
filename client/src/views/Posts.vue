@@ -155,7 +155,7 @@ export default {
       if (!this.$v.post.$invalid) {
         this.isPostSaving = true;
         let formData = new FormData();
-        formData.append('file', this.postPhoto);
+        formData.append('photo', this.postPhoto);
         Object.keys(this.post).forEach((key) => {
           formData.append(key, this.post[key]);
         });
