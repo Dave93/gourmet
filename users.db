@@ -23,15 +23,6 @@
       ]
     },
     {
-      "chat_id": 2526307,
-      "products": [
-        {
-          "product_id": "41b5cbf0-c4ec-11e9-b6dc-ad3143662535",
-          "count": 2
-        }
-      ]
-    },
-    {
       "chat_id": 704316735,
       "products": [
         {
@@ -71,6 +62,10 @@
         {
           "product_id": "80c55530-11aa-11ea-acdc-6df04d12001c",
           "count": 5
+        },
+        {
+          "product_id": "c585a910-c4fa-11e9-b6dc-ad3143662535",
+          "count": 2
         }
       ]
     },
@@ -79,6 +74,10 @@
       "products": [
         {
           "product_id": "47a84b50-18cf-11ea-9988-fbd78fd76ccd",
+          "count": 1
+        },
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
           "count": 1
         }
       ]
@@ -110,6 +109,18 @@
         {
           "product_id": "41b5cbf0-c4ec-11e9-b6dc-ad3143662535",
           "count": 1
+        },
+        {
+          "product_id": "5480a150-141b-11ea-839f-0bea09c6ee92",
+          "count": 1
+        },
+        {
+          "product_id": "6801dd30-c1b7-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "35e9dc40-3d0d-11eb-85c5-b9d52631bfa1",
+          "count": 1
         }
       ]
     },
@@ -127,6 +138,10 @@
       "products": [
         {
           "product_id": "bd034c20-cb21-11e9-8371-dd593d663100",
+          "count": 2
+        },
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
           "count": 2
         }
       ]
@@ -225,15 +240,6 @@
       ]
     },
     {
-      "chat_id": 418677573,
-      "products": [
-        {
-          "product_id": "bd034c20-cb21-11e9-8371-dd593d663100",
-          "count": 1
-        }
-      ]
-    },
-    {
       "chat_id": 649472529,
       "products": [
         {
@@ -305,6 +311,26 @@
         {
           "product_id": "99b546f0-110e-11ea-acdc-6df04d12001c",
           "count": 1
+        },
+        {
+          "product_id": "593689a0-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        },
+        {
+          "product_id": "ec96e4f0-10d2-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "b79f85a0-5942-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "03361ba0-5943-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "b79f85a0-5942-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
         }
       ]
     },
@@ -331,39 +357,10 @@
         {
           "product_id": "a9c8dca0-4f07-11ea-8b1e-d9b2a4dd6f18",
           "count": 2
-        }
-      ]
-    },
-    {
-      "chat_id": 87772511,
-      "products": [
-        {
-          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
-          "count": 4
         },
         {
-          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
-          "count": 5
-        },
-        {
-          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
-          "count": 4
-        },
-        {
-          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
-          "count": 1
-        },
-        {
-          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
-          "count": 9
-        },
-        {
-          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
-          "count": 1
-        },
-        {
-          "product_id": "9f1fa180-c4f6-11e9-b6dc-ad3143662535",
-          "count": 1
+          "product_id": "55809f50-c502-11e9-b6dc-ad3143662535",
+          "count": 2
         }
       ]
     },
@@ -469,48 +466,6 @@
       ]
     },
     {
-      "chat_id": 185867143,
-      "products": [
-        {
-          "product_id": "18e62fb0-c4ee-11e9-b6dc-ad3143662535",
-          "count": 1
-        },
-        {
-          "product_id": "80c55530-11aa-11ea-acdc-6df04d12001c",
-          "count": 1
-        },
-        {
-          "product_id": "ba3cad80-141c-11ea-839f-0bea09c6ee92",
-          "count": 1
-        },
-        {
-          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
-          "count": 1
-        },
-        {
-          "product_id": "d30249c0-1416-11ea-839f-0bea09c6ee92",
-          "count": 1
-        },
-        {
-          "product_id": "18e62fb0-c4ee-11e9-b6dc-ad3143662535",
-          "count": 1
-        }
-      ]
-    },
-    {
-      "chat_id": 90197621,
-      "products": [
-        {
-          "product_id": "9f1fa180-c4f6-11e9-b6dc-ad3143662535",
-          "count": 1
-        },
-        {
-          "product_id": "76a34cd0-0bae-11ea-8251-8d992a87fb2b",
-          "count": 1
-        }
-      ]
-    },
-    {
       "chat_id": 381612722,
       "products": [
         {
@@ -607,6 +562,14 @@
         {
           "product_id": "9f1fa180-c4f6-11e9-b6dc-ad3143662535",
           "count": 3
+        },
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 1
         }
       ]
     },
@@ -819,15 +782,6 @@
       ]
     },
     {
-      "chat_id": 412391900,
-      "products": [
-        {
-          "product_id": "1d8ed150-18ce-11ea-9988-fbd78fd76ccd",
-          "count": 3
-        }
-      ]
-    },
-    {
       "chat_id": 590103696,
       "products": [
         {
@@ -992,6 +946,50 @@
         {
           "product_id": "bdd4edd0-5185-11ea-8b1e-d9b2a4dd6f18",
           "count": 1
+        },
+        {
+          "product_id": "212d8120-c4f6-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "b2b1a910-c4f5-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "05598430-cb22-11e9-8371-dd593d663100",
+          "count": 1
+        },
+        {
+          "product_id": "ec96e4f0-10d2-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "7505c770-17f9-11ea-9988-fbd78fd76ccd",
+          "count": 1
+        },
+        {
+          "product_id": "b2b1a910-c4f5-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "05598430-cb22-11e9-8371-dd593d663100",
+          "count": 1
+        },
+        {
+          "product_id": "212d8120-c4f6-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "b2b1a910-c4f5-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "05598430-cb22-11e9-8371-dd593d663100",
+          "count": 1
+        },
+        {
+          "product_id": "dfa84900-b451-11ea-81fc-4f31be3dc75b",
+          "count": 1
         }
       ]
     },
@@ -1069,15 +1067,6 @@
       ]
     },
     {
-      "chat_id": 516549377,
-      "products": [
-        {
-          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
-          "count": 3
-        }
-      ]
-    },
-    {
       "chat_id": 128936683,
       "products": [
         {
@@ -1140,15 +1129,6 @@
       ]
     },
     {
-      "chat_id": 328275954,
-      "products": [
-        {
-          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
-          "count": 1
-        }
-      ]
-    },
-    {
       "chat_id": 33207927,
       "products": [
         {
@@ -1171,19 +1151,6 @@
       "products": [
         {
           "product_id": "9c441cf0-3230-11ea-8b1e-d9b2a4dd6f18",
-          "count": 1
-        }
-      ]
-    },
-    {
-      "chat_id": 148627454,
-      "products": [
-        {
-          "product_id": "c585a910-c4fa-11e9-b6dc-ad3143662535",
-          "count": 1
-        },
-        {
-          "product_id": "c585a910-c4fa-11e9-b6dc-ad3143662535",
           "count": 1
         }
       ]
@@ -1369,6 +1336,22 @@
         {
           "product_id": "d34f29a0-5df6-11ea-8b1e-d9b2a4dd6f18",
           "count": 1
+        },
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "b5aa23e0-c1b1-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "b5aa23e0-c1b1-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
         }
       ]
     },
@@ -1435,6 +1418,30 @@
         {
           "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
           "count": 1
+        },
+        {
+          "product_id": "dc7a9360-11a8-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 2
+        },
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 8
+        },
+        {
+          "product_id": "d0a644a0-1935-11ea-9988-fbd78fd76ccd",
+          "count": 9
+        },
+        {
+          "product_id": "e7207d50-faa7-11ea-85c5-b9d52631bfa1",
+          "count": 2
+        },
+        {
+          "product_id": "76a34cd0-0bae-11ea-8251-8d992a87fb2b",
+          "count": 9
         }
       ]
     },
@@ -1546,19 +1553,6 @@
         {
           "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
           "count": 1
-        }
-      ]
-    },
-    {
-      "chat_id": 2944694,
-      "products": [
-        {
-          "product_id": "03361ba0-5943-11ea-8b1e-d9b2a4dd6f18",
-          "count": 2
-        },
-        {
-          "product_id": "03361ba0-5943-11ea-8b1e-d9b2a4dd6f18",
-          "count": 2
         }
       ]
     },
@@ -1684,27 +1678,6 @@
       ]
     },
     {
-      "chat_id": 48532436,
-      "products": [
-        {
-          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
-          "count": 1
-        },
-        {
-          "product_id": "76a34cd0-0bae-11ea-8251-8d992a87fb2b",
-          "count": 1
-        },
-        {
-          "product_id": "17fc2a90-c4fe-11e9-b6dc-ad3143662535",
-          "count": 1
-        },
-        {
-          "product_id": "4ee77890-1416-11ea-839f-0bea09c6ee92",
-          "count": 1
-        }
-      ]
-    },
-    {
       "chat_id": 641052769,
       "products": [
         {
@@ -1756,6 +1729,1982 @@
           "count": 1
         }
       ]
+    },
+    {
+      "chat_id": 341423518,
+      "products": [
+        {
+          "product_id": "6eb54680-c4fb-11e9-b6dc-ad3143662535",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "chat_id": 427867776,
+      "products": [
+        {
+          "product_id": "cf96e0d0-18cf-11ea-9988-fbd78fd76ccd",
+          "count": 2
+        },
+        {
+          "product_id": "cf96e0d0-18cf-11ea-9988-fbd78fd76ccd",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 687930379,
+      "products": [
+        {
+          "product_id": "05598430-cb22-11e9-8371-dd593d663100",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 1021342298,
+      "products": [
+        {
+          "product_id": "17fc2a90-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 67870712,
+      "products": [
+        {
+          "product_id": "cf96e0d0-18cf-11ea-9988-fbd78fd76ccd",
+          "count": 1
+        },
+        {
+          "product_id": "cf96e0d0-18cf-11ea-9988-fbd78fd76ccd",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 35516867,
+      "products": [
+        {
+          "product_id": "ba3cad80-141c-11ea-839f-0bea09c6ee92",
+          "count": 1
+        },
+        {
+          "product_id": "ba3cad80-141c-11ea-839f-0bea09c6ee92",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1060438,
+      "products": [
+        {
+          "product_id": "b2b1a910-c4f5-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "86cb5d50-c4ff-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 161094621,
+      "products": [
+        {
+          "product_id": "05598430-cb22-11e9-8371-dd593d663100",
+          "count": 1
+        },
+        {
+          "product_id": "05598430-cb22-11e9-8371-dd593d663100",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1240928705,
+      "products": [
+        {
+          "product_id": "2e8e3780-3231-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 62009136,
+      "products": [
+        {
+          "product_id": "cf96e0d0-18cf-11ea-9988-fbd78fd76ccd",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 983039,
+      "products": [
+        {
+          "product_id": "4b983110-1417-11ea-839f-0bea09c6ee92",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 572545,
+      "products": [
+        {
+          "product_id": "c4d506c0-1417-11ea-839f-0bea09c6ee92",
+          "count": 1
+        },
+        {
+          "product_id": "c4d506c0-1417-11ea-839f-0bea09c6ee92",
+          "count": 1
+        },
+        {
+          "product_id": "6eb54680-c4fb-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 2803115,
+      "products": [
+        {
+          "product_id": "ba3cad80-141c-11ea-839f-0bea09c6ee92",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1141610614,
+      "products": [
+        {
+          "product_id": "cf96e0d0-18cf-11ea-9988-fbd78fd76ccd",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 60242349,
+      "products": [
+        {
+          "product_id": "4cc86db0-b099-11ea-81fc-4f31be3dc75b",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 94240425,
+      "products": [
+        {
+          "product_id": "99b546f0-110e-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "4ceece80-b0a6-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        },
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "bd034c20-cb21-11e9-8371-dd593d663100",
+          "count": 1
+        },
+        {
+          "product_id": "8d1842b0-10d4-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 841970344,
+      "products": [
+        {
+          "product_id": "dad63d90-3136-11ea-8b1e-d9b2a4dd6f18",
+          "count": 2
+        },
+        {
+          "product_id": "57fb0560-907a-11ea-ac97-09ef62fbe8a6",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 763452592,
+      "products": [
+        {
+          "product_id": "79578b00-8adc-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "79578b00-8adc-11ea-8b1e-d9b2a4dd6f18",
+          "count": 2
+        },
+        {
+          "product_id": "79578b00-8adc-11ea-8b1e-d9b2a4dd6f18",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 128409765,
+      "products": [
+        {
+          "product_id": "e2f60e90-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        },
+        {
+          "product_id": "e2f60e90-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 767919911,
+      "products": [
+        {
+          "product_id": "0e7a0c90-1110-11ea-acdc-6df04d12001c",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "chat_id": 928176319,
+      "products": [
+        {
+          "product_id": "79578b00-8adc-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 454462970,
+      "products": [
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 163246,
+      "products": [
+        {
+          "product_id": "a1735f10-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "79578b00-8adc-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 786267,
+      "products": [
+        {
+          "product_id": "593689a0-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 998097065,
+      "products": [
+        {
+          "product_id": "a4c169d0-3138-11ea-8b1e-d9b2a4dd6f18",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "chat_id": 436892570,
+      "products": [
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 40243582,
+      "products": [
+        {
+          "product_id": "230df100-0baf-11ea-8251-8d992a87fb2b",
+          "count": 1
+        },
+        {
+          "product_id": "8d1842b0-10d4-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 44720269,
+      "products": [
+        {
+          "product_id": "93c853a0-c1a7-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 100060297,
+      "products": [
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 545089272,
+      "products": [
+        {
+          "product_id": "4cc86db0-b099-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        },
+        {
+          "product_id": "24005610-b09c-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        },
+        {
+          "product_id": "b759d2e0-b09e-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 95098313,
+      "products": [
+        {
+          "product_id": "4cc86db0-b099-11ea-81fc-4f31be3dc75b",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 2196607,
+      "products": [
+        {
+          "product_id": "8d92c500-c1bc-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 173754010,
+      "products": [
+        {
+          "product_id": "ec96e4f0-10d2-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 2745035,
+      "products": [
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "chat_id": 796652,
+      "products": [
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 191411680,
+      "products": [
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "ec96e4f0-10d2-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "8d1842b0-10d4-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "55809f50-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 450158692,
+      "products": [
+        {
+          "product_id": "c585a910-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 82711879,
+      "products": [
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 55169516,
+      "products": [
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "chat_id": 25858956,
+      "products": [
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 186346098,
+      "products": [
+        {
+          "product_id": "e2f60e90-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 246596872,
+      "products": [
+        {
+          "product_id": "7a752e50-c1b6-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 2394856,
+      "products": [
+        {
+          "product_id": "5ad793e0-c10b-11ea-a545-6f170410ee13",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "chat_id": 362430974,
+      "products": [
+        {
+          "product_id": "e197aeb0-c1bf-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "7a752e50-c1b6-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "7a752e50-c1b6-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "8d92c500-c1bc-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1276489138,
+      "products": [
+        {
+          "product_id": "55809f50-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1028907534,
+      "products": [
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 2771006,
+      "products": [
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 8
+        },
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "4cc86db0-b099-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        },
+        {
+          "product_id": "a6162e60-110d-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 2
+        },
+        {
+          "product_id": "0c4e3dd0-110e-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "2aa63890-c4fc-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 486493,
+      "products": [
+        {
+          "product_id": "e9d0e6f0-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "6bb05290-3125-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "dad63d90-3136-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "540470a0-8944-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "a4c169d0-3138-11ea-8b1e-d9b2a4dd6f18",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 296880501,
+      "products": [
+        {
+          "product_id": "340db950-c4ff-11e9-b6dc-ad3143662535",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "chat_id": 511926664,
+      "products": [
+        {
+          "product_id": "c8f95260-c502-11e9-b6dc-ad3143662535",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "chat_id": 550339366,
+      "products": [
+        {
+          "product_id": "55f0ddb0-11ab-11ea-acdc-6df04d12001c",
+          "count": 2
+        },
+        {
+          "product_id": "a6162e60-110d-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "2aa63890-c4fc-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1070752,
+      "products": [
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1129452024,
+      "products": [
+        {
+          "product_id": "17446190-10d4-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "ec96e4f0-10d2-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "28c78f10-110f-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "0e7a0c90-1110-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "93c853a0-c1a7-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "e7207d50-faa7-11ea-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 53226851,
+      "products": [
+        {
+          "product_id": "6979c970-c1b2-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "e7207d50-faa7-11ea-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 1
+        },
+        {
+          "product_id": "340db950-c4ff-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1005730332,
+      "products": [
+        {
+          "product_id": "76a34cd0-0bae-11ea-8251-8d992a87fb2b",
+          "count": 2
+        },
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 2
+        },
+        {
+          "product_id": "a38b6ef0-907c-11ea-ac97-09ef62fbe8a6",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 302710209,
+      "products": [
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 1
+        },
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 502006898,
+      "products": [
+        {
+          "product_id": "1e1d7c40-faa8-11ea-85c5-b9d52631bfa1",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "chat_id": 197679751,
+      "products": [
+        {
+          "product_id": "2aa63890-c4fc-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "2aa63890-c4fc-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "17fc2a90-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "340db950-c4ff-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 348538108,
+      "products": [
+        {
+          "product_id": "08b53f20-c103-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 116921964,
+      "products": [
+        {
+          "product_id": "2e8e3780-3231-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 488987326,
+      "products": [
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "5ad793e0-c10b-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 95468589,
+      "products": [
+        {
+          "product_id": "72d0bfc0-c102-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "7e4d2ff0-c288-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "55f0ddb0-11ab-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "4cc86db0-b099-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 367558847,
+      "products": [
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 3
+        },
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "99b546f0-110e-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 693626256,
+      "products": [
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "5ad793e0-c10b-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "a6162e60-110d-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "e2f60e90-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 51430747,
+      "products": [
+        {
+          "product_id": "adb1aed0-07a6-11ea-8f14-f7b33b69e101",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 24788128,
+      "products": [
+        {
+          "product_id": "6b301b10-20e0-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 541972596,
+      "products": [
+        {
+          "product_id": "e9d0e6f0-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 292765,
+      "products": [
+        {
+          "product_id": "6801dd30-c1b7-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 209918625,
+      "products": [
+        {
+          "product_id": "c585a910-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "a38b6ef0-907c-11ea-ac97-09ef62fbe8a6",
+          "count": 2
+        },
+        {
+          "product_id": "a38b6ef0-907c-11ea-ac97-09ef62fbe8a6",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "chat_id": 860893869,
+      "products": [
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "5ad793e0-c10b-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 578361584,
+      "products": [
+        {
+          "product_id": "adb1aed0-07a6-11ea-8f14-f7b33b69e101",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 49462261,
+      "products": [
+        {
+          "product_id": "f3923d20-10d4-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "0e7a0c90-1110-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "f3923d20-10d4-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "57fb0560-907a-11ea-ac97-09ef62fbe8a6",
+          "count": 1
+        },
+        {
+          "product_id": "0e7a0c90-1110-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 59673475,
+      "products": [
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 2
+        },
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "chat_id": 2765151,
+      "products": [
+        {
+          "product_id": "593689a0-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 640728850,
+      "products": [
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 3
+        },
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 3
+        },
+        {
+          "product_id": "55809f50-c502-11e9-b6dc-ad3143662535",
+          "count": 3
+        },
+        {
+          "product_id": "ca484ec0-3534-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 213133857,
+      "products": [
+        {
+          "product_id": "2ffce7c0-3400-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 455267887,
+      "products": [
+        {
+          "product_id": "c8a496b0-c0fd-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "7e4d2ff0-c288-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1534008,
+      "products": [
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "bb424960-3400-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "4eb0acc0-907b-11ea-ac97-09ef62fbe8a6",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 66077447,
+      "products": [
+        {
+          "product_id": "4ceece80-b0a6-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1033823485,
+      "products": [
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "e9d0e6f0-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "35e9dc40-3d0d-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 439406131,
+      "products": [
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 617148384,
+      "products": [
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "e9d0e6f0-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 893830537,
+      "products": [
+        {
+          "product_id": "ca484ec0-3534-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "472cbb20-c4fb-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "f3b4c3a0-c501-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "dbf7b130-8add-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 2
+        },
+        {
+          "product_id": "a1735f10-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "ec96e4f0-10d2-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "f0425cc0-de12-11ea-b224-1df817e2229b",
+          "count": 1
+        },
+        {
+          "product_id": "c8a496b0-c0fd-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "08b53f20-c103-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "e7207d50-faa7-11ea-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "1e1d7c40-faa8-11ea-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "2aa63890-c4fc-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "43b6edf0-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "6bb05290-3125-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 4
+        },
+        {
+          "product_id": "93c853a0-c1a7-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "5ad793e0-c10b-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "8d92c500-c1bc-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 446082862,
+      "products": [
+        {
+          "product_id": "6979c970-c1b2-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "5ad793e0-c10b-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "afc696d0-c10b-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 3098943,
+      "products": [
+        {
+          "product_id": "b5aa23e0-c1b1-11ea-a545-6f170410ee13",
+          "count": 2
+        },
+        {
+          "product_id": "e197aeb0-c1bf-11ea-a545-6f170410ee13",
+          "count": 2
+        },
+        {
+          "product_id": "f3b4c3a0-c501-11e9-b6dc-ad3143662535",
+          "count": 2
+        },
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "d0a644a0-1935-11ea-9988-fbd78fd76ccd",
+          "count": 1
+        },
+        {
+          "product_id": "c8f95260-c502-11e9-b6dc-ad3143662535",
+          "count": 4
+        },
+        {
+          "product_id": "76a34cd0-0bae-11ea-8251-8d992a87fb2b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 610216476,
+      "products": [
+        {
+          "product_id": "08b53f20-c103-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "c585a910-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "6eb54680-c4fb-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "ca484ec0-3534-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 3328731,
+      "products": [
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "chat_id": 1186300996,
+      "products": [
+        {
+          "product_id": "2aa63890-c4fc-11e9-b6dc-ad3143662535",
+          "count": 3
+        },
+        {
+          "product_id": "230df100-0baf-11ea-8251-8d992a87fb2b",
+          "count": 8
+        },
+        {
+          "product_id": "6d644f60-c289-11ea-a545-6f170410ee13",
+          "count": 2
+        },
+        {
+          "product_id": "7a752e50-c1b6-11ea-a545-6f170410ee13",
+          "count": 9
+        },
+        {
+          "product_id": "7e4d2ff0-c288-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 98399453,
+      "products": [
+        {
+          "product_id": "bb424960-3400-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 774488779,
+      "products": [
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "1e1d7c40-faa8-11ea-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 16112673,
+      "products": [
+        {
+          "product_id": "7a752e50-c1b6-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 584977983,
+      "products": [
+        {
+          "product_id": "1c87e920-3535-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 3111823,
+      "products": [
+        {
+          "product_id": "bb424960-3400-11eb-85c5-b9d52631bfa1",
+          "count": 2
+        },
+        {
+          "product_id": "bb424960-3400-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 3042144,
+      "products": [
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "540470a0-8944-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "9c441cf0-3230-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 135821849,
+      "products": [
+        {
+          "product_id": "5ad793e0-c10b-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 667495,
+      "products": [
+        {
+          "product_id": "c585a910-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 747852491,
+      "products": [
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 65531737,
+      "products": [
+        {
+          "product_id": "a4c169d0-3138-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "99b546f0-110e-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "dad63d90-3136-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 129861171,
+      "products": [
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1311142511,
+      "products": [
+        {
+          "product_id": "e7207d50-faa7-11ea-85c5-b9d52631bfa1",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "chat_id": 337365997,
+      "products": [
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 3272165,
+      "products": [
+        {
+          "product_id": "4ae214e0-c289-11ea-a545-6f170410ee13",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "chat_id": 84209468,
+      "products": [
+        {
+          "product_id": "1a9c61c0-3401-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 147552918,
+      "products": [
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 35588115,
+      "products": [
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "6979c970-c1b2-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 13076677,
+      "products": [
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 9
+        },
+        {
+          "product_id": "6f604110-3535-11eb-85c5-b9d52631bfa1",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "chat_id": 352238623,
+      "products": [
+        {
+          "product_id": "1a9c61c0-3401-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "b5aa23e0-c1b1-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "6b301b10-20e0-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 976813600,
+      "products": [
+        {
+          "product_id": "2ffce7c0-3400-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "bb424960-3400-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "e197aeb0-c1bf-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 877723,
+      "products": [
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 43063651,
+      "products": [
+        {
+          "product_id": "1daca150-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "2ffce7c0-3400-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "0c4e3dd0-110e-11ea-acdc-6df04d12001c",
+          "count": 1
+        },
+        {
+          "product_id": "f03bc0b0-c100-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "43b6edf0-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1012929333,
+      "products": [
+        {
+          "product_id": "a1735f10-c502-11e9-b6dc-ad3143662535",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "chat_id": 567553312,
+      "products": [
+        {
+          "product_id": "72d0bfc0-c102-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 519786776,
+      "products": [
+        {
+          "product_id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 328675232,
+      "products": [
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 4
+        },
+        {
+          "product_id": "76a34cd0-0bae-11ea-8251-8d992a87fb2b",
+          "count": 1
+        },
+        {
+          "product_id": "230df100-0baf-11ea-8251-8d992a87fb2b",
+          "count": 1
+        },
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 1110467160,
+      "products": [
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 577248739,
+      "products": [
+        {
+          "product_id": "a1735f10-c502-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 46411352,
+      "products": [
+        {
+          "product_id": "7a752e50-c1b6-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 114166503,
+      "products": [
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 433997403,
+      "products": [
+        {
+          "product_id": "d0a644a0-1935-11ea-9988-fbd78fd76ccd",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 15291419,
+      "products": [
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "6b301b10-20e0-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "e2f60e90-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 151672848,
+      "products": [
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "2e8e3780-3231-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 811198537,
+      "products": [
+        {
+          "product_id": "6f3348c0-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 321297937,
+      "products": [
+        {
+          "product_id": "a4c169d0-3138-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "1a9c61c0-3401-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 646600327,
+      "products": [
+        {
+          "product_id": "17fc2a90-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1524077,
+      "products": [
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "4cc86db0-b099-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        },
+        {
+          "product_id": "1e1d7c40-faa8-11ea-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 173147,
+      "products": [
+        {
+          "product_id": "2ffce7c0-3400-11eb-85c5-b9d52631bfa1",
+          "count": 2
+        },
+        {
+          "product_id": "bb424960-3400-11eb-85c5-b9d52631bfa1",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 1424068909,
+      "products": [
+        {
+          "product_id": "2ffce7c0-3400-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1703248981,
+      "products": [
+        {
+          "product_id": "2ffce7c0-3400-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "dad63d90-3136-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "17fc2a90-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 885527920,
+      "products": [
+        {
+          "product_id": "3d21cab0-b1af-11eb-81ac-37de59c5069b",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 130959926,
+      "products": [
+        {
+          "product_id": "e9d0e6f0-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 40865345,
+      "products": [
+        {
+          "product_id": "f3923d20-10d4-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 231581688,
+      "products": [
+        {
+          "product_id": "621a4fe0-b0a7-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 1733336,
+      "products": [
+        {
+          "product_id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 245142175,
+      "products": [
+        {
+          "product_id": "a6162e60-110d-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 231586733,
+      "products": [
+        {
+          "product_id": "1a9c61c0-3401-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 2890906,
+      "products": [
+        {
+          "product_id": "a11952f0-9a98-11eb-90fb-5f5c170aa026",
+          "count": 1
+        },
+        {
+          "product_id": "1990dcd0-9a99-11eb-90fb-5f5c170aa026",
+          "count": 1
+        },
+        {
+          "product_id": "e2f60e90-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        },
+        {
+          "product_id": "8d1842b0-10d4-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 797434165,
+      "products": [
+        {
+          "product_id": "5126bbb0-d61d-11ea-b224-1df817e2229b",
+          "count": 1
+        },
+        {
+          "product_id": "e9d0e6f0-c4fe-11e9-b6dc-ad3143662535",
+          "count": 1
+        },
+        {
+          "product_id": "7866f740-991c-11eb-90fb-5f5c170aa026",
+          "count": 1
+        },
+        {
+          "product_id": "fd9442c0-20df-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        },
+        {
+          "product_id": "72d0bfc0-c102-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "1a9c61c0-3401-11eb-85c5-b9d52631bfa1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 61062679,
+      "products": [
+        {
+          "product_id": "99b546f0-110e-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 3891623,
+      "products": [
+        {
+          "product_id": "08b53f20-c103-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "584a4760-c10d-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 382649192,
+      "products": [
+        {
+          "product_id": "6979c970-c1b2-11ea-a545-6f170410ee13",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 2810345,
+      "products": [
+        {
+          "product_id": "67b7a850-c108-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "2e59e430-8add-11ea-8b1e-d9b2a4dd6f18",
+          "count": 1
+        },
+        {
+          "product_id": "dbf7b130-8add-11ea-8b1e-d9b2a4dd6f18",
+          "count": 2
+        },
+        {
+          "product_id": "2aa63890-c4fc-11e9-b6dc-ad3143662535",
+          "count": 4
+        },
+        {
+          "product_id": "584a4760-c10d-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "afc696d0-c10b-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "2d1cc550-c10c-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "chat_id": 687147900,
+      "products": [
+        {
+          "product_id": "6fb15050-9a98-11eb-90fb-5f5c170aa026",
+          "count": 1
+        },
+        {
+          "product_id": "e2f60e90-b09a-11ea-81fc-4f31be3dc75b",
+          "count": 1
+        },
+        {
+          "product_id": "ec96e4f0-10d2-11ea-acdc-6df04d12001c",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 293224,
+      "products": [
+        {
+          "product_id": "6979c970-c1b2-11ea-a545-6f170410ee13",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "chat_id": 765052077,
+      "products": [
+        {
+          "product_id": "e940c860-dc0b-11eb-8344-954d8d74a0e5",
+          "count": 1
+        },
+        {
+          "product_id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+          "count": 1
+        },
+        {
+          "product_id": "86ad8ac0-dc1b-11eb-8344-954d8d74a0e5",
+          "count": 1
+        }
+      ]
     }
   ],
   "reviews": [
@@ -1771,30 +3720,6 @@
     }
   ],
   "catalog_section": [
-    {
-      "file": "/uploads/1576218929753.jpg",
-      "name": "Твердые сыры",
-      "name_uz": "Катум пишлоглар",
-      "description": "",
-      "description_uz": "",
-      "id": "608b7d60-c4e5-11e9-b6dc-ad3143662535"
-    },
-    {
-      "file": "/uploads/1576218993767.jpg",
-      "name": "Сыры с плесенью",
-      "name_uz": "🍕 Сыры с плесенью",
-      "description": "",
-      "description_uz": "",
-      "id": "7fd28a10-c4e5-11e9-b6dc-ad3143662535"
-    },
-    {
-      "file": "/uploads/1576219238933.jpg",
-      "name": "Полу-твердые сыры",
-      "name_uz": "Полу-твердые сыры",
-      "description": "",
-      "description_uz": "",
-      "id": "99264dd0-c4e5-11e9-b6dc-ad3143662535"
-    },
     {
       "file": "/uploads/1576232931819.jpg",
       "name": "Соусы",
@@ -1812,14 +3737,6 @@
       "id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535"
     },
     {
-      "file": "/uploads/1576233450472.jpg",
-      "name": "Кофе",
-      "name_uz": "Кахва",
-      "description": "",
-      "description_uz": "",
-      "id": "102122c0-c4e6-11e9-b6dc-ad3143662535"
-    },
-    {
       "file": "/uploads/1576233931294.jpg",
       "name": "Овощные консервы",
       "name_uz": "Овощные консервы",
@@ -1830,58 +3747,82 @@
     {
       "file": "/uploads/1576234003796.jpg",
       "name": "Мясные консервы",
-      "name_uz": "Go'shtli konservalar",
+      "name_uz": "Go'shtli mahsulotlar",
       "description": "",
       "description_uz": "",
       "id": "def965d0-0451-11ea-98da-53ebb67a2286"
     },
     {
-      "file": "/uploads/1576514086676.jpg",
-      "name": "Подарочные наборы",
-      "name_uz": "Sovg'alar to'plami",
-      "description": "<div>&nbsp;Подарочные наборы - набор товаров в корзине по привлекательной цене</div>",
-      "description_uz": "<div>Sovg'alar to'plami- jozibador narxlar boyicha savatdagi tovarlar toplami</div>",
-      "id": "2a976c20-0692-11ea-8f14-f7b33b69e101"
-    },
-    {
       "name": "Джемы",
-      "name_uz": "Jam",
+      "name_uz": "St.Dalfour Murabollari",
       "description": "<div>Джемы - St.DALFOUR (Франция) содержат только натуральные фрукты и без добавления сахара. Изготовлен по старинному французскому семейному рецепту, где вместо сахара используется 100% натуральный виноградным соком. Все банки 284 гр.&nbsp;</div>",
       "description_uz": "<div>Jams frantsuz- Sent-DALFOUR</div>",
       "id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
-      "file": "/uploads/1588866497026.png"
+      "file": "/uploads/1596526935116.png"
     },
     {
-      "name": "Рыбные консервы \"ASdoMAR\"",
-      "name_uz": "Konservalangan baliq\"ASdoMAR\"",
-      "description": "",
+      "file": "/uploads/1591946683898.png",
+      "name": "Оливковое масло",
+      "name_uz": "zaytun moyi",
+      "description": "<div>Оливковое масло San Michel двух разных видов.<br><br>Страна происхождения - Италия.</div>",
       "description_uz": "",
-      "id": "d5060d30-119e-11ea-acdc-6df04d12001c",
-      "file": "/uploads/1574918446462.jpg"
+      "id": "defa5740-abb5-11ea-81fc-4f31be3dc75b"
     },
     {
-      "name": "Уксусы",
-      "name_uz": "Sirkalar",
-      "description": "",
+      "file": "/uploads/1594206309311.jpg",
+      "name": "Сливочное масло.",
+      "name_uz": "Yog - zanetti",
+      "description": "<div>Zanetti - сливочное масло. Страна происхожденя - Италия.</div>",
       "description_uz": "",
-      "id": "0d60a380-1414-11ea-839f-0bea09c6ee92",
-      "file": "/uploads/1576234191289.jpg"
+      "id": "43ffd930-c0f6-11ea-a545-6f170410ee13"
     },
     {
-      "file": "/uploads/1576399162078.png",
-      "name": "Сливочное масло",
-      "name_uz": "Сарёйг",
-      "description": "",
+      "file": "/uploads/1594206075600.jpg",
+      "name": "Твердые сыры",
+      "name_uz": "Zanetti pishloglari.",
+      "description": "<div>Твердыые сыры - Zanetti. Страна происхождения - Италия.</div>",
       "description_uz": "",
-      "id": "96a07850-18ce-11ea-9988-fbd78fd76ccd"
+      "id": "a3b0a7a0-c0f7-11ea-a545-6f170410ee13"
     },
     {
-      "file": "",
-      "name": "!!!! АКЦИИИ - СКИДКИ !!!!",
-      "name_uz": "!!!! АКЦИЯЛАР ВА СКИДКАЛАР !!!!",
+      "file": "/uploads/1594277117458.jpg",
+      "name": "Прочие сыры.",
+      "name_uz": "Бошка пишлоклар",
+      "description": "<div>Сыры с плесенью, полу-твердые и мягкие сыры.</div>",
+      "description_uz": "",
+      "id": "fe14c2d0-c0f7-11ea-a545-6f170410ee13"
+    },
+    {
+      "file": "/uploads/1594279352145.jpg",
+      "name": "Уксусы.",
+      "name_uz": "Сырка",
+      "description": "<div>Уксусы от Итальянской компании - De Nigris. Полезные и вкусные уксусы разных видов из Италии.</div>",
+      "description_uz": "",
+      "id": "f414a850-c1b4-11ea-a545-6f170410ee13"
+    },
+    {
+      "file": "/uploads/1594368287295.jpg",
+      "name": "Глазури",
+      "name_uz": "Глазурь",
+      "description": "<div>Крем-глазурь из бальзамического уксуса от компании De Nigris. Произведено в Италии по всем стандартам качества.&nbsp;</div>",
+      "description_uz": "",
+      "id": "0590d1b0-c284-11ea-a545-6f170410ee13"
+    },
+    {
+      "file": "/uploads/1606845636822.jpg",
+      "name": "Шоколадная  и Ореховая Паста",
+      "name_uz": "Шоколадная Паста",
       "description": "",
       "description_uz": "",
-      "id": "4e886b30-4f07-11ea-8b1e-d9b2a4dd6f18"
+      "id": "1d6ef4a0-33ff-11eb-85c5-b9d52631bfa1"
+    },
+    {
+      "file": "/uploads/1620664296087.jpg",
+      "name": "Подарочные наборы",
+      "name_uz": "Подарочные наборы",
+      "description": "<div>Различные сладкие подарочные наборы из продукции от компаний St.Dalfour (Франция), Caffarel (Италия) и St.Michel (Франция). Только качественные товары для Ваших близких</div>",
+      "description_uz": "",
+      "id": "ed385bb0-3533-11eb-85c5-b9d52631bfa1"
     }
   ],
   "products": [
@@ -1890,7 +3831,7 @@
       "name": "Грана Падано 200 гр",
       "name_uz": "Грана Падано 200 гр.",
       "id": "41b5cbf0-c4ec-11e9-b6dc-ad3143662535",
-      "price": "80000",
+      "price": "81000",
       "description": "<div>Популярный твёрдый итальянский сыр. Вес 200 гр. в вакуумной упаковке&nbsp;</div>",
       "description_uz": "<div>Грана Падано 200 гр. пишлоги</div>",
       "section_id": "608b7d60-c4e5-11e9-b6dc-ad3143662535",
@@ -1899,7 +3840,7 @@
     {
       "name": "Грана Падано Резерв",
       "name_uz": "Грана Падано Резерв",
-      "price": "100000",
+      "price": "98000",
       "id": "fb67f190-c4ec-11e9-b6dc-ad3143662535",
       "description": "<div>Твердый итальянский сыр выдержанный 20 месяцев. 250 гр. вакуумная упаковка. Страна происхождения - Италия</div>",
       "description_uz": "<div>Катум Италияли пишлог. 20 ой ушланган. 250 гр.&nbsp;</div>",
@@ -1924,7 +3865,7 @@
     {
       "name": "Пекорино Романо",
       "name_uz": "Пекорино Романо пишлоги",
-      "price": "83000",
+      "price": "85000",
       "id": "18e62fb0-c4ee-11e9-b6dc-ad3143662535",
       "description": "<div>Твердый соленый итальянский сыр из овечьего молока (слово «pecora», от которого произошло название сорта, переводится с итальянского как «овца»). Вакуумная упаковка 250 гр.<br><br>Страна происхождения Италия</div>",
       "description_uz": "",
@@ -1935,7 +3876,7 @@
     {
       "name": "Грана Падано тертый",
       "name_uz": "Тертый сыр Грана Падано",
-      "price": "000",
+      "price": "65000",
       "id": "5b5d1c00-c4ee-11e9-b6dc-ad3143662535",
       "description": "<div>Сыр Грана Падано натертый в алюминиевой банке. 160 гр. вес нетто.<br><br>Страна происхождения - Италия</div>",
       "description_uz": "",
@@ -1946,7 +3887,7 @@
     {
       "name": "Горгонзола Дольче",
       "name_uz": "Горгонзола Дольче",
-      "price": "40000",
+      "price": "51000",
       "id": "b2b1a910-c4f5-11e9-b6dc-ad3143662535",
       "description": "<div>Итальянский мягкий сыр с голубой плесенью. Имеет нежную консистенцию и послевкусие голубой плесени. Упаковка 150 гр.<br><br>Страна происхождения - Италия.</div>",
       "description_uz": "<div>Italiya yumshoq ko'k pishloq. U nozik tuzilishga ega va ko'k mog'orni tatib ko'radi. Qadoqlash 150 gr.<br><br>Kelib chiqqan mamlakati - Italiya.</div>",
@@ -1957,7 +3898,7 @@
     {
       "name": "Горгонзола Пиканте",
       "name_uz": "Горгонзола Пиканте пишлоги",
-      "price": "45000",
+      "price": "57000",
       "id": "212d8120-c4f6-11e9-b6dc-ad3143662535",
       "description": "<div>Сыр с прожилками голубой плесени для любителей более ярко выраженных ноток благородной голубой плесени. 150 гр. упаковка.&nbsp;</div>",
       "description_uz": "<div>Италияда ишлаб чикарилшан кук могали пишлог. 150 гр. упаковкада.</div>",
@@ -1968,41 +3909,30 @@
     {
       "name": "Сыр Бри Montsalvy",
       "name_uz": "Сыр Бри Montsalvy",
-      "price": "200000",
+      "price": "24700",
       "id": "9f1fa180-c4f6-11e9-b6dc-ad3143662535",
-      "description": "<div>Brie — мягкий сыр из коровьего молока. Сыр изготавливается по классическим Французским рецептам. Для сыра Бри характерен бледный цвет с сероватым оттенком под «благородной» белой плесенью.Сыр мягкий и приятный на вкус с лёгким запахом грибов. Плесневая корочка имеет выраженный грибной аромат, съедобна.&nbsp;<br>Страна происхождения - Франция<br><br></div><div>Цена за 1 кг.&nbsp;</div>",
-      "description_uz": "<div>\"Бри\" юмшог Пишлоги. Бу машхур пишлог Франциядиги рецепти буйича килинган. Пишлог усту ок могалдин иборат.&nbsp;<br>Ишлаб чикарилган - Францияда.<br><br>Нархи 1 кг. учун. &nbsp;&nbsp;</div>",
+      "description": "<div>Brie — мягкий сыр из коровьего молока. Сыр изготавливается по классическим Французским рецептам. Для сыра Бри характерен бледный цвет с сероватым оттенком под «благородной» белой плесенью.Сыр мягкий и приятный на вкус с лёгким запахом грибов. Плесневая корочка имеет выраженный грибной аромат, съедобна.&nbsp;<br>Страна происхождения - Франция<br><br></div><div>Цена за 100 гр.&nbsp;</div>",
+      "description_uz": "<div>\"Бри\" юмшог Пишлоги. Бу машхур пишлог Франциядиги рецепти буйича килинган. Пишлог усту ок могалдин иборат.&nbsp;<br>Ишлаб чикарилган - Францияда.<br><br>Нархи 100 гр. учун.&nbsp; &nbsp;</div>",
       "file": "/uploads/1575708160220.JPG",
       "section_id": "7fd28a10-c4e5-11e9-b6dc-ad3143662535",
       "product_id": 403
     },
     {
-      "name": "Сыр Проволоне Гриль",
-      "name_uz": "Сыр Проволоне Гриль",
-      "id": "b7761220-c4f9-11e9-b6dc-ad3143662535",
-      "price": "000",
-      "description": "<div>Полу твердый сыр Проволоне Гриль из коровьего молока. Традиционный итальянский сыр для жарки на гриле или в духовке.&nbsp; Отлично подходить для пикников. 180 гр. упаковка&nbsp;</div>",
-      "description_uz": "<div>&nbsp;Полу твердый сыр Проволоне Гриль из коровьего молока. Традиционный итальянский сыр для жарки на гриле или в духовке.&nbsp; Отлично подходить для пикников. 180 гр. упаковка&nbsp;</div>",
-      "file": "/uploads/1566491241238.jpg",
-      "section_id": "99264dd0-c4e5-11e9-b6dc-ad3143662535",
-      "product_id": 409
-    },
-    {
-      "name": "Томатный соус \"Арабиато\"",
+      "name": "Острый томатный соус",
       "name_uz": "Острый томатный соус",
       "id": "c585a910-c4fa-11e9-b6dc-ad3143662535",
-      "price": "62000",
-      "description": "<div>Готовый острый томатный соус «Арабиато» для приготовления спагетти&nbsp; 314 мл в стеклянной банке.&nbsp;</div>",
+      "price": "58000",
+      "description": "<div>Готовый острый томатный соус «Арабиато» для приготовления спагетти&nbsp; 314 мл в стеклянной банке. Италия</div>",
       "description_uz": "<div>Готовый острый томатный соус «Арабиато» для приготовления спагетти&nbsp; 314 мл в стеклянной банке.&nbsp;</div>",
       "file": "/uploads/1589536296086.jpg",
       "section_id": "b02e4cd0-c4e5-11e9-b6dc-ad3143662535",
       "product_id": 411
     },
     {
-      "name": "Соус \"Песто зеленый\"",
+      "name": "\"Песто зеленый\"",
       "name_uz": "Яшил Песто соус",
       "id": "f3c62cf0-c4fa-11e9-b6dc-ad3143662535",
-      "price": "65000",
+      "price": "60000",
       "description": "<div>Классический Итальянский соус Песто. Состав - листья базилика, оливковое масло, чеснок, сыр пармезан, орехи (кешью и кедровые).&nbsp;<br><br>Стеклянной банке 212 мл. Италия</div>",
       "description_uz": "<div>Италиядан келган Соус \"Песто\" - таркибида райхрн, зайтун йоги, чеснок, енгох ва Пармезан пишлоги.&nbsp;</div>",
       "file": "/uploads/1567169205866.jpg",
@@ -2010,10 +3940,10 @@
       "product_id": 413
     },
     {
-      "name": "Соус «Песто красный»",
+      "name": "Песто красный",
       "name_uz": "Кизил Песто соуси",
       "id": "472cbb20-c4fb-11e9-b6dc-ad3143662535",
-      "price": "65000",
+      "price": "60000",
       "description": "<div>Классический Итальянский соус Песто с помидорами. Состав - листья базилика, оливковое масло, сушеные помидоры, чеснок, сыр пармезан, орехи (кешью и кедровые).&nbsp;<br><br>Стеклянной банке 212 мл. Италия</div>",
       "description_uz": "<div>Италиядан келдган \"Кизил Песто\" соуси - таркибида райхон, зайтун йоги, чеснок, енгох ва Пармезан пишлоги.&nbsp;</div>",
       "file": "/uploads/1579082313745.jpg",
@@ -2021,11 +3951,11 @@
       "product_id": 415
     },
     {
-      "name": "Томатный соус с базиликом",
-      "name_uz": "Томатный соус с базиликом",
+      "name": "Соус томатный с базиликом",
+      "name_uz": "Соус томатный с базиликом",
       "id": "6eb54680-c4fb-11e9-b6dc-ad3143662535",
-      "price": "62000",
-      "description": "<div>Готовый Томатный соус с базиликом для приготовления спагетти или других соусов на основе томатов. 314 мл., в стеклянной банке.&nbsp;<br>Страна происхождения - Италия.&nbsp;</div>",
+      "price": "58000",
+      "description": "<div>Готовый Томатный соус с базиликом для приготовления спагетти или других блюд и соусов на основе томатов. 314 мл., в стеклянной банке.&nbsp;<br>Италия.&nbsp;</div>",
       "description_uz": "<div>Тайер помидордан ва райхондан килинга, спегети учун соус. 314 мл шиша банкасида.</div>",
       "file": "/uploads/1589536244636.jpg",
       "section_id": "b02e4cd0-c4e5-11e9-b6dc-ad3143662535",
@@ -2033,10 +3963,10 @@
     },
     {
       "name": "Сливочные Галеты",
-      "name_uz": "Cream Pechene",
+      "name_uz": "Saryoq Pecheny",
       "id": "2aa63890-c4fc-11e9-b6dc-ad3143662535",
-      "price": "000",
-      "description": "<div>Галеты французской компании St.Michel это 100% натуральные ингредиенты с добавлением Французского сливочного масла (20% от массы). Воздушные и нежные печенья. Вес нетто - 130гр.&nbsp;</div>",
+      "price": "27000",
+      "description": "<div>Галеты французской компании St.Michel это 100% натуральные ингредиенты с добавлением Французского сливочного масла (20% от массы). Воздушные и нежные печенья. Вес нетто - 130гр. Франция</div>",
       "description_uz": "<div>&nbsp;Frantsiya kompaniyasi st pechene.Mishel 100% tabiiy ingredientlar bo'lib, frantsuz sariyog ' qo'shiladi (massaning 20%). Havo va nozik pechene. Sof vazn-130 gr.</div>",
       "file": "/uploads/1575194397207.jpg",
       "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
@@ -2046,8 +3976,8 @@
       "name": "Карамельне галеты",
       "name_uz": "Карамельные галеты",
       "id": "17fc2a90-c4fe-11e9-b6dc-ad3143662535",
-      "price": "000",
-      "description": "<div>Галеты Французской компании St.Michel это - 100% натуральные ингредиенты с добавлением Французского сливочного масла (20% от массы). Воздушные и нежные печенья со вкусом карамели. Вес нетто- 150 гр</div>",
+      "price": "32000",
+      "description": "<div>Галеты Французской компании St.Michel это - 100% натуральные ингредиенты с добавлением Французского сливочного масла (20% от массы). Нежные печенья со вкусом карамели. Вес нетто- 150 гр. Франция</div>",
       "description_uz": "",
       "file": "/uploads/1575198140945.jpg",
       "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
@@ -2057,31 +3987,20 @@
       "name": "«Мадленки» 175 гр.",
       "name_uz": "«Мадленки» 175 гр.",
       "id": "43b6edf0-c4fe-11e9-b6dc-ad3143662535",
-      "price": "34000",
-      "description": "<div>Оригинальные французские «Мадленки» компании St.Michel представляют собой выпечку из нежнейшего теста, в котором содержится сахар, масло сливочное, мучная смесь с апельсиновой или лимонной цедрой, яйца. Воздушные кексы с натуральным ароматов и вкусом. Без консервантов и красителей.&nbsp;</div>",
-      "description_uz": "<div>Оригинальные французские «Мадленки» компании St.Michel представляют собой выпечку из нежнейшего теста, в котором содержится сахар, масло сливочное, мучная смесь с апельсиновой или лимонной цедрой, яйца. Воздушные кексы с натуральным ароматов и вкусом. Без консервантов и красителей.&nbsp;</div>",
+      "price": "26000",
+      "description": "<div>Оригинальные французские «Мадленки» компании St.Michel представляют собой выпечку из нежнейшего теста, в котором содержится сахар, масло сливочное, мучная смесь с апельсиновой или лимонной цедрой, яйца. Воздушные кексы с натуральным ароматов и вкусом. Без консервантов и красителей. Франция</div>",
+      "description_uz": "",
       "file": "/uploads/1575198262231.jpg",
       "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
       "product_id": 433
     },
     {
-      "name": "«Мадленки» 250 гр.",
-      "name_uz": "«Мадленки» 250 гр.",
-      "id": "6f3348c0-c4fe-11e9-b6dc-ad3143662535",
-      "price": "39000",
-      "description": "<div>Оригинальные «Мадленки» от компании St.Michel представляют собой выпечку из нежнейшего теста, в котором содержится сахар, масло сливочное, мучная смесь с апельсиновой или лимонной цедрой, яйца. Воздушные кексы с натуральным ароматов и вкусом. Без красителей и консервантов.&nbsp;</div>",
-      "description_uz": "<div>Оригинальные «Мадленки» от компании St.Michel представляют собой выпечку из нежнейшего теста, в котором содержится сахар, масло сливочное, мучная смесь с апельсиновой или лимонной цедрой, яйца. Воздушные кексы с натуральным ароматов и вкусом. Без красителей и консервантов.&nbsp;</div>",
-      "file": "/uploads/1575198511165.jpg",
-      "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
-      "product_id": 435
-    },
-    {
-      "name": "Шоколадные «Мадленки»",
+      "name": "«Мадленки» с Шоколадом",
       "name_uz": "Традиционный Французские «Мадленки» с шоколадом 175 гр.",
       "id": "e9d0e6f0-c4fe-11e9-b6dc-ad3143662535",
-      "price": "36000",
-      "description": "<div>Оригинальные «Мадленки» от копании St.Michel представляют собой выпечку из нежнейшего теста, в котором содержится сахар, масло сливочное, мучная смесь с апельсиновой или лимонной цедрой, яйца и шоколад. Без красителей и консервантов. 175 гр.</div>",
-      "description_uz": "<div>Оригинальные «Мадленки» от копании St.Michel представляют собой выпечку из нежнейшего теста, в котором содержится сахар, масло сливочное, мучная смесь с апельсиновой или лимонной цедрой, яйца и шоколад. Без красителей и консервантов.&nbsp;</div>",
+      "price": "29000",
+      "description": "<div>Оригинальные «Мадленки» от копании St.Michel представляют собой выпечку из нежнейшего теста, в котором содержится сахар, масло сливочное, мучная смесь с апельсиновой или лимонной цедрой, яйца и шоколад. Без красителей и консервантов. 175 гр. Франция</div>",
+      "description_uz": "",
       "file": "/uploads/1575198725464.jpg",
       "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
       "product_id": 437
@@ -2090,45 +4009,12 @@
       "name": "Шоколадные  Галеты .",
       "name_uz": "Шоколадные  Галеты .",
       "id": "340db950-c4ff-11e9-b6dc-ad3143662535",
-      "price": "000",
-      "description": "<div>Галеты французской компании St.Michel это - 100% натуральные ингредиенты с добавлением Французского сливочного масла (20% от массы). Нежные шоколадные печенья. 150 гр.</div>",
-      "description_uz": "<div>Галеты французской компании St.Michel это - 100% натуральные ингредиенты с добавлением Французского сливочного масла (20% от массы). Нежные шоколадные печенья.&nbsp;</div>",
+      "price": "34000",
+      "description": "<div>Галеты французской компании St.Michel это - 100% натуральные ингредиенты с добавлением Французского сливочного масла (20% от массы). Нежные шоколадные печенья. 150 гр. Франция</div>",
+      "description_uz": "",
       "file": "/uploads/1575198862155.jpg",
       "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
       "product_id": 441
-    },
-    {
-      "name": "Кофе «Gran Miscela» 1 кг.",
-      "name_uz": "Кофе в зернах «Gran Miscela» 1 кг.",
-      "id": "86cb5d50-c4ff-11e9-b6dc-ad3143662535",
-      "price": "000",
-      "description": "<div>Кофе итальянской компании La Tazza d'Oro, завод компании расположен на знаменитом острове Сардиния. Смесь Арабики 70% и Робусты 30%. Крепкий и бархатисто насыщенный вкус. Вакуумной упаковке с клапаном 1000 гр.&nbsp;</div>",
-      "description_uz": "<div>Кофе итальянской компании La Tazza d'Oro, завод компании расположен на знаменитом острове Сардиния. Смесь Арабики 70% и Робусты 30%. Крепкий и бархатисто насыщенный вкус. Вакуумной упаковке с клапаном 1000 гр.&nbsp;</div>",
-      "file": "/uploads/1581341740776.jpg",
-      "section_id": "102122c0-c4e6-11e9-b6dc-ad3143662535",
-      "product_id": 443
-    },
-    {
-      "name": "Кофе в зернах «Miscela D’Oro» 1 кг.",
-      "name_uz": "Кофе в зернах «Miscela D’Oro» 1 кг.",
-      "id": "c2ddf9f0-c500-11e9-b6dc-ad3143662535",
-      "price": "000",
-      "description": "<div>Кофе Итальянской компании La Tazza d'Oro с острова Сардиния. Смесь Арабики 80% и Робусты 20%.</div><div>Вакуумной упаковке с клапаном 1000 гр.&nbsp;</div>",
-      "description_uz": "<div>Кофе Итальянской компании La Tazza d'Oro с острова Сардиния. Смесь Арабики 80% и Робусты 20%.</div><div>Вакуумной упаковке с клапаном 1000 гр.&nbsp;</div>",
-      "file": "/uploads/1581341678193.jpg",
-      "section_id": "102122c0-c4e6-11e9-b6dc-ad3143662535",
-      "product_id": 447
-    },
-    {
-      "name": "Кофе в зернах «Prestige» 100% Арабика 1 кг.",
-      "name_uz": "Кофе в зернах «Prestige» 100% Арабика 1 кг.",
-      "id": "145625a0-c501-11e9-b6dc-ad3143662535",
-      "price": "000",
-      "description": "<div>Кофе Итальянской компании La Tazza d'Oro с острова Сардиния. Изысканная смесь из 100% Арабики для идеального кофе.</div><div>Вакуумной упаковке с клапаном 1000 гр.&nbsp;</div>",
-      "description_uz": "<div>Кофе Итальянской компании La Tazza d'Oro с острова Сардиния. Изысканная смесь из 100% Арабики для идеального кофе.&nbsp;</div><div>Вакуумной упаковке с клапаном 1000 гр.&nbsp;</div>",
-      "file": "/uploads/1581341505471.jpg",
-      "section_id": "102122c0-c4e6-11e9-b6dc-ad3143662535",
-      "product_id": 449
     },
     {
       "name": "«Piccadole» красные перчики",
@@ -2148,7 +4034,7 @@
       "name": "«Антипаста 5 овощей»",
       "name_uz": "Antipasta 5 sabzavot yogda. Italiada Ishlab chikrilgan",
       "id": "f3b4c3a0-c501-11e9-b6dc-ad3143662535",
-      "price": "68000",
+      "price": "56000",
       "description": "<div>(оливки, артишоки, грибы, каперсы и перчик) в масле 314 мл. в стеклянной банке.&nbsp;</div><div>Страна происхождения - Италия.</div>",
       "description_uz": "",
       "file": "/uploads/1573480174317.jpg",
@@ -2156,33 +4042,33 @@
       "product_id": 459
     },
     {
-      "name": "Гигантские Итальянские зеленые оливки",
+      "name": "Гигантские оливки",
       "name_uz": "Гигантские Итальянские зеленые оливки",
       "id": "1daca150-c502-11e9-b6dc-ad3143662535",
-      "price": "67000",
+      "price": "55000",
       "description": "<div>с косточками 314 мл. в стеклянной банке.&nbsp;</div>",
-      "description_uz": "<div>Гигантские Итальянские зеленые оливки с косточками 314 мл. в стеклянной банке.&nbsp;</div>",
+      "description_uz": "<div>Гигантские Итальянские зеленые оливки с косточками 314 мл. в стеклянной банке.</div>",
       "file": "/uploads/1573480233248.jpg",
       "section_id": "34d49520-c4e6-11e9-b6dc-ad3143662535",
       "product_id": 461
     },
     {
-      "name": "Красные Маслины “Leccino” без косточек",
+      "name": "Красные Маслины",
       "name_uz": "Красные Маслины “Leccino” без косточек",
       "id": "55809f50-c502-11e9-b6dc-ad3143662535",
-      "price": "60000",
-      "description": "<div>Красные маслины натурального созревания.<br><br>Страна происхождения - Италия.</div>",
+      "price": "50000",
+      "description": "<div>Красные маслины натурального созревания “Leccino” без косточек.<br><br>Стеклянная банка 280 гр. Страна происхождения - Италия.</div>",
       "description_uz": "",
       "file": "/uploads/1573480338755.jpg",
       "section_id": "34d49520-c4e6-11e9-b6dc-ad3143662535",
       "product_id": 463
     },
     {
-      "name": "Половинка сердечек артишоков",
+      "name": "Половинка артишоков",
       "name_uz": "Половинка сердечек артишоков",
       "id": "a1735f10-c502-11e9-b6dc-ad3143662535",
-      "price": "78000",
-      "description": "<div>Половинки сердечек артишоков в масле.&nbsp;<br><br>Страна происхождения - Италия.</div>",
+      "price": "65000",
+      "description": "<div>Половинки сердечек артишоков в масле.&nbsp;<br><br>Стеклянная банка 280 гр. Страна происхождения - Италия.</div>",
       "description_uz": "<div>Половинка сердечек артишоков в масле 314 мл. в стеклянной банке. Знаменитые и полезные артишоки bo Италии.&nbsp;</div>",
       "file": "/uploads/1573480411100.jpg",
       "section_id": "34d49520-c4e6-11e9-b6dc-ad3143662535",
@@ -2192,7 +4078,7 @@
       "name": "Раздавленные Оливки «Stuzzicarella» с косточками",
       "name_uz": "Раздавленные Оливки «Stuzzicarella» с косточками",
       "id": "c8f95260-c502-11e9-b6dc-ad3143662535",
-      "price": "60000",
+      "price": "50000",
       "description": "<div>с добавлением специй в масле 314 мл. в стеклянной банке. Италия</div>",
       "description_uz": "<div>Раздавленные Оливки «Stuzzicarella» с косточками, с добавлением специй в масле 314 мл. в стеклянной банке.&nbsp;</div>",
       "file": "/uploads/1581512882637.jpg",
@@ -2286,7 +4172,7 @@
     {
       "name": "Пармезан 200 гр.",
       "name_uz": "Пармезан пишлоги",
-      "price": "90000",
+      "price": "95000",
       "id": "bd034c20-cb21-11e9-8371-dd593d663100",
       "description": "<div><strong>Пармеза́н выдержанный 14 месяцев</strong> — известный итальянский сорт твёрдого сыра долгого созревания.&nbsp;</div><div><strong>&nbsp;</strong></div><div>Вес нетто: 200 гр. в вакуумной упаковке&nbsp;<br><br>Страна происхождения: Италия</div>",
       "description_uz": "<div>Пармезан пишлоги 200 гр. упаковкасида</div>",
@@ -2297,7 +4183,7 @@
     {
       "name": "Пармезан Инкартато",
       "name_uz": "Пармезан Инкартато пишлоги",
-      "price": "000",
+      "price": "116000",
       "id": "05598430-cb22-11e9-8371-dd593d663100",
       "description": "<div><strong>Пармеза́н Инкарто выдержанный 30 месяцев</strong> — известный итальянский сорт твёрдого сыра долгого созревания.&nbsp; Страна происхождения: Италия<br><br>Вес нетто: 250 гр. в вакуумной упаковке&nbsp;</div>",
       "description_uz": "<div>Parmesan Incarto 30 oylik - italiyalik taniqli italyan pishgan qattiq pishlok.<br>&nbsp;<br>Sof vazni: 250 gr. vakuum bilan o'ralgan<br>Kelib chiqqan mamlakati: Italiya</div>",
@@ -2310,8 +4196,8 @@
       "name": "Говядина тушенная 338 гр.",
       "name_uz": "Mol Go'shti konservasi 338 gr.",
       "id": "7ba790f0-0452-11ea-98da-53ebb67a2286",
-      "price": "45000",
-      "description": "<div>Высший сорт. По закладке 97% мясо говядина.<br>Страна происхождения - Белоруссия</div>",
+      "price": "40000",
+      "description": "<div>Высший сорт. По закладке 97% мясо говядина.<br>Страна происхождения - Белоруссия.&nbsp;<br><br>Имеется сертификат \"Халяль\"</div>",
       "description_uz": "",
       "section_id": "def965d0-0451-11ea-98da-53ebb67a2286",
       "product_id": 491
@@ -2383,114 +4269,103 @@
       "product_id": 507
     },
     {
-      "name": "Джем из клюквы и черники",
+      "name": "Клюква и черника джем",
       "name_uz": "Cranberry va Blueberry Jam",
-      "price": "47000",
+      "price": "40000",
       "id": "ec96e4f0-10d2-11ea-acdc-6df04d12001c",
       "description": "",
       "description_uz": "<div>.</div>",
-      "file": "/uploads/1574830868301.jpg",
+      "file": "/uploads/1596521982641.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 509
     },
     {
-      "name": "Джем из инжира",
+      "name": "\"Инжир\" джем",
       "name_uz": "Anjir murabosi 284 gr.",
-      "price": "47000",
+      "price": "40000",
       "id": "17446190-10d4-11ea-acdc-6df04d12001c",
       "description": "",
       "description_uz": "",
-      "file": "/uploads/1574831369438.png",
+      "file": "/uploads/1596522053791.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 511
     },
     {
-      "name": "Джем из малины и граната",
+      "name": "\"Малина и гранат\" джем",
       "name_uz": "Malinali va anorli murabbo",
-      "price": "47000",
+      "price": "40000",
       "id": "8d1842b0-10d4-11ea-acdc-6df04d12001c",
-      "description": "<div><br>&nbsp;</div>",
+      "description": "<div>Джемы - St.DALFOUR (Франция) содержат только натуральные фрукты и без добавления сахара. Изготовлен по старинному французскому семейному рецепту, где вместо сахара используется 100% натуральный виноградным соком. Все банки 284 гр.&nbsp;</div>",
       "description_uz": "",
-      "file": "/uploads/1574831567143.jpg",
+      "file": "/uploads/1596522799509.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 513
     },
     {
-      "name": "Джем яблочный с корицей",
+      "name": "Яблоко и корица джем",
       "name_uz": "Olma va doljin murabbo",
-      "price": "47000",
+      "price": "40000",
       "id": "f3923d20-10d4-11ea-acdc-6df04d12001c",
       "description": "<div><br>&nbsp;</div>",
       "description_uz": "",
-      "file": "/uploads/1574832080197.jpg",
+      "file": "/uploads/1596522429141.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 515
     },
     {
-      "name": "Джем из ананаса и манго",
+      "name": "\"Ананас и манго\" джем",
       "name_uz": "Ananas va Mango murabbo",
       "id": "a6162e60-110d-11ea-acdc-6df04d12001c",
-      "price": "47000",
+      "price": "40000",
       "description": "",
       "description_uz": "",
-      "file": "/uploads/1575614987720.jpg",
+      "file": "/uploads/1596522483603.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 517
     },
     {
       "name": "Апельсиновый джем",
       "name_uz": "Apelsin murabbo",
-      "price": "47000",
+      "price": "40000",
       "id": "0c4e3dd0-110e-11ea-acdc-6df04d12001c",
       "description": "",
       "description_uz": "",
-      "file": "/uploads/1574856261627.jpg",
+      "file": "/uploads/1596522510161.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 519
     },
     {
       "name": "Черничный джем",
       "name_uz": "Moviy murabbo",
-      "price": "47000",
+      "price": "40000",
       "id": "99b546f0-110e-11ea-acdc-6df04d12001c",
       "description": "",
       "description_uz": "",
-      "file": "/uploads/1574856498992.jpg",
+      "file": "/uploads/1596522542737.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 521
     },
     {
-      "name": "Джем из отборных груш.",
+      "name": "\"Груша отборная\" джем",
       "name_uz": "Tanlangan nokdan murabbo.",
-      "price": "47000",
+      "price": "40000",
       "id": "28c78f10-110f-11ea-acdc-6df04d12001c",
       "description": "",
       "description_uz": "",
-      "file": "/uploads/1574856877793.png",
+      "file": "/uploads/1596522606590.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 523
     },
     {
-      "name": "Джем сливовый \"Мирабелла\"",
+      "name": "\"Слива Мирабелла\" джем",
       "name_uz": "\"Mirabella\" olxo'ri murabbo",
-      "price": "47000",
+      "price": "40000",
       "id": "0e7a0c90-1110-11ea-acdc-6df04d12001c",
       "description": "",
       "description_uz": "",
-      "file": "/uploads/1574857124287.jpg",
+      "file": "/uploads/1596522652000.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 525
-    },
-    {
-      "name": "Клубничный джем",
-      "name_uz": "Qulupnay murabbo",
-      "price": "47000",
-      "id": "0be51460-1111-11ea-acdc-6df04d12001c",
-      "description": "",
-      "description_uz": "",
-      "file": "/uploads/1574857606710.jpg",
-      "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
-      "product_id": 527
     },
     {
       "name": "\"Макрели\" в натуральном рассоле",
@@ -2513,39 +4388,6 @@
       "file": "/uploads/1575199357037.jpg",
       "section_id": "d5060d30-119e-11ea-acdc-6df04d12001c",
       "product_id": 531
-    },
-    {
-      "name": "\"Океанский тунец\" в натуральном рассоле",
-      "name_uz": "Tabiiy sho'r suvdagi \"Okean tunesi\" lahim",
-      "price": "000",
-      "id": "dc7a9360-11a8-11ea-acdc-6df04d12001c",
-      "description": "<div>Большие кусочки филе Тунца ( Желтоперого) в натуральном рассоле для соранения вкуса и свежести&nbsp;<br>Вес нетто : 150 гр. в стеклянной банке</div>",
-      "description_uz": "<div>Taste shirinlikdagi tuna lahimning katta qismi&nbsp; ta'm va tazelikni saqlab qolish uchun<br>Sof vazni: 150 gr. shisha bankada</div>",
-      "file": "/uploads/1575199524401.jpg",
-      "section_id": "d5060d30-119e-11ea-acdc-6df04d12001c",
-      "product_id": 533
-    },
-    {
-      "name": "\"Океанский Тунец\" в оливковом масле",
-      "name_uz": "Zaytun moyidagi okean orkinosining lahim",
-      "price": "000",
-      "id": "ecf6e490-11a9-11ea-acdc-6df04d12001c",
-      "description": "<div>&nbsp;Большие кусочки филе \"Океанского тунца\" размером не менее 20 кг., в оливковом масле для сохранения вкуса и свежести&nbsp;<br>Вес нетто - 150 гр. в стеклянной банке&nbsp;</div>",
-      "description_uz": "<div>Taom va tazelikni saqlab qolish uchun zaytun moyida kamida 20 kg og'irlikdagi okean orkinosining katta bo'laklari<br>Sof vazni - 150 gr. shisha bankada</div>",
-      "file": "/uploads/1575199604225.jpg",
-      "section_id": "d5060d30-119e-11ea-acdc-6df04d12001c",
-      "product_id": 535
-    },
-    {
-      "name": "\"Тунец\" в оливковом масле",
-      "name_uz": "Zaytun moyidagi \"orkinos\"",
-      "price": "000",
-      "id": "80c55530-11aa-11ea-acdc-6df04d12001c",
-      "description": "<div>Кусочки \"Тунца\", в оливковом масле для сохранения вкуса и свежести<br>Вес нетто- 240гр. в жестянной банке&nbsp;</div>",
-      "description_uz": "<div>Tuna ta'm va tazelikni saqlab qolish uchun zaytun moyiga solinadi<br>Sof vazni - 240 gr. qutida</div>",
-      "file": "/uploads/1574923858370.jpg",
-      "section_id": "d5060d30-119e-11ea-acdc-6df04d12001c",
-      "product_id": 537
     },
     {
       "name": "\"Тунец\" в оливковом масле",
@@ -2583,7 +4425,7 @@
     {
       "name": "Бальзамик 45%",
       "name_uz": "Modena 45% balzam sirkasi",
-      "price": "000",
+      "price": "68000",
       "id": "4b983110-1417-11ea-839f-0bea09c6ee92",
       "description": "<div>Бальзамический уксус из Модены с 45% остатком виноградного сусла в сухом остатке. 250 мл.<br><br>Страна происхождения - Италия.</div>",
       "description_uz": "",
@@ -2605,7 +4447,7 @@
     {
       "name": "Глазурь \"Original\"",
       "name_uz": "Glazur \"Original\"",
-      "price": "46000",
+      "price": "48000",
       "id": "f8705cc0-141a-11ea-839f-0bea09c6ee92",
       "description": "<div>Из классического Бальзамического уксуса из Модены -250 мл</div>",
       "description_uz": "",
@@ -2616,7 +4458,7 @@
     {
       "name": "Глазурь \"White\"",
       "name_uz": "Glazur \"White\"",
-      "price": "46000",
+      "price": "48000",
       "id": "5480a150-141b-11ea-839f-0bea09c6ee92",
       "description": "<div>Глазурь из белого виного уксуса из Модены - 250 мл.</div>",
       "description_uz": "",
@@ -2627,7 +4469,7 @@
     {
       "name": "Глазурь \"Raspberry\"",
       "name_uz": "Glazur \"Raspberry\"",
-      "price": "46000",
+      "price": "48000",
       "id": "3407aee0-141c-11ea-839f-0bea09c6ee92",
       "description": "<div>Глазурь из Бальзамического уксуса со вкусом Малины - 250 мл.</div>",
       "description_uz": "",
@@ -2638,29 +4480,18 @@
     {
       "name": "Уксус из яблочного сидра",
       "name_uz": "Olma sharbati sirkasi",
-      "price": "000",
+      "price": "65000",
       "id": "ba3cad80-141c-11ea-839f-0bea09c6ee92",
-      "description": "<div>Не фильтрованное - 500 мл</div>",
+      "description": "<div>Не фильтрованный Уксус из яблочного сидра&nbsp; - 500 мл.</div>",
       "description_uz": "",
       "file": "/uploads/1575192420217.jpg",
       "section_id": "0d60a380-1414-11ea-839f-0bea09c6ee92",
       "product_id": 561
     },
     {
-      "name": "Уксус из яблочного сидра и меда",
-      "name_uz": "Olma sharbati va asaldan sirka",
-      "price": "000",
-      "id": "f7ba4140-141c-11ea-839f-0bea09c6ee92",
-      "description": "<div>не фильтрованное - 500 мл.</div>",
-      "description_uz": "",
-      "file": "/uploads/1575192523431.jpg",
-      "section_id": "0d60a380-1414-11ea-839f-0bea09c6ee92",
-      "product_id": 563
-    },
-    {
       "name": "Глазурь \"Jalapeno\"",
       "name_uz": "Glazur \"Jalapeno\"",
-      "price": "46000",
+      "price": "48000",
       "id": "a71691b0-141e-11ea-839f-0bea09c6ee92",
       "description": "<div>Глазурь из Бальзамического Уксуса со вкусом перца Халапенье - 250 мл</div>",
       "description_uz": "",
@@ -2671,7 +4502,7 @@
     {
       "name": "Глазурь \"Curry\"",
       "name_uz": "Glazur \"Curry\"",
-      "price": "46000",
+      "price": "48000",
       "id": "94a31980-141f-11ea-839f-0bea09c6ee92",
       "description": "<div>Глазурь из Бальзамического уксуса со вкусом индийских специй Карри - 250 мл.&nbsp;</div>",
       "description_uz": "",
@@ -2682,7 +4513,7 @@
     {
       "name": "Греческая \"Фета\"",
       "name_uz": "Фета пишлоги",
-      "price": "0000",
+      "price": "55000",
       "id": "7505c770-17f9-11ea-9988-fbd78fd76ccd",
       "description": "<div>Классический сыр Фета из Греции, изготовленный из козьего и овечьего молока в вакуумной упаковке 200 гр.</div>",
       "description_uz": "<div>Грецияли Фета пишлоги. Ечки ва куй сутидан килинган 200 гр.</div>",
@@ -2693,7 +4524,7 @@
     {
       "name": "Сыр \"Чеддар\" нарезка",
       "name_uz": "\"Чеддар\" пишлоги.",
-      "price": "36000",
+      "price": "41000",
       "id": "1d8ed150-18ce-11ea-9988-fbd78fd76ccd",
       "description": "<div>Классический английский сыр \"Чеддар\" нарезка. 120 гр. упаковка</div>",
       "description_uz": "<div>Ангияли пишлог \"Чеддар\" 120 гр. кесилган.&nbsp; &nbsp;</div>",
@@ -2704,7 +4535,7 @@
     {
       "name": "Сливочное масло",
       "name_uz": "Италияли сарёйг",
-      "price": "47000",
+      "price": "49000",
       "id": "47a84b50-18cf-11ea-9988-fbd78fd76ccd",
       "description": "<div>Итальянское сливочное масло Zanetti - изготавливается только из натурального молока коров в Италии. Нежный сливочный вкус. 250 гр. &nbsp;</div>",
       "description_uz": "",
@@ -2715,7 +4546,7 @@
     {
       "name": "Сливочное масло в алюм.банке",
       "name_uz": "Сариёг алюм. банкада",
-      "price": "000",
+      "price": "65000",
       "id": "cf96e0d0-18cf-11ea-9988-fbd78fd76ccd",
       "description": "<div>Итальянское сливочное масло Zanetti - изготовлено только из натурального молока Итальянских коров. Упакован в алюминиевую банку для сохранения свежести масла. 250 гр.</div>",
       "description_uz": "<div>Италияда ишлаб чикарилган табий сариёг. 250 гр. алюминие банкасида&nbsp;</div>",
@@ -2724,11 +4555,11 @@
       "product_id": 601
     },
     {
-      "name": "Перчики \"Piccadole\" с сыром",
+      "name": "Перчики с сыром",
       "name_uz": "\"Piccadole\" garomdori pishlog bilan",
-      "price": "98000",
+      "price": "85000",
       "id": "d0a644a0-1935-11ea-9988-fbd78fd76ccd",
-      "description": "<div>Нежные, маленькие, острые перчики с наполнением сыра из овечьего молока. 280 гр. стеклянная банка. Страна происхождения - Италия</div>",
+      "description": "<div>Нежные, маленькие, пикантные перчики наполненные сыра из овечьего молока. 280 гр. стеклянная банка. Страна происхождения - Италия</div>",
       "description_uz": "",
       "file": "/uploads/1581512824446.jpg",
       "section_id": "34d49520-c4e6-11e9-b6dc-ad3143662535",
@@ -2737,90 +4568,35 @@
     {
       "name": "Пончики с стружкой шоколадной",
       "name_uz": "Пончик шоколад билан",
-      "price": "54000",
+      "price": "31500",
       "id": "6bb05290-3125-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Французские пончики с шоколадной стружкой, изготовлены из натуральных ингредиентов. Каждый пончик в индивидуальной упаковке. 180 гр.&nbsp;<br>Франция&nbsp;</div>",
+      "description": "<div>Французские пончики с шоколадной стружкой, изготовлены из натуральных ингредиентов. Каждый пончик в индивидуальной упаковке. 180 гр. Франция&nbsp;<br>&nbsp;</div><div>Без пальмового масла, только натуральные ингредиенты.&nbsp;<br><br>Цена со скидкой до 15.05.21 включительно.</div>",
       "description_uz": "<div>Франциядан обкелинган почиклар майдаланган шоколад билан. Хар бир пончик алохида упаковка килинган. 180 гр. упаковка. &nbsp;<br>Франция</div>",
       "file": "/uploads/1579073817351.jpg",
       "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
       "product_id": 605
     },
     {
-      "name": "Пончики \"Зебра\"",
-      "name_uz": "Пончики \"Зебра\"",
-      "price": "54000",
-      "id": "dad63d90-3136-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Французские пончики \"Зебра\", изготовлены из натуральных ингредиентов. Каждый пончик в индивидуальной упаковке. 180 гр.&nbsp;</div><div>Франция&nbsp;</div>",
-      "description_uz": "",
-      "file": "/uploads/1579073874711.jpg",
-      "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
-      "product_id": 607
-    },
-    {
       "name": "Пончики с шоколадной глазурью",
       "name_uz": "Шоколад билан компланган почиклар",
-      "price": "54000",
+      "price": "31500",
       "id": "a4c169d0-3138-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Французские пончики с шоколадной глазурью, изготовлены из натуральных ингредиентов. Каждый пончик в индивидуальной упаковке. 180 гр.&nbsp;</div><div>Франция&nbsp;</div>",
+      "description": "<div>Французские пончики с шоколадной глазурью, изготовлены из натуральных ингредиентов. Каждый пончик в индивидуальной упаковке. 180 гр.&nbsp; Франция&nbsp;<br>&nbsp;</div><div>Без пальмового масла, только натуральные ингредиенты.&nbsp;<br><br>Цена со скидкой до 15.05.21 включительно.&nbsp;</div>",
       "description_uz": "",
       "file": "/uploads/1579073898745.jpg",
       "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
       "product_id": 609
     },
     {
-      "name": "Галеты с морской солью",
-      "name_uz": "Денгиз тузи билан галетли печеньялар",
-      "price": "000",
-      "id": "9c441cf0-3230-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Сливочные галеты с добавлением морской соли. Нежное и интересное сочетание сладких галетов с морской солью. 150 гр.&nbsp;<br><br>Франция</div>",
-      "description_uz": "",
-      "file": "/uploads/1579073968538.jpg",
-      "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
-      "product_id": 611
-    },
-    {
       "name": "Песочное печенье",
       "name_uz": "Урволи хамирдан печеньялар",
-      "price": "000",
+      "price": "35000",
       "id": "2e8e3780-3231-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Сливочные песочные печенья. Традиционное песочное печенье из Франции с добавлением настоящего сливочного масла. 150 гр.&nbsp;<br><br>Франция.&nbsp;</div>",
+      "description": "<div>Сливочные песочные печенья. Традиционное песочное печенье из Франции с добавлением настоящего сливочного масла. 150 гр.</div>",
       "description_uz": "",
       "file": "/uploads/1579074169116.jpg",
       "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
       "product_id": 613
-    },
-    {
-      "name": "Сливочные галеты с шоколадом",
-      "name_uz": "Сарйёг ва шоколадбилан галетлар",
-      "price": "36000",
-      "id": "205f46d0-3232-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Классические сливочные галеты в серединки которых нежный молочный шоколад. Классика стала еще вкусней. 121 гр.<br><br>Франция &nbsp;</div>",
-      "description_uz": "",
-      "file": "/uploads/1579074307000.jpg",
-      "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
-      "product_id": 615
-    },
-    {
-      "name": "Подарочный набор \"Игрушка\"",
-      "name_uz": "Совга набори \"Уйнчок\"",
-      "price": "40000",
-      "id": "f734a7d0-4f07-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Французскими сливочными печеньями в индивидуальной упаковке, внутри Игрушки - 150&nbsp; гр.&nbsp;</div>",
-      "description_uz": "",
-      "file": "/uploads/1581759201167.jpg",
-      "section_id": "4e886b30-4f07-11ea-8b1e-d9b2a4dd6f18",
-      "product_id": 623
-    },
-    {
-      "name": "Сыр Пекорино Сардиния с трюфелем.",
-      "name_uz": "Pekorino Sardinya pishlogi",
-      "price": "000",
-      "id": "bdd4edd0-5185-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Твердый сыр Пекорино Сардиния с добавлением черного трюфеля. Сыр изготавливается из овечьего молока на итальянском острове Сардиния.&nbsp;<br><br>Упаковка имеет различный вес, уточняйте у операторов по весу. &nbsp;<br>Цена за 1 кг.&nbsp;</div>",
-      "description_uz": "",
-      "file": "/uploads/1582016237309.jpg",
-      "section_id": "608b7d60-c4e5-11e9-b6dc-ad3143662535",
-      "product_id": 629
     },
     {
       "name": "Кофе молотый «Tipo Bar» 250 гр.",
@@ -2845,55 +4621,22 @@
       "product_id": 633
     },
     {
-      "name": "Итальянский Кетчуп",
-      "name_uz": "Italiydan Ketchup",
-      "price": "25000",
-      "id": "84e26930-5df6-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>с добавлением Бальзамического уксуса из Модены. 300 мл. Италия.&nbsp;<br>Для истинных гурманов.&nbsp;</div>",
-      "description_uz": "",
-      "file": "/uploads/1583312437301.png",
-      "section_id": "4e886b30-4f07-11ea-8b1e-d9b2a4dd6f18",
-      "product_id": 635
-    },
-    {
-      "name": "Соус Барбекю Итальянский",
-      "name_uz": "Barbeque sousi",
-      "price": "25000",
-      "id": "d34f29a0-5df6-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>с добавлением Бальзамического уксуса из Модены. 300 мл. Италия.&nbsp;<br>Для истинных гурманов!!!!&nbsp;</div>",
-      "description_uz": "",
-      "file": "/uploads/1583312696738.png",
-      "section_id": "4e886b30-4f07-11ea-8b1e-d9b2a4dd6f18",
-      "product_id": 637
-    },
-    {
       "name": "Кокосовые Галеты 120 гр.",
       "name_uz": "Кокос мазали печенье 120 гр.",
-      "price": "30000",
+      "price": "23000",
       "id": "ea97f9e0-8932-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Нежны сливочные галеты со вкусом кокоса от Французского производителя St.Michel. упаковка 120 гр.&nbsp;&nbsp;</div>",
+      "description": "<div>Нежны сливочные галеты со вкусом кокоса от Французского производителя St.Michel. упаковка 120 гр.&nbsp; Франция</div>",
       "description_uz": "",
       "file": "/uploads/1588073434400.jpg",
       "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
       "product_id": 645
     },
     {
-      "name": "Печенья \"Ушки\"",
-      "name_uz": "Карамель мазали \"Кулокча\" печенье",
-      "price": "45000",
-      "id": "540470a0-8944-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Песочные печенья Ушки с карамелью. Нежные печенья покрытые карамелью. упаковка 100 гр.</div>",
-      "description_uz": "",
-      "file": "",
-      "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
-      "product_id": 647
-    },
-    {
-      "name": "Зеленые оливки с анчоусами",
+      "name": "Оливки с анчоусами",
       "name_uz": "Анчоуслар билан тулдирилган зайтунлар",
-      "price": "100000",
+      "price": "88000",
       "id": "79578b00-8adc-11ea-8b1e-d9b2a4dd6f18",
-      "description": "<div>Итальянские зеленые оливки наполненные анчоусами. 314 мл.&nbsp;</div>",
+      "description": "<div>Итальянские зеленые оливки наполненные анчоусами.&nbsp;<br>Стеклянная банка 280 гр. &nbsp;</div>",
       "description_uz": "",
       "file": "/uploads/1588249131580.jpg",
       "section_id": "34d49520-c4e6-11e9-b6dc-ad3143662535",
@@ -2902,7 +4645,7 @@
     {
       "name": "Оливки с Апельсинами",
       "name_uz": "Апельсин билан тулдирилган Зайтун",
-      "price": "80000",
+      "price": "70000",
       "id": "2e59e430-8add-11ea-8b1e-d9b2a4dd6f18",
       "description": "<div>Зеленые Итальянские оливки наполненные цитрусовым кремом и апельсинами. 314 мл.</div>",
       "description_uz": "",
@@ -2913,7 +4656,7 @@
     {
       "name": "Овощной микс с сыром",
       "name_uz": "Забзавотлар аралиши пишлог билан",
-      "price": "72000",
+      "price": "60000",
       "id": "dbf7b130-8add-11ea-8b1e-d9b2a4dd6f18",
       "description": "<div>Ассорти&nbsp; средиземноморских овощей с сыром в масле. 314 мл.</div>",
       "description_uz": "",
@@ -2922,24 +4665,24 @@
       "product_id": 653
     },
     {
-      "name": "Джем Вишневый",
+      "name": "\"Вишневый\" джем",
       "name_uz": "Олча мурабоси",
-      "price": "47000",
+      "price": "40000",
       "id": "57fb0560-907a-11ea-ac97-09ef62fbe8a6",
       "description": "",
       "description_uz": "",
-      "file": "/uploads/1588867131531.jpg",
+      "file": "/uploads/1596522711589.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 655
     },
     {
-      "name": "Джем Апельсин с Имбирем",
+      "name": "\"Апельсин и Имбирь\" джем",
       "name_uz": "Апельсин ва занжабили мурабо",
-      "price": "47000",
+      "price": "40000",
       "id": "4eb0acc0-907b-11ea-ac97-09ef62fbe8a6",
       "description": "",
       "description_uz": "",
-      "file": "/uploads/1588867205694.jpg",
+      "file": "/uploads/1596522765681.jpg",
       "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
       "product_id": 657
     },
@@ -2953,6 +4696,754 @@
       "file": "/uploads/1588867722483.jpg",
       "section_id": "4e886b30-4f07-11ea-8b1e-d9b2a4dd6f18",
       "product_id": 659
+    },
+    {
+      "name": "Дольчино ди капра",
+      "name_uz": "дольчина ди капра пишлоги",
+      "price": "37000",
+      "id": "b04d99c0-ab15-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Сыр с белой плесенью из козьего молока. Нежный сыр с нотками белой плесени, отлично украсит сырную тарелку или любой праздничный стол.&nbsp; <br><br><strong>Цена за 100 гр.</strong></div>",
+      "description_uz": "",
+      "file": "/uploads/1592555620553.jpg",
+      "section_id": "7fd28a10-c4e5-11e9-b6dc-ad3143662535",
+      "product_id": 717
+    },
+    {
+      "name": "Яблочный Уксус с мёдом 500 мл.",
+      "name_uz": "сырка 500 мл.",
+      "price": "70000",
+      "id": "8677de30-ac82-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Уксус из Яблочного сидра не фильтрованный с добавлением мёда. 100% органический.<br><br>Страна происхождения - Италия.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1591949111911.jpg",
+      "section_id": "0d60a380-1414-11ea-839f-0bea09c6ee92",
+      "product_id": 775
+    },
+    {
+      "name": "Яблочный Уксус с мёдом и имбирем 500 мл.",
+      "name_uz": "Сырка 500 мл.",
+      "price": "85000",
+      "id": "bbb412f0-ac85-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Уксус из яблочного сидра не фильтрованный с добавлением мёда и имбиря 500 мл. Вкусно и полезно !<br><br>Страна происхождения - Италия.</div>",
+      "description_uz": "",
+      "file": "/uploads/1591950615134.jpg",
+      "section_id": "0d60a380-1414-11ea-839f-0bea09c6ee92",
+      "product_id": 777
+    },
+    {
+      "name": "Яблочный Уксус с медом и куркумой 500 мл.",
+      "name_uz": "Сырка 500 мл.",
+      "price": "85000",
+      "id": "1aa27bc0-ac87-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Уксус из Яблочного сидра не фильтрованный с добавлением мёда и куркумы. 100% органический продукт. Вкусно и полезно !<br><br>Страна происхождения - Италия.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1591950713213.jpg",
+      "section_id": "0d60a380-1414-11ea-839f-0bea09c6ee92",
+      "product_id": 779
+    },
+    {
+      "name": "Яблочный уксус с гранатом 500 мл.",
+      "name_uz": "Сырка 500 мл.",
+      "price": "65000",
+      "id": "3a434ef0-ac8c-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Не фильтрованный уксус из яблочного сидра с добавлением граната. Это на 100% органический продукт.<br><br>Страна происхождения - Италия.</div>",
+      "description_uz": "",
+      "file": "/uploads/1591952909584.jpg",
+      "section_id": "0d60a380-1414-11ea-839f-0bea09c6ee92",
+      "product_id": 781
+    },
+    {
+      "name": "Глазурь из яблочного уксуса 150 мл.",
+      "name_uz": "Олмали сиркадан глазурь 150 мл",
+      "price": "63000",
+      "id": "cbf627d0-aed7-11ea-81fc-4f31be3dc75b",
+      "description": "<div><strong>Сладкая глазурь с нотками кислинки уксуса из яблочного сидра.&nbsp; (150 мл)</strong></div>",
+      "description_uz": "",
+      "file": "/uploads/1592808371863.jpg",
+      "section_id": "0d60a380-1414-11ea-839f-0bea09c6ee92",
+      "product_id": 783
+    },
+    {
+      "name": "Extra Virgin Оливковое масло 250 мл.",
+      "name_uz": "Зайтун мойи 250 мл",
+      "price": "32000",
+      "id": "4cc86db0-b099-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Оливковое масло Extra Virgin - San Michele (250 мл). Оливковое масло первых холодных выжимок прямо из Италии. &nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1592399053312.jpg",
+      "section_id": "defa5740-abb5-11ea-81fc-4f31be3dc75b",
+      "product_id": 787
+    },
+    {
+      "name": "Extra Virgin Оливковое масло 500 мл.",
+      "name_uz": "Zaytun moyi",
+      "price": "54000",
+      "id": "593689a0-b09a-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Оливковое масло Extra Virgin - San Michel (500 мл). Оливковое масло первых холодных выжимок прямо из Италии. &nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1592405291715.jpg",
+      "section_id": "defa5740-abb5-11ea-81fc-4f31be3dc75b",
+      "product_id": 789
+    },
+    {
+      "name": "Extra Virgin Оливковое масло 1л.",
+      "name_uz": "Zaytun moyi",
+      "price": "94000",
+      "id": "e2f60e90-b09a-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Оливковое масло Extra Virgin - San Michel (1 литр). Оливковое масло первых холодных выжимок прямо из Италии. &nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1592405332406.jpg",
+      "section_id": "defa5740-abb5-11ea-81fc-4f31be3dc75b",
+      "product_id": 791
+    },
+    {
+      "name": "Extra Virgin Оливковое масло 3 литра.",
+      "name_uz": "Zaytun moyi 3L.",
+      "price": "260000",
+      "id": "24005610-b09c-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Оливковое масло Extra Virgin - San Michel (3 000 мл) в жестяной банке. Оливковое масло первого холодного отжима из Италии. &nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1592405347376.jpg",
+      "section_id": "defa5740-abb5-11ea-81fc-4f31be3dc75b",
+      "product_id": 793
+    },
+    {
+      "name": "Extra Virgin Оливковое масло 5 литров.",
+      "name_uz": "Zaytun moyi",
+      "price": "410000",
+      "id": "b759d2e0-b09e-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Оливковое масло Extra Virgin - San Michel (5 литров) в жестяной банке. Оливковое масло первого холодного отжима из Италии. &nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1592405367090.jpg",
+      "section_id": "defa5740-abb5-11ea-81fc-4f31be3dc75b",
+      "product_id": 795
+    },
+    {
+      "name": "Рафинированное Оливковое масло 250 мл.",
+      "name_uz": "Zaytu2n moyi 250ml.",
+      "price": "28500",
+      "id": "9cb65970-b0a5-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Оливковое рафинированное масло San Michele (250 мл) в стеклянной бутылке. Оригинальное Итальянское масло первых выжимок.</div>",
+      "description_uz": "",
+      "file": "/uploads/1592405392681.jpg",
+      "section_id": "defa5740-abb5-11ea-81fc-4f31be3dc75b",
+      "product_id": 797
+    },
+    {
+      "name": "Рафинированное Оливковое масло 500 мл.",
+      "name_uz": "Зайтун мойи 500 мл.",
+      "price": "48500",
+      "id": "fa02c780-b0a5-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Оливковое рафинированное масло San Michele (500 мл) в стеклянной бутылке. Оригинальное Итальянское масло первых выжимок.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1592405415471.jpg",
+      "section_id": "defa5740-abb5-11ea-81fc-4f31be3dc75b",
+      "product_id": 799
+    },
+    {
+      "name": "Рафинированное Оливковое масло 1 литр.",
+      "name_uz": "Рафинированное Оливковое масло 1 литр.",
+      "price": "84000",
+      "id": "4ceece80-b0a6-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Оливковое рафинированное масло San Michele (1 литр) в стеклянной бутылке. Оригинальное Итальянское масло первых выжимок.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1592405433921.jpg",
+      "section_id": "defa5740-abb5-11ea-81fc-4f31be3dc75b",
+      "product_id": 801
+    },
+    {
+      "name": "Рафинированное Оливковое масло 3 литра.",
+      "name_uz": "Рафинированное Оливковое масло 3 литра.",
+      "price": "220000",
+      "id": "621a4fe0-b0a7-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Оливковое рафинированное масло San Michele (1 литр) в стеклянной бутылке. Оригинальное Итальянское масло первых выжимок.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1592405452639.jpg",
+      "section_id": "defa5740-abb5-11ea-81fc-4f31be3dc75b",
+      "product_id": 803
+    },
+    {
+      "name": "Маскарпонэ 500 гр.",
+      "name_uz": "Маскарпонэ",
+      "price": "105000",
+      "id": "3096c090-b208-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Нежный крем-сыр Маскарпонэ от фирмы Занетти.<br><br>Страна происхождения Италия.</div>",
+      "description_uz": "",
+      "file": "/uploads/1592555947834.jpg",
+      "section_id": "99264dd0-c4e5-11e9-b6dc-ad3143662535",
+      "product_id": 805
+    },
+    {
+      "name": "Пекорино Сардинья Тартуфато",
+      "name_uz": "Пекорино Сардинья Тартуфато пишлоги",
+      "price": "48000",
+      "id": "dfa84900-b451-11ea-81fc-4f31be3dc75b",
+      "description": "<div>Сыр из овечьего молока с острова Сардинья, Италия с добавлением черных трюфелей. Имеет нежный вкус и запах черных трюфелей. <br><br><strong>Цена за 100 гр. (упаковка от 250 гр. до 400 гр.)</strong></div>",
+      "description_uz": "",
+      "file": "/uploads/1592813753991.jpg",
+      "section_id": "99264dd0-c4e5-11e9-b6dc-ad3143662535",
+      "product_id": 807
+    },
+    {
+      "name": "Горгонзола Дольче",
+      "name_uz": "Горгонзола",
+      "price": "45000",
+      "id": "c8a496b0-c0fd-11ea-a545-6f170410ee13",
+      "description": "<div>Известный итальянский сыр Горгонзола Дольче\" с голубой плесенью. Нежная сливочная консистенция с нотками голубой плесени. 150 гр. упаковка. Италия.</div>",
+      "description_uz": "",
+      "file": "/uploads/1607008708629.jpg",
+      "section_id": "fe14c2d0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 829
+    },
+    {
+      "name": "Пикантная Горгонзола.",
+      "name_uz": "Ачик тамли горгонзола",
+      "price": "50000",
+      "id": "f03bc0b0-c100-11ea-a545-6f170410ee13",
+      "description": "<div>Известный итальянский сыр \"Горгонзола Пиканте\" с голубой плесенью. Имеет насыщенный пикантный вкус голубой плесени. 150 гр упаковка. Италии.</div>",
+      "description_uz": "",
+      "file": "/uploads/1607008552382.jpg",
+      "section_id": "fe14c2d0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 831
+    },
+    {
+      "name": "Сливочное масло 250гр",
+      "name_uz": "Сливочное масло",
+      "price": "38000",
+      "id": "b46b4b40-c101-11ea-a545-6f170410ee13",
+      "description": "<div>Сливочное масло Zanetti - 100% изготовлено из нежных сливок.&nbsp;<br>Имеет светло молочный цвет, по вкусу больше напоминает сливки.&nbsp;<br>250 гр. упаковка. Италии.</div>",
+      "description_uz": "",
+      "file": "/uploads/1607008989067.png",
+      "section_id": "43ffd930-c0f6-11ea-a545-6f170410ee13",
+      "product_id": 833
+    },
+    {
+      "name": "Сливчное масло 250 гр.",
+      "name_uz": "Масло в алюминиевой банке 250гр.",
+      "price": "48000",
+      "id": "72d0bfc0-c102-11ea-a545-6f170410ee13",
+      "description": "<div>Сливочное масло в Алюминиевой банке 250гр. Страна происхождения Италия.</div>",
+      "description_uz": "",
+      "file": "/uploads/1594202684476.jpg",
+      "section_id": "43ffd930-c0f6-11ea-a545-6f170410ee13",
+      "product_id": 835
+    },
+    {
+      "name": "Сыр \"Чеддар\"",
+      "name_uz": "Чеддар пишлоги.",
+      "price": "35000",
+      "id": "08b53f20-c103-11ea-a545-6f170410ee13",
+      "description": "<div>Английский сыр \"Чеддар\" от Zanetti. Страна происхождения Италия. 120 гр. упаковка.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1607008408087.jpg",
+      "section_id": "fe14c2d0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 837
+    },
+    {
+      "name": "Сыр с трюфелями.",
+      "name_uz": "Занетти пишлоги.",
+      "price": "450000",
+      "id": "67b7a850-c108-11ea-a545-6f170410ee13",
+      "description": "<div>Сыр Пекорино Сардинья из овечьего молока с добавлением черных трюфелей. Произведено в Италии. Цена за 1 кг.<br><br>Цена за килограмм</div>",
+      "description_uz": "",
+      "file": "/uploads/1594205936646.jpg",
+      "section_id": "fe14c2d0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 843
+    },
+    {
+      "name": "Пармезан 200 гр.",
+      "name_uz": "Пармезан",
+      "price": "92000",
+      "id": "5ad793e0-c10b-11ea-a545-6f170410ee13",
+      "description": "<div>Твердый сыр - пармезан от Zanetti 200гр. Сделано в Италии.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1594206509455.jpg",
+      "section_id": "a3b0a7a0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 845
+    },
+    {
+      "name": "Грана Падано 200гр.",
+      "name_uz": "Грано Падано",
+      "price": "78000",
+      "id": "afc696d0-c10b-11ea-a545-6f170410ee13",
+      "description": "<div>Твердый сыр Грано Падано 200гр. Призведено в Италии.</div>",
+      "description_uz": "",
+      "file": "/uploads/1594206652196.jpg",
+      "section_id": "a3b0a7a0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 847
+    },
+    {
+      "name": "Грано Падано 250гр.",
+      "name_uz": "Грано Падано пишлоги 250 гр.",
+      "price": "95000",
+      "id": "2d1cc550-c10c-11ea-a545-6f170410ee13",
+      "description": "<div>Грано Падано 250 гр из качественного молока. Произведено в Италии.</div>",
+      "description_uz": "",
+      "file": "/uploads/1594206862523.jpg",
+      "section_id": "a3b0a7a0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 849
+    },
+    {
+      "name": "Пармезан 250гр.",
+      "name_uz": "Пармезан пишлоги 250 гр",
+      "price": "110000",
+      "id": "584a4760-c10d-11ea-a545-6f170410ee13",
+      "description": "<div>Пармезан 250 гр. Произведено в Италии.</div>",
+      "description_uz": "",
+      "file": "/uploads/1612100297474.jpg",
+      "section_id": "a3b0a7a0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 851
+    },
+    {
+      "name": "Грано Падано тертый 160 гр.",
+      "name_uz": "Грано падано 160гр.",
+      "price": "63000",
+      "id": "4946ac20-c10f-11ea-a545-6f170410ee13",
+      "description": "<div>Тертый сыр - Грано падано. Сделано в Италии.</div>",
+      "description_uz": "",
+      "file": "/uploads/1594208198219.jpg",
+      "section_id": "a3b0a7a0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 853
+    },
+    {
+      "name": "Пекорино Романо 250гр.",
+      "name_uz": "пекорино романо пишлоги 250гр",
+      "price": "81000",
+      "id": "93c853a0-c1a7-11ea-a545-6f170410ee13",
+      "description": "<div>Твердый сыр из нежного овечьего молока по всем Итальянским традициям 250 гр. Сделано в Италии.</div>",
+      "description_uz": "",
+      "file": "/uploads/1594273748793.jpg",
+      "section_id": "a3b0a7a0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 855
+    },
+    {
+      "name": "Кетчуп Итальянский",
+      "name_uz": "кетчуп",
+      "price": "50000",
+      "id": "6979c970-c1b2-11ea-a545-6f170410ee13",
+      "description": "<div><em>Настоящий Кетчуп из Итальянских томатов с добавлением Бальзамического уксуса. Что делает его просто восхитительным.&nbsp;<br><br>На 100% состоит из итальянских помидоров.</em></div>",
+      "description_uz": "",
+      "file": "/uploads/1594278260277.jpg",
+      "section_id": "b02e4cd0-c4e5-11e9-b6dc-ad3143662535",
+      "product_id": 863
+    },
+    {
+      "name": "Уксус Бальзамик 25%.",
+      "name_uz": "Бальзамик сирка 25%",
+      "price": "38000",
+      "id": "7a752e50-c1b6-11ea-a545-6f170410ee13",
+      "description": "<div>Бальзамический уксус из Модены 25% сухого остатка виноградного сусла&nbsp; от De Nigris. Сделано в Италии. 250 мл.</div>",
+      "description_uz": "",
+      "file": "/uploads/1602836933573.png",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 865
+    },
+    {
+      "name": "Уксус Бальзамик 35%",
+      "name_uz": "Бальзамик сирка 35%",
+      "price": "43000",
+      "id": "f5a7e090-c1b6-11ea-a545-6f170410ee13",
+      "description": "<div>Бальзамический уксус из Модены 35% сухого остатка виноградного сусла - от De Nigris. Произведено в Италии. 250 мл</div>",
+      "description_uz": "",
+      "file": "/uploads/1594280213460.jpg",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 867
+    },
+    {
+      "name": "Уксус Бальзамик 45%",
+      "name_uz": "Сирка 45%",
+      "price": "80000",
+      "id": "6801dd30-c1b7-11ea-a545-6f170410ee13",
+      "description": "<div>Бальзамический Уксус из Модены 45% в сухом остатке виноградного сусла&nbsp; - De Nigris. Произведено в Италии. 250 мл.</div>",
+      "description_uz": "",
+      "file": "/uploads/1618125855981.png",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 869
+    },
+    {
+      "name": "Яблочный уксус.",
+      "name_uz": "Олмали сырка 500 мл.",
+      "price": "63000",
+      "id": "8d92c500-c1bc-11ea-a545-6f170410ee13",
+      "description": "<div>Классический Уксус из яблочного сидра 500 мл от компании de Nigris. На 100% органический продукт. Произведено в Италии🇮🇹</div>",
+      "description_uz": "",
+      "file": "/uploads/1594282930739.jpg",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 871
+    },
+    {
+      "name": "Яблочный уксус мед 500 мл.",
+      "name_uz": "Асал билан олмали сырка 500мл.",
+      "price": "69000",
+      "id": "b83a2720-c1bd-11ea-a545-6f170410ee13",
+      "description": "<div>Классический Уксус из яблочного сидра с добавлением мёда 500 мл от компании de Nigris. На 100% органический продукт. Произведено в Италии.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1594283307673.jpg",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 873
+    },
+    {
+      "name": "Яблочный уксус имбирь",
+      "name_uz": "Олмали сыркаси 500 мл.",
+      "price": "81000",
+      "id": "c070daf0-c1be-11ea-a545-6f170410ee13",
+      "description": "<div>Классический Уксус из яблочного сидра с добавлением меда и имбиря 500 мл от компании de Nigris. На 100% органический продукт. Произведено в Италии.</div>",
+      "description_uz": "",
+      "file": "/uploads/1594283626678.jpg",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 875
+    },
+    {
+      "name": "Уксус из граната.",
+      "name_uz": "Анор сиркаси 500мл",
+      "price": "63000",
+      "id": "e197aeb0-c1bf-11ea-a545-6f170410ee13",
+      "description": "<div>Классический Уксус из граната 500 мл от компании de Nigris. На 100% органический продукт. Произведено в Италии.</div>",
+      "description_uz": "",
+      "file": "/uploads/1594284045261.jpg",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 879
+    },
+    {
+      "name": "Глазурь классическая.",
+      "name_uz": "Классическая глазурь",
+      "price": "46000",
+      "id": "7e4d2ff0-c288-11ea-a545-6f170410ee13",
+      "description": "<div>Крем Глазурь из Бальзамического уксуса. Производитель dе Nigris - ИТАЛИЯ. 250 мл - объём</div>",
+      "description_uz": "",
+      "file": "/uploads/1594370206807.png",
+      "section_id": "0590d1b0-c284-11ea-a545-6f170410ee13",
+      "product_id": 881
+    },
+    {
+      "name": "Глазурь белая.",
+      "name_uz": "Глазурь ок винони сырка сидан",
+      "price": "46000",
+      "id": "d7b36320-c288-11ea-a545-6f170410ee13",
+      "description": "<div>Крем Глазурь из Белого винного уксуса. Производитель dе Nigris - ИТАЛИЯ. 250 мл - объём</div>",
+      "description_uz": "",
+      "file": "/uploads/1594370357554.png",
+      "section_id": "0590d1b0-c284-11ea-a545-6f170410ee13",
+      "product_id": 883
+    },
+    {
+      "name": "Малиновая глазурь",
+      "name_uz": "Малина ли Глазурь",
+      "price": "55000",
+      "id": "4ae214e0-c289-11ea-a545-6f170410ee13",
+      "description": "<div>Крем Глазурь из Бальзамического уксуса со вкусом малины. Производитель dе Nigris - ИТАЛИЯ. 250 мл - объём</div>",
+      "description_uz": "",
+      "file": "/uploads/1594370550825.jpg",
+      "section_id": "0590d1b0-c284-11ea-a545-6f170410ee13",
+      "product_id": 885
+    },
+    {
+      "name": "\"Кумквата\" джем",
+      "name_uz": "Qumkvat murabosi",
+      "price": "40000",
+      "id": "5126bbb0-d61d-11ea-b224-1df817e2229b",
+      "description": "<div>&nbsp;Кумкват, он же фортунелло или кинкан, небольшой плод вечно-зелёного цитрусового растения, произрастающего на юге Китая. Плод достигает 5 см в длину и 4 см в ширину, имеет продолговатую форму. В отличие от других цитрусовых кумкваты можно есть вместе с кожурой. В промышленных масштабах эти фрукты выращивают на территории Китая, Японии, Греции и в южных штатах США. Кумкват содержит в себе много полезных витаминов и микроэлементов, его используют в кулинарии и косметологии.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1596523198691.jpg",
+      "section_id": "f58c51b0-10cf-11ea-acdc-6df04d12001c",
+      "product_id": 895
+    },
+    {
+      "name": "Сыр Моццарелла",
+      "name_uz": "Моццарелла пишлоги",
+      "price": "33000",
+      "id": "e7207d50-faa7-11ea-85c5-b9d52631bfa1",
+      "description": "<div>Нарезка нежного сыр Моццарелла. 120 гр. Италия.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1607008233847.jpg",
+      "section_id": "fe14c2d0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 905
+    },
+    {
+      "name": "Сыр Манчего",
+      "name_uz": "Манчего пишлоги",
+      "price": "75000",
+      "id": "1e1d7c40-faa8-11ea-85c5-b9d52631bfa1",
+      "description": "<div>Твердый сыр \"Манчего\" из овечьего молока. Klby из самых известных сыров из Испании. 220 гр. упаковка</div>",
+      "description_uz": "",
+      "file": "/uploads/1607008323354.jpg",
+      "section_id": "fe14c2d0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 907
+    },
+    {
+      "name": "\"Джандуйя\" с молочным шоколадом",
+      "name_uz": "Джантуйя шоколадный паста",
+      "price": "105000",
+      "id": "2ffce7c0-3400-11eb-85c5-b9d52631bfa1",
+      "description": "<div>Настоявшая шоколадная паста \"Джандуйя\" из Италии. В составе 40% Пьемонтского фундука и молочный шоколад.&nbsp; 210 гр. Италия.<br><br></div><div>Без пальмового масла, без глютена, только натуральные ингредиенты.&nbsp;</div><div><br>Цена со скидкой до 15.05.21 включительно&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1606846097060.jpg",
+      "section_id": "undefined",
+      "product_id": 915
+    },
+    {
+      "name": "Темная \"Джандуйя\"",
+      "name_uz": "Темная \"Джандуйя\"",
+      "price": "105000",
+      "id": "bb424960-3400-11eb-85c5-b9d52631bfa1",
+      "description": "<div>Известная Шоколадная паста \"Джандуйя\" из темного шоколада от компании <strong>Caffarel </strong>- старейшего производителя шоколада в Италии с 1865 года. На 40% состоит из Пьемонтского фундука.&nbsp;<br><br>Банка 210 гр. Италия</div><div>Без пальмового масла, без глютена, только натуральные ингредиенты.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1625322672714.jpg",
+      "section_id": "1d6ef4a0-33ff-11eb-85c5-b9d52631bfa1",
+      "product_id": 917
+    },
+    {
+      "name": "Шоколадная паста с фундуком",
+      "name_uz": "Шоколадная паста \"Фундук\"",
+      "price": "67000",
+      "id": "1a9c61c0-3401-11eb-85c5-b9d52631bfa1",
+      "description": "<div>Молочная Шоколадная паста с Пьемонтским фундуком от компании Caffarel - старейшего производителя шоколада в Италии с 1865 года. На 15% состоит из Пьемонтского фундука.<br><br>Банка 200 гр. Италия<br>Без пальмового масла, без глютена, только натуральные ингредиенты.</div>",
+      "description_uz": "",
+      "file": "/uploads/1625329065244.jpg",
+      "section_id": "1d6ef4a0-33ff-11eb-85c5-b9d52631bfa1",
+      "product_id": 919
+    },
+    {
+      "name": "Набор Большой",
+      "name_uz": "Набор большой",
+      "price": "550000",
+      "id": "ca484ec0-3534-11eb-85c5-b9d52631bfa1",
+      "description": "<div>В составе<br>Пончики \"Зебра\" - 2 уп<br>Пончики \"Стружка\" - 2 уп.<br>Брауни Бе.шоко - 2 уп.<br>Брауни Шокол - 2 уп.<br>Печенье Сливочные - 1 уп<br>Печенье Карамель - 1 уп<br>Джемы St.Dalfour (Франция) - 3 шт.<br>Молочная Шоколадная паста \"Джандуйя\"- 40% орехи (Италия) - 1 шт.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1620664716919.jpg",
+      "section_id": "undefined",
+      "product_id": 921
+    },
+    {
+      "name": "Набор средний",
+      "name_uz": "Набор средний",
+      "price": "400000",
+      "id": "1c87e920-3535-11eb-85c5-b9d52631bfa1",
+      "description": "<div>Состав набора:&nbsp;<br><br>Пончики \"Зебра\" - 2 уп<br>Пончики \"Стружка\" - 2 уп.<br>Брауни Бе.шоко - 2 уп.<br>Брауни Шокол - 2 уп.<br>Печенье Шоколадные - 1 уп<br>Печенье Карамель - 1 уп<br>Джемы St.Dalfour (Франция) - 3 шт.<br>Темная Шоколадная паста \"Джандуйя\" состав на 40% фундук - 1 шт.</div>",
+      "description_uz": "",
+      "file": "/uploads/1620664894396.jpg",
+      "section_id": "ed385bb0-3533-11eb-85c5-b9d52631bfa1",
+      "product_id": 923
+    },
+    {
+      "name": "Набор малый",
+      "name_uz": "Панеттоне с грушей и шоколадом",
+      "price": "200000",
+      "id": "6f604110-3535-11eb-85c5-b9d52631bfa1",
+      "description": "<div>Состав набора<br><br>Пончики \"Зебра\" -1 уп<br>Брауни Бе.шоко - 1уп<br>Печенье кокосовое - 1 уп<br>Джем St.Dalfour - 1 шт.<br>Молочная Шоколадная Паста в составе 15% фундука - 1 шт</div>",
+      "description_uz": "",
+      "file": "/uploads/1606978917866.jpg",
+      "section_id": "ed385bb0-3533-11eb-85c5-b9d52631bfa1",
+      "product_id": 925
+    },
+    {
+      "name": "Новогодний Носок",
+      "name_uz": "Новогодний Носок",
+      "price": "140000",
+      "id": "35e9dc40-3d0d-11eb-85c5-b9d52631bfa1",
+      "description": "<div>Подарочный набор из различных печенье, кексов и пончиков для ваших детей и внуков, от Европейского производителя St.Michel. Состав продукции только натуральные ингредиенты такие как сливочное масло, мука, яйца. Без пальмового масла и минимум шоколада!!!</div>",
+      "description_uz": "",
+      "file": "/uploads/1607841250999.jpg",
+      "section_id": "2b1fac50-3d0c-11eb-85c5-b9d52631bfa1",
+      "product_id": 929
+    },
+    {
+      "name": "Корзина Малая",
+      "name_uz": "Корзина Малая",
+      "price": "850000",
+      "id": "953ffd00-3d0d-11eb-85c5-b9d52631bfa1",
+      "description": "<div>Новогодняя корзина с различными вкусняшками из Европы. В составе Итальянские сыры, мучные сладости, оливки, Итальянское оливковое масло, джемы без сахара, молотый кофе, рыбные консервы.<br>Корзина будет иметь новогоднюю упаковку.</div>",
+      "description_uz": "",
+      "file": "/uploads/1607841411106.jpg",
+      "section_id": "2b1fac50-3d0c-11eb-85c5-b9d52631bfa1",
+      "product_id": 931
+    },
+    {
+      "name": "Корзина средняя",
+      "name_uz": "Корзина средняя",
+      "price": "1200000",
+      "id": "c2dec2a0-3d0d-11eb-85c5-b9d52631bfa1",
+      "description": "<div>Новогодняя корзина с различными вкусняшками из Европы. В составе Итальянские сыры, мучные сладости, оливки, Итальянское оливковое масло, джемы без сахара, молотый кофе, рыбные консервы и различные соусы из Италии<br>Корзина будет иметь новогоднюю упаковку.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1607841487668.jpg",
+      "section_id": "2b1fac50-3d0c-11eb-85c5-b9d52631bfa1",
+      "product_id": 933
+    },
+    {
+      "name": "Корзина большая",
+      "name_uz": "Корзина большая",
+      "price": "1800000",
+      "id": "85aa9e80-3d0e-11eb-85c5-b9d52631bfa1",
+      "description": "<div>Новогодняя корзина с различными вкусняшками из Европы.&nbsp;<br>В составе Итальянские&nbsp; и Испанские твердые сыры, так же сыры с плесенью, печенья и пончики из Европы, оливки и маслины, Итальянское оливковое масло, джемы без сахара, рыбные и мясные консервы, различные соусы и уксусы из Италии.<br>Корзина будет иметь новогоднюю упаковку.&nbsp;</div>",
+      "description_uz": "",
+      "file": "",
+      "section_id": "2b1fac50-3d0c-11eb-85c5-b9d52631bfa1",
+      "product_id": 935
+    },
+    {
+      "name": "Кокосовый уксус",
+      "name_uz": "Кокос сиркаси 500 мл",
+      "price": "88000",
+      "id": "e7be7510-9a97-11eb-90fb-5f5c170aa026",
+      "description": "<div>100% натуральный уксус из кокоса, от компании De Nigris из Италии. Объём 500 мл.</div>",
+      "description_uz": "",
+      "file": "/uploads/1618126278133.jpg",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 955
+    },
+    {
+      "name": "Бальзамик инжирный вкусом",
+      "name_uz": "Бальзамик сирка 250 мл",
+      "price": "63000",
+      "id": "4ac40940-9a98-11eb-90fb-5f5c170aa026",
+      "description": "<div>Бальзамический уксус из Модены со вкусом инжира от De Nigris из Италии. Объём 250 мл спрей.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1618126444380.png",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 957
+    },
+    {
+      "name": "Бальзамик с гранатовым вкусом",
+      "name_uz": "Бальзамик сирка 250 мл.",
+      "price": "63000",
+      "id": "6fb15050-9a98-11eb-90fb-5f5c170aa026",
+      "description": "<div>Бальзамический уксус из Модены со вкусом граната от De Nigris из Италии. Объём 250 мл спрей.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1618126506342.png",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 959
+    },
+    {
+      "name": "Бальзамик малиновым вкусом",
+      "name_uz": "Бальзамик сирка 250 мл",
+      "price": "63000",
+      "id": "a11952f0-9a98-11eb-90fb-5f5c170aa026",
+      "description": "<div>Бальзамический уксус из Модены со вкусом малины от De Nigris из Италии. Объём 250 мл спрей.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1618126589170.png",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 961
+    },
+    {
+      "name": "Белый винный уксус",
+      "name_uz": "Ок сирка 250 мл.",
+      "price": "45000",
+      "id": "e07b1000-9a98-11eb-90fb-5f5c170aa026",
+      "description": "<div>Белый винный уксус с добавлением бальзамического уксуса от De Nigris из Италии. Объём 250 мл.</div>",
+      "description_uz": "",
+      "file": "/uploads/1618126695543.png",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 963
+    },
+    {
+      "name": "Розовый винный уксус",
+      "name_uz": "Сирка",
+      "price": "52000",
+      "id": "1990dcd0-9a99-11eb-90fb-5f5c170aa026",
+      "description": "<div>Розовый винный уксус с добавлением бальзамического уксуса от De Nigris из Италии. Объём 250 мл</div>",
+      "description_uz": "",
+      "file": "/uploads/1618248642308.jpg",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 965
+    },
+    {
+      "name": "Яблочный уксус куркума",
+      "name_uz": "Яблочный уксус куркума",
+      "price": "81000",
+      "id": "aa509310-a33a-11eb-90fb-5f5c170aa026",
+      "description": "<div>Классический Уксус из яблочного сидра с добавлением меда и куркумы 500 мл от компании de Nigris. На 100% органический продукт. Произведено в Италии.&nbsp;</div>",
+      "description_uz": "",
+      "file": "",
+      "section_id": "f414a850-c1b4-11ea-a545-6f170410ee13",
+      "product_id": 967
+    },
+    {
+      "name": "Маскарпоне",
+      "name_uz": "Маскарпоне",
+      "price": "95000",
+      "id": "f9829f50-a33a-11eb-90fb-5f5c170aa026",
+      "description": "<div>Мягкий сыр Маскарпоне 500 гр. Идеально подходить для выпечки, а в особенности для десерта Тирамису!&nbsp;<br><br>Италия</div>",
+      "description_uz": "",
+      "file": "",
+      "section_id": "fe14c2d0-c0f7-11ea-a545-6f170410ee13",
+      "product_id": 969
+    },
+    {
+      "name": "Набор большой",
+      "name_uz": "Набор большой",
+      "price": "550000",
+      "id": "3d21cab0-b1af-11eb-81ac-37de59c5069b",
+      "description": "<div>Состав набора:<br>Пончики \"Зебра\" - 2 уп<br>Пончики \"Стружка\" - 2 уп.<br>Брауни Бе.шоко - 2 уп.<br>Брауни Шокол - 2 уп.<br>Печенье Сливочные - 1 уп<br>Печенье Карамель - 1 уп<br>Джемы St.Dalfour - 3 шт.<br>Молочная Шоколадная паста \"Джандуйя\" в составе 40% фундука - 1 шт.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1620665176482.jpg",
+      "section_id": "ed385bb0-3533-11eb-85c5-b9d52631bfa1",
+      "product_id": 977
+    },
+    {
+      "name": "Молочная \"Джандуйя\"",
+      "name_uz": "Молочная \"Джандуйя\"",
+      "price": "107000",
+      "id": "1c0fa370-dc0b-11eb-8344-954d8d74a0e5",
+      "description": "<div>Известная Шоколадная паста \"Джандуйя\" с молочным шоколадом от компании Caffarel - старейшего производителя шоколада в Италии с 1865 года. На 40% состоит из Пьемонтского фундука.&nbsp;<br><br>Банка 210 гр. Италия<br>Без пальмового масла, без глютена, только натуральные ингредиенты.&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1625322583640.jpg",
+      "section_id": "1d6ef4a0-33ff-11eb-85c5-b9d52631bfa1",
+      "product_id": 983
+    },
+    {
+      "name": "Фисташковый крем",
+      "name_uz": "Фисташковый крем",
+      "price": "110000",
+      "id": "e940c860-dc0b-11eb-8344-954d8d74a0e5",
+      "description": "<div>100% натуральный крем из Сицилийских Фисташек. Бомбически вкусное лакомство из натуральных ингредиентов. 100% Итальянский продукт.<br><br>200 гр. Италия</div>",
+      "description_uz": "",
+      "file": "/uploads/1625322927939.jpg",
+      "section_id": "1d6ef4a0-33ff-11eb-85c5-b9d52631bfa1",
+      "product_id": 985
+    },
+    {
+      "name": "Миндальный крем",
+      "name_uz": "Миндальный крем",
+      "price": "105000",
+      "id": "00c94200-dc0c-11eb-8344-954d8d74a0e5",
+      "description": "<div>100% натуральный крем из Сицилийского Миндаля. Бомбически вкусное лакомство из натуральных ингредиентов. На 100% Итальянский продукт.<br><br>200 гр. Италия&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1625323046951.jpg",
+      "section_id": "1d6ef4a0-33ff-11eb-85c5-b9d52631bfa1",
+      "product_id": 987
+    },
+    {
+      "name": "Фисташковая Нуга",
+      "name_uz": "Фисташковая Нуга",
+      "price": "72000",
+      "id": "86ad8ac0-dc1b-11eb-8344-954d8d74a0e5",
+      "description": "<div>Мягкая нуга с фисташками от компании \"Pisti\". Сладкая и нежная нуга с добавлением Сицилийских фисташек.&nbsp;<br><br>Упаковка 100 гр. Италия</div>",
+      "description_uz": "",
+      "file": "/uploads/1625329704138.jpg",
+      "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
+      "product_id": 989
+    },
+    {
+      "name": "Миндальная нуга",
+      "name_uz": "Миндальная нуга",
+      "price": "72000",
+      "id": "9aa93420-dc1b-11eb-8344-954d8d74a0e5",
+      "description": "<div>Мягкая нуга с миндалем от компании \"Pisti\". Сладкая и нежная нуга с добавлением Сицилийского миндаля.&nbsp;<br><br>Упаковка 100 гр. Италия&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1625329756525.jpg",
+      "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
+      "product_id": 991
+    },
+    {
+      "name": "Фундуковая нуга",
+      "name_uz": "Фундуковая нуга",
+      "price": "72000",
+      "id": "1a5f2490-dc1c-11eb-8344-954d8d74a0e5",
+      "description": "<div>Мягкая нуга с Сицилийским фундуком от компании \"Pisti\". Сладкая и нежная нуга с добавлением цельного фундука.&nbsp;</div><div><br>Упаковка 100 гр. Италия&nbsp;</div>",
+      "description_uz": "",
+      "file": "/uploads/1625330863201.jpg",
+      "section_id": "d54bcba0-c4e5-11e9-b6dc-ad3143662535",
+      "product_id": 993
     }
   ],
   "posts": [
@@ -2966,90 +5457,321 @@
       "id": "9b159530-5183-11ea-8b1e-d9b2a4dd6f18"
     },
     {
-      "file": "",
-      "name": "СКИДКИ",
-      "name_uz": "Chegirmalar",
-      "text": "<div>Следите за разделом АКЦИИ - СКИДКИ в нашем боте и не упустите свою выгоду! Постоянно обновляется и добавляются новые продукты.&nbsp;</div>",
-      "text_uz": "",
-      "sent_date": "2020-03-04T09:18:15.870Z",
-      "id": "08d1aba0-5df9-11ea-8b1e-d9b2a4dd6f18"
-    },
-    {
-      "file": "",
-      "name": "Берегите себя друзья!",
-      "name_uz": "Xurmatly dos'tlar",
-      "text": "<div>Ну как вы друзья? Пожалуйста берегите себя и своих близких!!! &nbsp;</div><div><br>Мы продолжаем работать и всегда готовы доставить Вам на дом, наши лучшие продукты, чтоб скрасить ваши будни. Всегда доступны наши высококачественные продукты с долгим сроком хранения, такие продукты как Тушенка, Овощные консервы, Рыбные консервы, Соусы и Сыры.&nbsp;</div><div><br></div><div>А для Ваших детишек наши самые вкусные сладости от St.Michel&nbsp; &nbsp;</div>",
-      "text_uz": "",
-      "sent_date": "2020-03-18T04:27:53.668Z",
-      "id": "6d2b6dd0-6870-11ea-8b1e-d9b2a4dd6f18"
-    },
-    {
-      "file": "",
-      "name": "СКИДКА 10% на ВСЕ",
+      "photo": "",
+      "name": "Оливковое масло San Michele",
       "name_uz": "",
-      "text": "<div>Уважаемый друзья, <br><br>Мы решили в этот сложный период времени Вас подержать и предоставляем всем 10% скидки* на заказы через <strong>Телеграмм БОТ</strong> на весь ассортимент товаров. <br><br><strong>*</strong> скидка будет применена к конечной сумме заказа при доставке! Скидка не действует на товары в разделе АКЦИИ и СКИДКИ&nbsp;</div>",
+      "text": "<div>Друзья мы рады сообщить что скоро в нашем ассортименте будет первоклассное оливковое масло Extra Virgin (холодного отжима) и так же очищенное оливковое масло ( Pure Olive Oil) Сан Мишель из Италии.&nbsp;<br><br></div><div>Компания San Michele с 1904 года занимается производством пищевых масел в Италии.&nbsp;<br><br></div><div>Компания экспортирует свою продукцию в 80 стран мира, от Соединенных Штатов Америки до Канады, от Австралии до Японии, от Южно-Африканской Республики до стран Европейского союза, а теперь и в Узбекистане.&nbsp;<br><br>Вся продукция производиться и упаковывается в Италии.&nbsp;<br><br>Следите за новостями.&nbsp;</div>",
       "text_uz": "",
-      "sent_date": "2020-03-26T13:22:46.650Z",
-      "id": "2ea6f300-6f63-11ea-8b1e-d9b2a4dd6f18"
+      "sent_date": "2020-06-06T10:47:31.839Z",
+      "id": "6bbf6ee0-a733-11ea-81fc-4f31be3dc75b",
+      "file": "/uploads/1591440442799.jpg"
     },
     {
-      "file": "",
-      "name": "Со светлым праздником Пасхи!!!",
+      "name": "St Michel - Изначально есть гурман.",
       "name_uz": "",
-      "text": "<div>Поздравляем всех Православных друзей со Светлым Праздником Пасхи! Желаем Вам мира и добра!!&nbsp;</div>",
+      "text": "<div>St.Michel - Компания основанная в 1919 году. Название компания получила в честь Шеф-повара - Сан-Мишель. Компания увековечила свое имя благодаря всеми любимых классических Мадленок.&nbsp; <br><br>St.Michel используют на 100% органические и фермерские продукты, выращенные во Франции. Без добавления пальмового масла и ГМО! <br>Произведено во Франции. <br><strong><br>Почувствуйте вкус Французских сладостей, не выходя из дома.&nbsp;</strong></div>",
       "text_uz": "",
-      "sent_date": "2020-04-19T15:10:24.710Z",
-      "id": "d5c92d20-824f-11ea-8b1e-d9b2a4dd6f18"
+      "sent_date": "2020-06-24T10:45:43.530Z",
+      "id": "b73a2990-b607-11ea-8065-cb51367c6e5b",
+      "photo": ""
     },
     {
-      "file": "",
-      "name": "Некоторые товары отсутствую в наличии",
+      "name": "Castelliino - качество и инновации!",
       "name_uz": "",
-      "text": "<div>Уважаемы покупатели&nbsp;<br><br></div><div>Связи с нынешней ситуацией в мире и в Узбекистане, поставки некоторых товаров замедляются. Связи с чем некоторые товары временно отсутствуют в наличии. &nbsp;<br><br></div><div>Если вы видите, что цена товара казана – 000 сум, то этого товара нету в наличии!&nbsp;<br><br></div><div>Приносим свои извинения!&nbsp;</div>",
+      "text": "<div>Высокое качество и инновации. Это и является ключом успеха для Castellino - эта компания радует гурманов мира своими изысканными Овощными консервами уже не первый десяток лет.&nbsp;<br><br>Они славятся свежими и ароматными Итальянскими оливками, артишоками и соусами, которые сделаны по высоким стандартам в Италии🇮🇹<br><br>Мы выбрали для вас самую лучшую😋продукцию из всей линейки Castellino и привезли в Узбекистан. Заказывайте продукцию Castellino позвонив по номеру или прямо здесь.</div>",
       "text_uz": "",
-      "sent_date": "2020-04-28T12:10:22.168Z",
-      "id": "3084f820-8949-11ea-8b1e-d9b2a4dd6f18"
+      "sent_date": "2020-07-06T09:34:01.593Z",
+      "id": "7bd1bbd0-bf6b-11ea-a545-6f170410ee13",
+      "file": "/uploads/1594028027792.jpg"
     },
     {
-      "file": "",
-      "name": "МЕГА СКИДКИ НА КОФЕ",
+      "photo": "",
+      "name": "Оставайтесь Дома !!!!!",
       "name_uz": "",
-      "text": "<div>Уважаемые Друзья !</div><div><br></div><div>У нас грандиозная распродажа Итальянского кофе La Tazza d’Oro!!! Смотрите и делайте заказы в разделе !!!!! АКЦИИ-СКИДКИ!!!!&nbsp;<br><br></div><div>Спасибо что вы выбрали i Gourmet&nbsp;</div>",
+      "text": "<div>Друзья !!!<br><br>В эти тяжелые дни, пожалуйста по возможности оставайтесь дома!<br>&nbsp;<br>Мы не перестаем работать и доставим Ваш заказ в любую точку в городе Ташкент.&nbsp;<br><br>Пожалуйста помните что заказ оформленный до 17:00 будет доставлен в тот же день, заказы поступившие после 17:00 будут доставлены на следующий день.&nbsp;<br><br>Спасибо за Ваше понимание!&nbsp;</div>",
       "text_uz": "",
-      "sent_date": "2020-05-08T11:25:30.711Z",
-      "id": "ac590690-90b4-11ea-ac97-09ef62fbe8a6"
+      "sent_date": "2020-07-24T10:39:10.654Z",
+      "id": "93df8090-cd99-11ea-a545-6f170410ee13"
     },
     {
-      "file": "",
-      "name": "Снижение цен на сыры с плесенью",
+      "photo": "",
+      "name": "Работа службы доставки 31 Июля, 1 и 2 Августа",
       "name_uz": "",
-      "text": "<div>Уважаемый Друзья<br><br>с 15.05.20 по 01.06.20 у нас объявлена скидка на все сыры с плесенью.&nbsp; Такие как БРИ (весовой), Горгонзола Дольче (150 гр) и Горгонзола Пиканте (150 гр).&nbsp;<br><br>Делайте заказы поскорей, пока есть в наличии!!!!&nbsp;<br><br></div>",
+      "text": "<div>Уважаемый Друзья,&nbsp;<br><br></div><div>Поздравляем с наступающим светлым праздником Курбан Хайит. Желаем всем крепкого здоровья и мира в доме.&nbsp;<br><br></div><div>Наша доставка будет работать 31 июля, 1 и 2 Августа, но связи с ограничениями передвижения на автотранспорте в городе на вышеуказанные числа, просим Вас размещать заказы заранее во избежание задержек с доставкой.&nbsp;<br><br></div><div>Все заказы, размещённые 30-го Июля до 16:00, будут доставлены в тот же день, а заказы принятые после 17:00 будут доставлены уже 31-го Июля или 1-го Августа.&nbsp;<br><br></div><div>Надеемся на Ваше понимание!!! &nbsp;</div>",
       "text_uz": "",
-      "sent_date": "2020-05-15T11:10:17.772Z",
-      "id": "3052aa90-969c-11ea-ac97-09ef62fbe8a6"
+      "sent_date": "2020-07-29T06:17:45.477Z",
+      "id": "5f424be0-d0c0-11ea-b224-1df817e2229b"
     },
     {
-      "file": "",
-      "name": "Скидки на сыры с плесенью",
+      "name": "НОВИНКИ ДЖЕМЫ!!!",
       "name_uz": "",
-      "text": "<div>Уважаемый Друзья<br><br>Напоминаем что до 01.06.20 у нас объявлены скидки на сыры с плесенью. Такие как БРИ (весовой), Горгонзола Дольче (150 гр) и Горгонзола Пиканте (150 гр).&nbsp;<br><br>Делайте заказы поскорей, пока есть в наличии!!!!&nbsp;</div>",
+      "text": "<div>В разделе джемы у нас вкусные и экзотические 2 новинки !!! <br>Встречайте:<br><strong>Манго и Маракуйи</strong> - вкус тропических фруктов у Вас на столе. <br><br><strong>Кумквата</strong> - загадочный, цитрусовый и необычный вкус!!!<br><br>Так же обратите внимание на новые цены на джемы!!!! Мы их снизили, что делает покупку новинок еще приятней!!!</div>",
       "text_uz": "",
-      "sent_date": "2020-05-18T08:01:40.456Z",
-      "id": "f12e1e00-9892-11ea-ac97-09ef62fbe8a6"
+      "sent_date": "2020-08-14T09:54:33.262Z",
+      "id": "23191520-de14-11ea-b224-1df817e2229b",
+      "file": "/uploads/1597398865753.jpg"
     },
     {
-      "file": "",
-      "name": "Польза твердых сыров",
-      "name_uz": "",
-      "text": "<div>Здравствуйте Друзья! Пока все сидят дома и путешествуют только в Google картах, мы расскажем вам про наши сыры и про их особенности.<br><br>Сыр — один из вкуснейших и питательных продуктов в нашем рационе. Так, 500 граммов сыра содержат столько же кальция как и 5 литров молока. Кроме этого, это источник витамина группы А, который как известно, продлевает молодость и долголетие.<br><br>А твердые сыры восстанавливают организм после продолжительных заболеваний или операций, а также улучшают пищеварение, состояние кожи и позитивно влияют на зрение.<br><br>Качество сыров прежде всего зависит от качества молока. Наши Сыры сделаны по самым высоким требованиям и стандартам Италии.<br><br>Попробовать настоящий вкус Европы,сидя у себя дома,вы можете сделав заказ через нашего Бота.<br><br>А если будут вопросы, пишите и звоните на номер - +998955142000</div>",
+      "name": "Хорошие новости.",
+      "name_uz": "Хуш Хабарлар !!!",
+      "text": "<div>У нас много хороших новостей для вас!!!&nbsp;<br><br>В эту холодную осень мы решили Вас согреть приятными вестями!!!<br><br>1. Новинки в разделе прочие сыры сыры!!!&nbsp;<br>&nbsp; &nbsp;- Сыр Манчего (Испания) - из овечьего молока<br>&nbsp; &nbsp;- Сыр Моццарелла нарезка (Италия)<br><br>2. Снижение цен на сливочное масло Zanetti (Италия).<br><br>3. Снижение цен в разделе \"сладости\"!! Что делает их еще слаще!!<br><br>Смотрите и заказывайте ваши любимые продукты с доставкой на дом.&nbsp;</div>",
+      "text_uz": "<div>Новинки</div>",
+      "sent_date": "2020-09-20T05:48:12.225Z",
+      "id": "11f71050-faaa-11ea-85c5-b9d52631bfa1",
+      "file": "/uploads/1600541894097.jpg",
+      "photo": ""
+    },
+    {
+      "name": "Пикантные перчики с наполненные сыром!!!",
+      "name_uz": "Гаримдор пишлог билан турдирилган",
+      "text": "<div><strong>А вы пробовали наши пикантные перчики фаршированные сыром??? </strong><br><br><strong>Castellino </strong>— это старая школа, большое итальянское производство, расположенное в регионе Марке, в крае необъятных оливковых рощ и пшеничных полей до горизонта.&nbsp;<br><br>Пикантные перчики, фаршированные мягким сыром - превосходная закуска для любого времени года! Продукт готов к употреблению и выступит ярким и вкусным украшением любого стола: будь то встреча друзей или фуршет на большую компанию. Сервируется как отдельно, так и в сочетании с вторыми блюдами или салатами.</div>",
       "text_uz": "",
-      "sent_date": "2020-05-22T08:15:19.944Z",
-      "id": "4f8a7e20-9c04-11ea-ac97-09ef62fbe8a6"
+      "sent_date": "2020-09-21T09:07:37.709Z",
+      "id": "ae1dcb40-fb13-11ea-85c5-b9d52631bfa1",
+      "file": "/uploads/1600679249960.jpg"
+    },
+    {
+      "name": "Оливковое масло San Michele (Италия).",
+      "name_uz": "Зайтун еги",
+      "text": "<div><strong>Италия + Оливковое масло = San Michele !!!</strong><br><br>Оливковое масло San Michele появилось в Италии больше ста лет назад, но процесс его производства не претерпел каких-либо изменений. Спелые плоды перебираются вручную, не подвергаясь в дальнейшем химической обработке, проходя только через процедуру обычного холодного отжима. <br><br>В результате рождается то самое оливковое масло San Michele, которое ценят за тонкий вкус, очень мягкий аромат и устойчивость к нагреванию – даже при добавлении в горячие блюда оно сохраняет большую часть полезных микроэлементов, которыми славятся свежие оливки. <br><br><strong>В наличии имеется масло как первого холодного отжима (Extra Virgin), так и рафинированное масло в различной упаковке!!!&nbsp;</strong></div>",
+      "text_uz": "",
+      "sent_date": "2020-09-23T06:14:30.195Z",
+      "id": "27e7da40-fb6b-11ea-85c5-b9d52631bfa1",
+      "file": "/uploads/1600841663251.jpg"
+    },
+    {
+      "name": "Сливочное масло, итальянское, утром, на тосте, с чашкой кофе.",
+      "name_uz": "Сарйег",
+      "text": "<div>В регионе Эмилья-Романья, компания Zanetti, на протяжении более пятидесяти лет производит одно из лучших в Италии сливочное масло. Burro Zanetti – душистое, пастообразное. <br><br>Burro Zanetti делают из сливок, которые поставляют итальянские фермы что расположены в регионах Парма и Эмилия-Романья.<br><br><strong><em>и ДА цена снижена на сливочное масло в нашем боте!!!</em></strong></div>",
+      "text_uz": "",
+      "sent_date": "2020-09-24T08:05:17.450Z",
+      "id": "aaf3aad0-fe3c-11ea-85c5-b9d52631bfa1",
+      "file": "/uploads/1600934710775.jpg"
+    },
+    {
+      "name": "Что делает сладости от St. Michel (Франция) особенными???",
+      "name_uz": "",
+      "text": "<div><strong>1.</strong>&nbsp; &nbsp; &nbsp; &nbsp;<strong>Качество&nbsp;</strong></div><div><strong>2.</strong>&nbsp; &nbsp; &nbsp; &nbsp;<strong>Ингредиенты</strong>&nbsp;</div><div><strong>3.</strong>&nbsp; &nbsp; &nbsp; &nbsp;<strong>Франция</strong>&nbsp;<br><br></div><div><strong>1. </strong>Качество продукции подтверждено временим, компания существует с 1905 года во Франции.&nbsp;<br><br></div><div><strong>2.</strong> Ингредиенты сладостей очень простые: мука пшеничная (только Французская), свежие яйца кур на свободном выгуле, сливочное масло (только Французское) и другие добавки в зависимости от вкуса. Нету пальмового масла, усилителей вкусов и прочей химии.&nbsp;<br><br></div><div><strong>3.</strong> Продукция произведена на 7 заводах во Франции и только по традиционным, проверенные временим Французскими рецептам.&nbsp;</div><div><br></div><div><strong><em>Откройте для себя вкус Франции !!!&nbsp;</em></strong></div>",
+      "text_uz": "",
+      "sent_date": "2020-09-28T06:00:59.033Z",
+      "id": "f6482720-014f-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1601272851078.jpg"
+    },
+    {
+      "name": "Что за ФРУКТ ??!!",
+      "name_uz": "",
+      "text": "<div>Кумкваты бывают разными – желтыми или оранжевыми, но неизменно вкусными.&nbsp;</div><div>Кумкват – это цитрусовый фрукт со сладкой кожицей и слегка кисловатой мякотью. Как и вся группа цитрусовых, кумкват является прекрасным источником известного витамина С, а также и ценных витаминов А и В2.&nbsp;</div><div><br></div><div>Люди редко обращают внимание на кумкват в магазинах, поэтому узнайте, почему нужно его покупать&nbsp;<br><br></div><div><strong>1) Кумкват содержит мощные антиоксиданты</strong>&nbsp;<br><br></div><div><strong>2) Кумкваты богаты минералами</strong>&nbsp;<br><br></div><div><strong>3) Кумкват помогает предупредить рак</strong>&nbsp;<br><br></div><div><strong>4) Поддержание красоты и здоровья кожи&nbsp;</strong></div><div><strong><br>5) Кумкваты снижают риск возникновения камней в почках&nbsp;<br></strong><br></div><div><strong>6) Кумкваты необходимы для костей&nbsp;<br></strong><br></div><div><strong>7) Кумкваты – источник клетчатки и белка&nbsp;<br></strong><br></div><div><strong>8) Источник ценных для крепкого здоровья жирных омега-3 и омега-6 кислот</strong> <br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><em>Попробуйте Джем из Кумквата !!!!!</em></strong></div>",
+      "text_uz": "",
+      "sent_date": "2020-09-29T11:08:17.248Z",
+      "id": "0f7f3a40-0244-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1601377690587.jpg"
+    },
+    {
+      "name": "Глазурь из Уксуса яблочного сидра",
+      "name_uz": "",
+      "text": "<div>100% натуральные продукт из уксуса из яблочного сидра.&nbsp;<br><br>Яблочный сидр и уксус из яблочного сидра на медленным огне уваривается до крема образной консистенции. За счет чего достигается такая консистенция без добавления сахара или загустителей.&nbsp;<br>Глазурь имеет приятный сладкий вкус спелых яблок, с нотками кислинки.<br><br>Идеально освежить Ваши салаты или мясные блюда. Так же можно его добавлять различные напитки для кислинки и яблочного послевкусия. &nbsp;<br><br>Добавьте новые яркие вкусы в Вашу жизнь !!!</div>",
+      "text_uz": "",
+      "sent_date": "2020-09-30T09:37:04.042Z",
+      "id": "4ded1b00-0300-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1601458547258.jpg",
+      "photo": ""
+    },
+    {
+      "name": "Осень пора для витаминов!!!",
+      "name_uz": "",
+      "text": "<div><strong>Артишок</strong> – полезное травянистое растение, которое использовали для лечения различных заболеваний еще древние египтяне и римляне. Он обладает интересным вкусом, помогает очистить и оздоровить организм&nbsp;<br><br></div><div>Артишок – необычная овощная культура. Ценность растения представляют молодые нераспустившиеся соцветия. Они относятся к деликатесным продуктам и давно заняли почетное место в национальных кухнях Средиземноморья.&nbsp;</div><div><br></div><div>Артишок – настоящее сокровище, кладезь витаминов и редких органических кислот. В составе соцветий содержится 3% белка, 15% сложных углеводов и всего 0,1% жира.&nbsp;</div><div>&nbsp;</div><div>Обнаружены соединения натрия, магния, железа, кальция, меди, селена, цинка, марганца, фосфора. Витаминный состав отварного артишока такой: растение богато витаминами группы В, А, К, Е, Р и С. Он содержит уникальный полисахарид инулин, гликозиды, кофейную, хинную, хлорогеновую, гликолевую и фруктовые кислоты.&nbsp;</div><div>&nbsp;</div><div>Необычный вкус овоща, напоминающий недозрелый грецкий орех, обеспечивают эфирные масла. Калорийность артишоков — 28-47 ккал, гликемический индекс – 18.&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2020-10-16T08:51:36.915Z",
+      "id": "639d66b0-0f8c-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1602838282821.jpg"
+    },
+    {
+      "name": "Тушенка как в СССР",
+      "name_uz": "",
+      "text": "<div>Тушенка от \"Березовского Мясоконсервного Комбината\" (Белоруссия) наверное самая лучшая тушенка. Качество тушенки не изменилось со времён СССР. Состав простой: <strong>мясо и жир говяжий, лавровый лист и специи.</strong> По закладке 98% мясо говядины! <br><br>Тушенка всегда не заменима на любой кухне, на отдыхе или в путешествиях. <br><br><strong>ВКУСНО, СЫТНО и&nbsp; НАТУРАЛЬНО!!!</strong>&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2020-10-22T10:32:21.316Z",
+      "id": "1972ddb0-13c7-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1603303141117.jpg"
+    },
+    {
+      "name": "Испанский сыр \"Манчего\"",
+      "name_uz": "",
+      "text": "<div>Сыр «Манчего» производится в регионе Ла-Манча исключительно из цельного молока овец местной породы. Этот насыщенный полутвердый сыр вызревает 3-6 месяцев в естественных пещерах, благодаря чему вкус получается достаточно пикантным.&nbsp;<br>Головка сыра Манчего несколько напоминает бочонок и весит около 2 кг. Ее диаметр составляет около 25 см, а толщина — 12 см. Благодаря тому, что в процессе производства сыр заворачивают в специальную ткань, на несъедобной поверхности отпечатывается рисунок «в ёлочку». Традиция тиснения сохранилась с того времени, когда сыр заворачивали в ткань из травы эспарто.<br><br>Кроме того, Манчего прессуют при помощи деревянных досок, благодаря чему на нижней и верхней стороне остается отпечаток, напоминающий пшеницу. Это придает сыру уникальный вид. Мякоть белая или светло-желтая, а цвет корочки варьируется от светло-коричневого до темно-серого. Вкус зависит от выдержки: мягкий, тонкий и свежий; или сильный, насыщенный, с пикантными фермерскими нотками.<br><br>У Манчего особенный солоноватый вкус. Это сливочный сыр с небольшой ноткой пикантности. Манчего оставляет характерное послевкусие, как и любой другой овечий сыр. Манчего отдаленно напоминает Фету, хотя он не такой соленый и мягкий.&nbsp;<br><br>Манчего часто едят с испанскими крекерами, лососем или бараниной. Также хорошо сочетается с пивом или вином Rioja. В Испании традиционно ломтики сыра Манчего выкладывают на поджаренный хлеб, натертый чесноком и помидором. Такие гренки также сбрызгивают оливковым маслом.</div>",
+      "text_uz": "",
+      "sent_date": "2020-10-31T09:47:05.252Z",
+      "id": "cb5b9f60-1b5d-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1604137522113.jpg",
+      "photo": ""
+    },
+    {
+      "name": "Испанский сыр \"Манчего\"",
+      "name_uz": "",
+      "text": "<div>Производится в регионе Ла-Манча исключительно из цельного молока овец местной породы. Этот насыщенный полутвердый сыр вызревает 3-6 месяцев в естественных пещерах, благодаря чему вкус получается достаточно пикантным.&nbsp;</div><div>Головка сыра Манчего несколько напоминает бочонок и весит около 2 кг. Ее диаметр составляет около 25 см, а толщина — 12 см. Благодаря тому, что в процессе производства сыр заворачивают в специальную ткань, на несъедобной поверхности отпечатывается рисунок «в ёлочку». Традиция тиснения сохранилась с того времени, когда сыр заворачивали в ткань из травы эспарто.<br><br>Кроме того, Манчего прессуют при помощи деревянных досок, благодаря чему на нижней и верхней стороне остается отпечаток, напоминающий пшеницу. Это придает сыру уникальный вид. Мякоть белая или светло-желтая, а цвет корочки варьируется от светло-коричневого до темно-серого. Вкус зависит от выдержки: мягкий, тонкий и свежий; или сильный, насыщенный, с пикантными фермерскими нотками.<br><br>У Манчего особенный солоноватый вкус. Это сливочный сыр с небольшой ноткой пикантности. Манчего оставляет характерное послевкусие, как и любой другой овечий сыр. Манчего отдаленно напоминает Фету, хотя он не такой соленый и мягкий.&nbsp;<br><br>Манчего часто едят с испанскими крекерами, лососем или бараниной. Также хорошо сочетается с пивом или вином Rioja. В Испании традиционно ломтики сыра Манчего выкладывают на поджаренный хлеб, натертый чесноком и помидором. Такие гренки также сбрызгивают оливковым маслом.&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2020-11-03T04:40:42.979Z",
+      "id": "b31c4cf0-1d8e-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1604378429236.jpg"
+    },
+    {
+      "name": "Испанский сыр \"Манчего\"",
+      "name_uz": "",
+      "text": "<div>Производится в регионе Ла-Манча исключительно из цельного молока овец местной породы. Этот насыщенный полутвердый сыр вызревает 3-6 месяцев в естественных пещерах, благодаря чему вкус получается достаточно пикантным.&nbsp;<br>Головка сыра Манчего несколько напоминает бочонок и весит около 2 кг. Ее диаметр составляет около 25 см, а толщина — 12 см. Благодаря тому, что в процессе производства сыр заворачивают в специальную ткань, на несъедобной поверхности отпечатывается рисунок «в ёлочку». Традиция тиснения сохранилась с того времени, когда сыр заворачивали в ткань из травы эспарто.<br><br>Кроме того, Манчего прессуют при помощи деревянных досок, благодаря чему на нижней и верхней стороне остается отпечаток, напоминающий пшеницу. Это придает сыру уникальный вид. Мякоть белая или светло-желтая, а цвет корочки варьируется от светло-коричневого до темно-серого. Вкус зависит от выдержки: мягкий, тонкий и свежий; или сильный, насыщенный, с пикантными фермерскими нотками.<br><br>У Манчего особенный солоноватый вкус. Это сливочный сыр с небольшой ноткой пикантности. Манчего оставляет характерное послевкусие, как и любой другой овечий сыр. Манчего отдаленно напоминает Фету, хотя он не такой соленый и мягкий.</div>",
+      "text_uz": "",
+      "sent_date": "2020-11-03T04:47:24.871Z",
+      "id": "a229cf70-1d8f-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1604378830307.jpg"
+    },
+    {
+      "name": "НОВИНКИ !!!!!",
+      "name_uz": "",
+      "text": "<div>Нежные кексы \"Брауни\" с шоколадом и с белым шоколадом. В каждой упаковке по 7 батончиков. Вкусно, натурально и удобно!!!&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2020-11-07T10:08:09.475Z",
+      "id": "16bba9e0-20e1-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1604743668602.jpg"
+    },
+    {
+      "name": "Вкусная \"Джандуйя\"",
+      "name_uz": "",
+      "text": "<div>ДЖАНДУЙЯ. ШОКОЛАДНО-ОРЕХОВАЯ ПАСТА<br><br>Джандуйя – это итальянский нежный и очень сладкий мягкий шоколад из какао и орехов, придуманный в Турине еще при Наполеоне. Название джандуйя получило от пьемонтского крестьянина, любившего сладкую жизнь: вино, хорошую еду и женщин. Кстати, этот крестьянин врос в историю Италии, например, стал марионеткой национального театра, главным персонажем карнавала в Турине. А шоколадная конфета имеет типичную форму, напоминающей шляпу Джандуйи. В Евросоюзе пьемонтский лесной орех относится к продуктам, чьё происхождение подлежит контролю (IGP).<br><br>На хлеб мазать ребёнку можно типичную магазинную пасту или чистую джандуйю – всё вкусно, но результат будет разным. Также, нутелла - это джандуйя из молочного шоколада с фундуком. Рецепт нутеллы, который используют производители изменен (добавлено гораздо больше сахаров, гораздо меньше орехов, а шоколад заменили какао и добавили дешевые растительные жиры).</div>",
+      "text_uz": "",
+      "sent_date": "2020-12-02T09:18:43.314Z",
+      "id": "b90498f0-3401-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1606846787938.jpg"
+    },
+    {
+      "name": "А вы пробовали настоящее Итальянское сливочное масло????",
+      "name_uz": "Burro Zanetti",
+      "text": "<div>В регионе Эмилья-Романья, там где делают лучший сыр в мире Пармезан, компания Zanetti, на протяжении более пятидесяти лет производит одно из лучших в Италии сливочное масло \"<strong>Burro Zanetti\"</strong> – это 100% натуральный продукт. <br><br>Масло <strong>\"Burro Zanetti\"</strong>&nbsp;делают только из 100% сливок, полученные из молока, которое поставляют итальянские фермы на заводы Zaanetti каждый день.&nbsp;&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2020-12-03T15:29:59.984Z",
+      "id": "611205c0-357c-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1607009388569.png"
+    },
+    {
+      "name": "Новогодний носок",
+      "name_uz": "Новогодний носок",
+      "text": "<div>Скоро новый год и удивите своих деток или внуков новогодним подарком \"НОСОК\". В наборе только лучшие печенье, кексы и пончики от Европейского производителя St.Michel. Продукция изготавливается только из натуральных ингредиентов без пальмового масла, красителей и усилителей вкуса!!!<br><br>Смотрите и заказывайте в разделе \"Новогодние Товары\".</div>",
+      "text_uz": "",
+      "sent_date": "2020-12-13T06:49:21.794Z",
+      "id": "4cb29d70-3d0f-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1607842148543.jpg"
+    },
+    {
+      "name": "Шоколадная Паста \"Джандуйя\"",
+      "name_uz": "Шоколадная Паста Джандуйя",
+      "text": "<div>Чем отличаются Шоколадная паста «Джандуйя 1865» из Италии, от других самых известных шоколадных паст в мире?<br><br>1. Состав – все натуральные ингредиенты, БЕЗ ПАЛЬМОВОГО масла.<br><br>2. Качество ингредиентов – 40% состава это фундук выращенный в Италии.<br><br>3. ВКУС - нежный вкус шоколада с лесными орехами!<br><br>Шоколадная паста и конфеты «Джандуйя 1865» - это символ региона Пьемонте в Италии и имеет Европейский сертификат I.G.P (Indicazione Geografica Protetta - Защищённое географическое наименование) для защиты продуктов питания, хотя бы одна из характеристик которых (название, качество, традиции) непосредственно связана с территорией производства). Связи с чем «Джандуйя 1865» имеет строгие требование к составу и региону производства в Пьемонте, Италия.<br><br>Узнайте вкус настоящей шоколадной пасты «Джандуйя 1865» в Ташкенте !!!!</div>",
+      "text_uz": "",
+      "sent_date": "2021-01-17T05:59:15.399Z",
+      "id": "ec1ddc30-582b-11eb-85c5-b9d52631bfa1",
+      "file": "/uploads/1610863145857.jpg"
+    },
+    {
+      "photo": "",
+      "name": "А вы видели СКИДКИ ????",
+      "name_uz": "",
+      "text": "<div>На сладости, прочие сыры и Панетонне большие скидки!!!&nbsp;<br><br>Вы очень приятно удивитесь размерам скидок !!<br><br>Заказывайте пока есть в наличии !!!!</div>",
+      "text_uz": "",
+      "sent_date": "2021-01-20T06:12:36.031Z",
+      "id": "cdab3220-5a7e-11eb-bfe2-8d15de06fc44"
+    },
+    {
+      "photo": "",
+      "name": "Бот Работает!!!",
+      "name_uz": "",
+      "text": "<div>Уважаемый Друзья,<br><br>Наверное как вы заметили наш Бот несколько дней не работал, из-за технических неполадок!!! Связи с чем мы приносим свои изменения если это доставило вам не удобства.<br><br>Бот сейчас исправен и работает, делайте заказы !&nbsp;<br><br>Так же обратите внимание на новые цены на печенья, оливки и шоколадную пасту!! Они ВАС приятно удивят!!!!&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2021-02-01T05:54:48.529Z",
+      "id": "08537880-63c4-11eb-90fb-5f5c170aa026"
+    },
+    {
+      "photo": "",
+      "name": "ДЖАНДУЙЯ - что это такое",
+      "name_uz": "",
+      "text": "<div>Шоколадная паста и конфеты «Джандуйя 1865» - это символ региона Пьемонте в Италии и имеет Европейский сертификат I.G.P (Indicazione Geografica Protetta - Защищённое географическое наименование) для защиты продуктов питания, хотя бы одна из характеристик которых (название, качество, традиции) непосредственно связана с территорией производства). Связи с чем «Джандуйя 1865» имеет строгие требование к составу и региону производства в Пьемонте, Италия.<br><br>Шоколадная паста «Джандуйя 1865» из Италии, от других самых известных шоколадных паст в мире?</div><div><br>1. Состав – все натуральные ингредиенты, БЕЗ ПАЛЬМОВОГО масла.<br><br>2. Качество ингредиентов – 40% состава это фундук выращенный в Италии.<br><br>3. ВКУС - нежный вкус шоколада с лесными орехами!&nbsp;</div><div><br>Узнайте вкус настоящей шоколадной пасты «Джандуйя 1865» в Ташкенте !!!!&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2021-02-10T17:45:48.338Z",
+      "id": "7b5433f0-655a-11eb-90fb-5f5c170aa026"
+    },
+    {
+      "name": "Скоро 14 Февраля",
+      "name_uz": "",
+      "text": "<div><strong>Вниманию всех Валентинок (Бобурчиков) !!! 😊😊 😊 </strong><br><br></div><div>Очень скоро 14 февраля, и если вы хотите удивить свою валентинку (Бобурчика), то у нас есть для Вас предложение!!!&nbsp;<br><br></div><div>ПАНЕТОННЕ – прямиком из Италии со скидкой 10% только с 10 по 14 февраля (включительно) !!!&nbsp;<br><br></div><div>Оригинально, красиво и реально вкусно!!!&nbsp;<br><br></div><div>У нас в наличии 3 вида ПАНЕТОННЕ по 1 кг.<strong>*</strong>&nbsp;<br><br></div><div>·&nbsp; &nbsp; &nbsp; &nbsp;Классический с сухофруктами&nbsp;</div><div>·&nbsp; &nbsp; &nbsp; &nbsp;С Шоколадом&nbsp;</div><div>·&nbsp; &nbsp; &nbsp; &nbsp;С Грушей и Шоколадом&nbsp;</div><div>В красивой подарочной упаковке!! <br><br><strong>*Количество ограничено&nbsp;</strong></div>",
+      "text_uz": "",
+      "sent_date": "2021-02-10T14:49:31.284Z",
+      "id": "0ed549c0-6baf-11eb-90fb-5f5c170aa026",
+      "file": "/uploads/1612968517518.jpg"
+    },
+    {
+      "name": "Новинки из ИСПАНИИ",
+      "name_uz": "",
+      "text": "<div><strong>Различные колбасы из мяса индейки из Испании.<br>&nbsp;</strong><br>Вся продукция изготовлены на 100% из мяса индейки.<br>Продукция имеет сертификат \"ХАЛЯЛЬ\"&nbsp; &nbsp;<br><br>Смотрите в разделе мясные изделия!!!!</div>",
+      "text_uz": "",
+      "sent_date": "2021-02-15T08:52:38.969Z",
+      "id": "e9f47260-6f6a-11eb-90fb-5f5c170aa026",
+      "file": "/uploads/1613379152827.jpg",
+      "photo": ""
+    },
+    {
+      "name": "Скоро 8 Марта !!!!!",
+      "name_uz": "8 Марта",
+      "text": "<div>Если вы хотите подарить, своим любимым женщинам или девушкам что ни будь красивое и оригинальное, а не банальные цветы по заоблачным ценам!!&nbsp;</div><div><br></div><div>Тогда у нас есть для Вас специальное предложение - настоящий Итальянский Панетонне весом 1 кг. в красивой подарочной упаковке + шоколадная паста с фундуком от старейшего производителя шоколада в Италии, компании «Caffarel».&nbsp;<br><br></div><div>И все это по привлекательной цене 450 000 сум с доставкой в фирменном пакете от Caffarel</div><div><br></div><div><strong>*</strong> Предложение действительно только при заказе через телеграмм бот <a href=\"https://t.me/iGourmet_bot%20до%2007.03.2021\">до 07.03.2021</a> включительно.&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2021-02-25T12:03:43.503Z",
+      "id": "896bd640-73b6-11eb-90fb-5f5c170aa026",
+      "file": "/uploads/1614254564464.jpg"
+    },
+    {
+      "name": "Панеттоне вкус ИТАЛИИ у Вас на столе!!!",
+      "name_uz": "Панеттоне",
+      "text": "<div><strong>Panettóne </strong>— типичный сладкий миланский пирог в форме купола (регион Ломбардия), связанный с гастрономическими традициями Рождества и широко распространенный по всей Италии.</div><div>Panettоne P.A.T. (Prodotti agroalimentari tradizionali italiani. Традиционные итальянские продукты питания).<br>&nbsp;Место рождения: <strong>Милан.</strong><br> Дата рождения: <strong>15 век.</strong>&nbsp;<br><br></div><div><strong>Традиционный миланский панеттоне </strong>— это мягкая воздушная выпечка с определёнными характеристиками:&nbsp;<br><br></div><div>· имеет типичную цилиндрическую форму&nbsp;<br><br></div><div>· его тесто состоит на 20% (минимум) из изюма, цукатов и на 10% (минимум) жиров&nbsp;<br><br></div><div>· на натуральной закваске&nbsp;<br><br></div><div>· тесто желтого цвета&nbsp;<br><br></div><div>· верхушка имеет надрезы&nbsp;<br><br></div><div>У Вас есть возможность попробовать это прекрасный кекс по специальной цене до 20.04.2021 года.&nbsp; <br>&nbsp;<br><strong>&nbsp;Цена - 350 000 сум с доставкой (вес 1 кг) !!!</strong><br>&nbsp;<br> Заказывайте, пока есть в наличии 3 вкуса .&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2021-03-30T10:43:27.201Z",
+      "id": "9d8dc650-9144-11eb-90fb-5f5c170aa026",
+      "file": "/uploads/1617100945141.jpg"
+    },
+    {
+      "name": "НОВИНКИ",
+      "name_uz": "Янгиликлар",
+      "text": "<div>В нашем боте появились новинки от De Nigris (Италия) - лидера по производству качественных Бальзамических и винных уксусов. Так же новинка \"КОКОСОВЫЙ УКСУС\". Смотрите и заказывайте в разделе уксусы!</div>",
+      "text_uz": "",
+      "sent_date": "2021-04-12T17:37:38.975Z",
+      "id": "9a45e5b0-9bb5-11eb-90fb-5f5c170aa026",
+      "file": "/uploads/1618248984456.jpg"
+    },
+    {
+      "name": "Кокосовый уксус",
+      "name_uz": "Кокос сиркаси",
+      "text": "<div>Кокосовый уксус не образуется из тропических фруктов с белой мякотью, его источник – цветки кокоса в возрасте около года, переживающие процесс старения и естественного сквашивания сока, что сохраняет многие его ферменты и питательные вещества.&nbsp;<br><br></div><div>Кокосовый уксус называют пробиотическим суперфудом. Поскольку он получается в результате естественной ферментации, то содержит пробиотики, важные для пищеварения и здоровья кишечника. Как и все натуральные уксусы, он обладает антибактериальными и противомикробными свойствами.&nbsp;<br><br></div><div>Заказывайте в разделе уксусы.</div>",
+      "text_uz": "",
+      "sent_date": "2021-04-13T07:09:29.750Z",
+      "id": "2d061aa0-9bb6-11eb-90fb-5f5c170aa026",
+      "file": "/uploads/1618249705191.jpg"
+    },
+    {
+      "name": "АКЦИЯ",
+      "name_uz": "Панеттоне",
+      "text": "<div><strong>Panettóne </strong>— типичный сладкий миланский пирог в форме купола (регион Ломбардия), связанный с гастрономическими традициями Рождества и широко распространенный по всей Италии.</div><div>Panettоne P.A.T. (Prodotti agroalimentari tradizionali italiani. Традиционные итальянские продукты питания).<br>&nbsp;Место рождения: <strong>Милан.</strong><br> Дата рождения: <strong>15 век.</strong>&nbsp;<br><br></div><div>У Вас есть возможность попробовать это прекрасный кекс по специальной цене до 28.04.2021 года.&nbsp;</div><div>&nbsp;<br><strong>&nbsp;Цена - 250 000 сум с доставкой (вес 1 кг) !!!</strong><br>&nbsp;<br> Заказывайте, пока есть в наличии 3 вкуса .&nbsp;</div>",
+      "text_uz": "",
+      "sent_date": "2021-04-18T07:50:23.841Z",
+      "id": "7cee4620-9c27-11eb-90fb-5f5c170aa026",
+      "file": "/uploads/1618297897854.jpg",
+      "photo": ""
+    },
+    {
+      "name": "НОВИНКИ из Сицилии",
+      "name_uz": "",
+      "text": "<div><strong>Друзья, в iGourmet новое поступление прямиком из самой Сицилии! 🤩 <br></strong><br>Хотите попробовать нечто особенное? Тогда как насчет вкуснейших кремов с миндалём и фисташками от известного итальянского производителя Pisti? 🇮🇹 <br><br>Выращенные на сицилийской земле орехи и особая итальянская рецептура дарят Pisti неповторимый вкус и пикантный аромат, которые точно не оставят равнодушными никого из вас. 😊<br><br><strong>Оформляйте заказ</strong></div>",
+      "text_uz": "",
+      "sent_date": "2021-07-05T07:06:04.382Z",
+      "id": "6cb47710-dd5f-11eb-8344-954d8d74a0e5",
+      "file": "/uploads/1625468747940.jpg"
     }
   ],
   "settings": {
-    "address": "<div>📍 Мирзо-Улугбекский район, ул.Паркент 9<br><br>☎️ +998955142000<br><br>⏰ доставка заказов: с 17:00 до 22:00 ежедневно<br><br>💰 стоимость доставки 15 000 сум в пределах Ташкента.&nbsp;<br>Заказы от 500 000 сум доставляются бесплатно.</div>",
-    "address_uz": "<div>.&nbsp;</div>"
+    "address": "<div>📍 Мирзо-Улугбекский район, ул.Паркент 9<br><br>☎️ +998955142000<br><br>⏰ доставка заказов: с 17:00 до 22:00 ежедневно (кроме воскресенья)<br><br>💰 стоимость доставки 25 000 сум в пределах Ташкента.&nbsp;<br>Заказы от 500 000 сум доставляются бесплатно.</div>",
+    "address_uz": "<div>📍 Мирзо-Улугбекский тумани, Паркент кучаси 9<br><br>☎️ +998955142000<br><br>⏰ буюртмалани етказиб берищ 17:00 дан, 22:00 гача, хар куни (якшанба кунидан ташкари)<br><br>💰 етказиб берищ нархи 25 000 сум, Тошкент шахарида.&nbsp;<br>500 000 сумдан ортиг буюртмалар текинга етказиб берилади.</div>"
   },
   "discounts": [
     {

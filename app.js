@@ -104,16 +104,16 @@ db.defaults({ cart: [], reviews: [], catalog_section: [], products: [], posts: [
 
 function compareValues(key, order='asc') {
     return function(a, b) {
-      if(!a.hasOwnProperty(key) || 
+      if(!a.hasOwnProperty(key) ||
          !b.hasOwnProperty(key)) {
-          return 0; 
+          return 0;
       }
-      
-      const varA = (typeof a[key] === 'string') ? 
+
+      const varA = (typeof a[key] === 'string') ?
         a[key].toUpperCase() : a[key];
-      const varB = (typeof b[key] === 'string') ? 
+      const varB = (typeof b[key] === 'string') ?
         b[key].toUpperCase() : b[key];
-        
+
       let comparison = 0;
       if (varA > varB) {
         comparison = 1;
@@ -121,7 +121,7 @@ function compareValues(key, order='asc') {
         comparison = -1;
       }
       return (
-        (order == 'desc') ? 
+        (order == 'desc') ?
         (comparison * -1) : comparison
       );
     };
@@ -786,7 +786,7 @@ const makeOrder = new WizardScene(
                             PRICE: parseInt(productPrices[item.product_id], 0),
                             CURRENCY_ID: 'UZS',
                             QUANTITY: item.count,
-                            TAX_INCLUDED: "N",
+                            TAX_INCLUDED: "Y",
                             PRICE_BRUTTO: parseInt(productPrices[item.product_id], 0),
                             PRICE_NETTO: parseInt(productPrices[item.product_id], 0)
                         });
@@ -798,9 +798,9 @@ const makeOrder = new WizardScene(
                     const discount = await db.get('discounts')
                         .filter(discount => discount.order_price <= personCash)
                         .value();
-        
-                    
-        
+
+
+
                     let newDiscount = [];
                     for(var i = 0; i<discount.length; i++) {
                         newDiscount.push({
@@ -808,16 +808,17 @@ const makeOrder = new WizardScene(
                             discount: parseInt(discount[i].discount, 0)
                         });
                     }
-        
+
                     let resultDiscounts = newDiscount.sort(compareValues('order_price', 'desc'));
                     if(resultDiscounts[0]) {
                         let discountVal = totalPrice * (resultDiscounts[0].discount/100);
                         let discountPerProduct = discountVal/productRows.length;
                         for(var i = 0; i<productRows.length; i++) {
                             productRows[i].DISCOUNT_SUM = discountPerProduct / productRows[i].QUANTITY;
-                            productRows[i].PRICE = productRows[i].PRICE - productRows[i].DISCOUNT_SUM;
-                            productRows[i].PRICE_ACCOUNT = productRows[i].PRICE - productRows[i].DISCOUNT_SUM;
-                            productRows[i].PRICE_EXCLUSIVE = productRows[i].PRICE - productRows[i].DISCOUNT_SUM;
+                            productRows[i].PRICE_BRUTTO = productRows[i].PRICE_NETTO = productRows[i].PRICE;
+                            productRows[i].DISCOUNT_RATE = "2.00";
+                            // productRows[i].PRICE_EXCLUSIVE = productRows[i].PRICE - productRows[i].DISCOUNT_SUM;
+                            productRows[i].PRICE_EXCLUSIVE = productRows[i].PRICE;
                             productRows[i].PRICE = productRows[i].PRICE - productRows[i].DISCOUNT_SUM;
                             productRows[i].DISCOUNT_TYPE_ID = 1;
                         }
@@ -1132,7 +1133,7 @@ const addProductToCart = async (ctx, count) => {
                         .filter(discount => discount.order_price <= totalPrice)
                         .value();
 
-                   
+
 
                    let newDiscount = [];
                    for(var i = 0; i<discount.length; i++) {
@@ -1673,8 +1674,8 @@ app.post('/api/:collection/', upload.single('photo'), async (req, res) => {
         }
 
         req.body.id = uuidv1();
-        if(req.photo) {
-            req.body.file = `/uploads/${req.photo.filename}`;
+        if(req.file) {
+            req.body.file = `/uploads/${req.file.filename}`;
         }
 
         await db.get(req.params.collection)
@@ -1738,7 +1739,7 @@ app.use('/bx24/', async (req, res, next) => {
         const allFinalDeals = await axios.get(process.env.BX_WEBHOOK_URL + 'crm.deal.list?' + serializeQuery({
             'filter': {
                 CONTACT_ID: contactId,
-                STAGE_ID: 'FINAL_INVOICE'
+                STAGE_ID: 'WON'
             },
             'select': ['*']
         }));
